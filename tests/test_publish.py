@@ -8,6 +8,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from test_build import builder
+
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts/publish.sh"
 ROOT = SCRIPT.parents[1]
 
@@ -43,7 +45,7 @@ class PublishTests(unittest.TestCase):
             for config in sorted((ROOT / "sources").glob("*.json")):
                 for item in json.loads(config.read_text())["sources"]:
                     name = item["name"]
-                    extension = ".txt" if item["format"] == "adguard" else ".json"
+                    extension = builder.get_converter(item["format"]).EXTENSION
                     binary = output / f"{name}.srs"
                     raw = output / "sources" / f"{name}{extension}"
                     binary.write_bytes(b"SRS\x02fixture")

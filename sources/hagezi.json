@@ -3,7 +3,7 @@
     {
       "name": "hagezi-tif-full",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt",
-      "format": "adguard",
+      "format": "adblock",
       "min_rules": 500000,
       "validation": {
         "headers": ["[Adblock Plus]"],

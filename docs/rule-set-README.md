@@ -21,6 +21,8 @@ AWAvenue 四种变体选用其中一个：完整防护为广告＋隐私＋不�
 [metadata.json](metadata.json) 记录上游版本、规则数量、编译器版本和 SHA-256。
 `sources/` 保存本次构建使用的完整上游原文件。OISD 和 HaGeZi TIF Full 使用 sing-box 官方
 `rule-set convert --type adguard` 直接生成 `.srs`，保留原生 AdGuard 匹配语义。
+这两组订阅的上游文件均声明为 Adblock 格式，构建配置和 `metadata.json` 使用
+`format: "adblock"`；它是 `adguard` 转换器的别名。
 AdGuard 二进制规则无法反编译成普通规则集 JSON，请通过原始 `.txt` 审阅来源。
 AWAvenue 四种变体直接编译官方 sing-box JSON，保留原始匹配字段及语义，可通过 `.json` 审阅来源。
 

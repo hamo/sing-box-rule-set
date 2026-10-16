@@ -3,24 +3,27 @@
 通过 GitHub Actions 自动下载上游规则，转换为 sing-box 的 `.srs` 二进制规则集。
 支持 **OISD big**、**OISD small**、**AWAvenue 秋风广告规则的全部四种变体**及 **HaGeZi TIF Full**。
 
-| 规则集 | 上游 | 输出 | 用途 |
-| --- | --- | --- | --- |
-| OISD big | <https://big.oisd.nl/> | `oisd-big.srs` | 广告、跟踪、恶意域名等 |
-| OISD small | <https://small.oisd.nl/> | `oisd-small.srs` | 以广告拦截为主的较小版本 |
-| AWAvenue 完整防护 | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json) | `awavenue.srs` | 广告＋隐私＋不受欢迎 |
-| AWAvenue 仅广告 | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-Only.Ads.json) | `awavenue-only-ads.srs` | 仅广告 |
-| AWAvenue 不含隐私 | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Privacy.json) | `awavenue-no-privacy.srs` | 广告＋不受欢迎 |
-| AWAvenue 不含不受欢迎 | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Unwelcome.json) | `awavenue-no-unwelcome.srs` | 广告＋隐私 |
-| HaGeZi TIF Full | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt) | `hagezi-tif-full.srs` | 恶意软件、钓鱼、诈骗、挖矿等威胁域名 |
+| 规则集 | 上游 | format | 输出 | 用途 |
+| --- | --- | --- | --- | --- |
+| OISD big | <https://big.oisd.nl/> | `adblock` | `oisd-big.srs` | 广告、跟踪、恶意域名等 |
+| OISD small | <https://small.oisd.nl/> | `adblock` | `oisd-small.srs` | 以广告拦截为主的较小版本 |
+| AWAvenue 完整防护 | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json) | `sing-box` | `awavenue.srs` | 广告＋隐私＋不受欢迎 |
+| AWAvenue 仅广告 | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-Only.Ads.json) | `sing-box` | `awavenue-only-ads.srs` | 仅广告 |
+| AWAvenue 不含隐私 | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Privacy.json) | `sing-box` | `awavenue-no-privacy.srs` | 广告＋不受欢迎 |
+| AWAvenue 不含不受欢迎 | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Unwelcome.json) | `sing-box` | `awavenue-no-unwelcome.srs` | 广告＋隐私 |
+| HaGeZi TIF Full | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt) | `adblock` | `hagezi-tif-full.srs` | 恶意软件、钓鱼、诈骗、挖矿等威胁域名 |
 
 big 包含 small，选择一个即可。规则说明见 [OISD 官网](https://oisd.nl/)。
-OISD 官方为 [AdGuard Home](https://oisd.nl/setup/adguardhome) 提供以上订阅地址；
-列表文件头虽然标记为 `[Adblock Plus]`，规则本身可交给 sing-box 的 AdGuard 转换器处理。
+OISD big/small 的文件头为 `[Adblock Plus]`，声明 `Syntax: Adblock Plus Filter List`，
+因此配置使用 `format: "adblock"`。官方也为 [AdGuard Home](https://oisd.nl/setup/adguardhome)
+提供同一组订阅地址，表示规则可被 AdGuard 使用。
 AWAvenue 使用 [官方仓库](https://github.com/TG-Twilight/AWAvenue-Ads-Rule) 的四种 sing-box JSON，
 通过通用 `sing-box` 格式转换器编译，保留精确域名、域名后缀和关键词的原始匹配语义。
 四种变体选用其中一个即可；「不受欢迎」包含强制更新、PCDN、推送等规则。
 HaGeZi 使用 [Threat Intelligence Feeds 的 Full 版本](https://github.com/hagezi/dns-blocklists#tif)，
-复用通用 `adguard` 转换器，校验文件头声明的 `Number of entries` 与实际规则行数。
+下载地址为 `adblock/tif.txt`，文件声明 `Syntax: AdBlock`，同样配置为 `adblock`。
+两者都复用 sing-box 的 `adguard` 转换器；配置中的格式名描述上游数据，转换命令保持
+`--type adguard`。HaGeZi 还会校验 `Number of entries` 与实际规则行数。
 
 ## 启用自动更新
 
@@ -202,7 +205,7 @@ sing-box AdGuard DNS 转换器决定；`[Adblock Plus]` 文件头只是订阅标
 
 JSON 编译产物的 SRS 版本由官方编译器根据源格式版本及实际使用字段决定，可能低于源 JSON 版本。
 源 JSON 版本与实际 SRS 版本分别记录在 `metadata.json` 中。
-当前 OISD、HaGeZi 的 AdGuard 转换产物及秋风 JSON 编译产物均为 SRS 版本 2。
+当前 OISD、HaGeZi 的 Adblock 转换产物及秋风 JSON 编译产物均为 SRS 版本 2。
 
 `min_rules` 可选，默认 1。`adguard` / `adblock` 格式统计非注释规则行；sing-box JSON 格式统计
 顶层 `rules` 数组的规则对象数量，二者都在转换前校验。
@@ -213,10 +216,10 @@ JSON 编译产物的 SRS 版本由官方编译器根据源格式版本及实际�
 {
   "name": "oisd-big",
   "url": "https://big.oisd.nl/",
-  "format": "adguard",
+  "format": "adblock",
   "min_rules": 10000,
   "validation": {
-    "headers": ["[Adblock Plus]", "[AdGuard]"],
+    "headers": ["[Adblock Plus]"],
     "count_field": "entries"
   }
 }
