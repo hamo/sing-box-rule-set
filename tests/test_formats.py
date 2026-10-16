@@ -37,6 +37,33 @@ class AdGuardTests(unittest.TestCase):
             with self.subTest(text=text), self.assertRaisesRegex(ValueError, "minimum"):
                 adguard.inspect_list(text, source)
 
+    def test_embedded_list_metadata_does_not_override_subscription_header(self):
+        source = {"validation": {"title_prefix": "AdGuard DNS filter", "count_field": "entries"}}
+        text = ("! Title: AdGuard DNS filter\n! Entries: 2\n! Version: subscription\n"
+                "||ads.example.com^\n! Title: Embedded list\n! Entries: 1\n"
+                "! Version: embedded\n||tracking.example.com^\n")
+        normalized, count, metadata = adguard.inspect_list(text, source)
+        self.assertEqual(count, 2)
+        self.assertEqual(metadata["title"], "AdGuard DNS filter")
+        self.assertEqual(metadata["version"], "subscription")
+        self.assertIn("! Title: Embedded list", normalized)
+
+    def test_report_policy_requires_explicit_skip_limit(self):
+        for source in ({"unsupported_policy": "ignore"}, {"unsupported_policy": "report"},
+                       {"unsupported_policy": "report", "max_skipped_rules": True},
+                       {"max_skipped_rules": 1}):
+            with self.subTest(source=source), self.assertRaises(ValueError):
+                adguard.validate(source)
+        adguard.validate({"unsupported_policy": "report", "max_skipped_rules": 200})
+
+    def test_badfilter_keeps_comments_and_regex_anchors_and_rejects_partial_cancellation(self):
+        normalized = "! ||example.com^$badfilter\n/ads[0-9]+\\.example\\.com$/\n"
+        self.assertEqual(adguard.apply_badfilter(normalized), (normalized, [], []))
+        for rule in ("||example.com^$badfilter,domain=other.example",
+                     "0.0.0.0 example.com$badfilter"):
+            with self.subTest(rule=rule), self.assertRaisesRegex(ValueError, "Unsupported badfilter"):
+                adguard.apply_badfilter(rule + "\n")
+
 
 class SingBoxTests(unittest.TestCase):
     def test_invalid_or_empty_json_fails_before_compilation(self):

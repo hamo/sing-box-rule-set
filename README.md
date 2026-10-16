@@ -1,7 +1,8 @@
 # sing-box-rule-set
 
 通过 GitHub Actions 自动下载上游规则，转换为 sing-box 的 `.srs` 二进制规则集。
-支持 **OISD big**、**OISD small**、**AWAvenue 秋风广告规则的全部四种变体**及 **HaGeZi TIF Full**。
+支持 **OISD big/small**、**AWAvenue 秋风广告规则的全部四种变体**、**HaGeZi Pro**、
+**HaGeZi TIF Full/Medium/Mini**、**HaGeZi Native Tracker 全部 12 个列表**及 **AdGuard DNS Filter**，共 23 个规则集。
 
 | 规则集 | 上游 | format | 输出 | 用途 |
 | --- | --- | --- | --- | --- |
@@ -12,6 +13,22 @@
 | AWAvenue 不含隐私 | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Privacy.json) | `sing-box` | `awavenue-no-privacy.srs` | 广告＋不受欢迎 |
 | AWAvenue 不含不受欢迎 | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Unwelcome.json) | `sing-box` | `awavenue-no-unwelcome.srs` | 广告＋隐私 |
 | HaGeZi TIF Full | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt) | `adblock` | `hagezi-tif-full.srs` | 恶意软件、钓鱼、诈骗、挖矿等威胁域名 |
+| HaGeZi Pro | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt) | `adblock` | `hagezi-pro.srs` | 综合广告、跟踪、遥测和恶意域名 |
+| HaGeZi TIF Medium | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.medium.txt) | `adblock` | `hagezi-tif-medium.srs` | 威胁防护中等版本 |
+| HaGeZi TIF Mini | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.mini.txt) | `adblock` | `hagezi-tif-mini.srs` | 威胁防护精简版本 |
+| HaGeZi Native Amazon | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.amazon.txt) | `adblock` | `hagezi-native-amazon.srs` | Amazon 设备及服务的内置跟踪 |
+| HaGeZi Native Apple | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.apple.txt) | `adblock` | `hagezi-native-apple.srs` | iOS、macOS、tvOS 内置跟踪 |
+| HaGeZi Native Huawei | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.huawei.txt) | `adblock` | `hagezi-native-huawei.srs` | 华为设备内置跟踪 |
+| HaGeZi Native Microsoft | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.winoffice.txt) | `adblock` | `hagezi-native-microsoft.srs` | Windows、Office、MSN 内置跟踪 |
+| HaGeZi Native Samsung | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.samsung.txt) | `adblock` | `hagezi-native-samsung.srs` | 三星设备内置跟踪 |
+| HaGeZi Native TikTok | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.tiktok.txt) | `adblock` | `hagezi-native-tiktok.srs` | TikTok 指纹跟踪 |
+| HaGeZi Native TikTok Aggressive | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.tiktok.extended.txt) | `adblock` | `hagezi-native-tiktok-aggressive.srs` | TikTok 指纹跟踪激进版本 |
+| HaGeZi Native LG webOS | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.lgwebos.txt) | `adblock` | `hagezi-native-lgwebos.srs` | LG webOS 内置跟踪 |
+| HaGeZi Native Roku | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.roku.txt) | `adblock` | `hagezi-native-roku.srs` | Roku 内置跟踪 |
+| HaGeZi Native Vivo | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.vivo.txt) | `adblock` | `hagezi-native-vivo.srs` | Vivo 设备内置跟踪 |
+| HaGeZi Native OPPO/Realme | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.oppo-realme.txt) | `adblock` | `hagezi-native-oppo-realme.srs` | OPPO、Realme 设备内置跟踪 |
+| HaGeZi Native Xiaomi | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.xiaomi.txt) | `adblock` | `hagezi-native-xiaomi.srs` | 小米设备内置跟踪 |
+| AdGuard DNS Filter | [官方 DNS Filter](https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt) | `adguard` | `adguard-dns-filter.srs` | 针对 DNS 优化的综合广告和跟踪拦截 |
 
 big 包含 small，选择一个即可。规则说明见 [OISD 官网](https://oisd.nl/)。
 OISD big/small 的文件头为 `[Adblock Plus]`，声明 `Syntax: Adblock Plus Filter List`，
@@ -20,10 +37,21 @@ OISD big/small 的文件头为 `[Adblock Plus]`，声明 `Syntax: Adblock Plus F
 AWAvenue 使用 [官方仓库](https://github.com/TG-Twilight/AWAvenue-Ads-Rule) 的四种 sing-box JSON，
 通过通用 `sing-box` 格式转换器编译，保留精确域名、域名后缀和关键词的原始匹配语义。
 四种变体选用其中一个即可；「不受欢迎」包含强制更新、PCDN、推送等规则。
-HaGeZi 使用 [Threat Intelligence Feeds 的 Full 版本](https://github.com/hagezi/dns-blocklists#tif)，
-下载地址为 `adblock/tif.txt`，文件声明 `Syntax: AdBlock`，同样配置为 `adblock`。
-两者都复用 sing-box 的 `adguard` 转换器；配置中的格式名描述上游数据，转换命令保持
-`--type adguard`。HaGeZi 还会校验 `Number of entries` 与实际规则行数。
+HaGeZi 提供 [Pro](https://github.com/hagezi/dns-blocklists#pro)、
+[Threat Intelligence Feeds 的 Full/Medium/Mini](https://github.com/hagezi/dns-blocklists#tif)
+及 [Native Tracker 全部设备/服务列表](https://github.com/hagezi/dns-blocklists#native)。
+这些上游文件声明 `Syntax: AdBlock`，配置使用 `adblock`，并校验 `Number of entries` 与实际规则行数。
+[AdGuard DNS Filter](https://github.com/AdguardTeam/AdGuardSDNSFilter) 是针对 DNS 过滤优化的综合列表，
+配置使用 `adguard`，校验标题和最小规则数量；本项目发布其 sing-box 兼容部分。
+官方原文件含少量 sing-box 不支持的 IP 规则及非域名片段，跳过条目和原因逐项记录在
+`metadata.json` 的 `conversion.skipped_rules` 及 Actions 构建摘要中。
+AdGuard DNS Filter 显式配置 `unsupported_policy: "report"`，最多允许跳过 200 条；超过上限即失败。
+OISD、HaGeZi 和 AdGuard DNS Filter 都使用 sing-box 的 `adguard` 转换器；
+配置中的格式名描述上游数据，转换命令保持 `--type adguard`。
+
+综合广告列表可先在 OISD、HaGeZi Pro、AdGuard DNS Filter 中选择一个，秋风按需补充。
+TIF Full/Medium/Mini 三选一；Medium/Mini 为轻量替代版本。
+Native Tracker 按设备或服务选择，部分规则可能影响相关功能；TikTok 普通版与 Aggressive 版选一个。
 
 ## 启用自动更新
 
@@ -55,6 +83,22 @@ https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/awavenue-only-
 https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/awavenue-no-privacy.srs
 https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/awavenue-no-unwelcome.srs
 https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-tif-full.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-pro.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-tif-medium.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-tif-mini.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-amazon.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-apple.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-huawei.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-microsoft.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-samsung.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-tiktok.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-tiktok-aggressive.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-lgwebos.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-roku.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-vivo.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-oppo-realme.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-xiaomi.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/adguard-dns-filter.srs
 ```
 
 在现有配置的 `route.rule_set` 中加入：
@@ -79,7 +123,8 @@ https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-tif-ful
 ```
 
 使用秋风规则时，将上面片段中的 `oisd-big` 替换为对应变体名称，如 `awavenue-only-ads`。
-使用 HaGeZi TIF Full 时替换为 `hagezi-tif-full`。
+使用其他规则集时替换为对应输出名称，例如 `hagezi-pro`、`hagezi-tif-mini`、
+`hagezi-native-apple` 或 `adguard-dns-filter`。
 上面的 action 配置片段适用于 sing-box 1.11.0 及以上版本。
 当前提供的 SRS 均为版本 2，要求 sing-box 1.10.0+。
 秋风的原始 JSON 为版本 3；官方编译器根据实际使用的字段将其编译为版本 2。
@@ -94,19 +139,20 @@ sources/*.json → 下载 → 按 format 选择通用转换器 → 校验与转�
 ```
 
 - 固定官方 sing-box 编译器版本，并验证下载包的 SHA-256。
-- OISD 和 HaGeZi 使用 `sing-box rule-set convert --type adguard`；AWAvenue 四种官方 JSON 使用 `rule-set compile`。
+- OISD、HaGeZi 和 AdGuard DNS Filter 使用 `sing-box rule-set convert --type adguard`；AWAvenue 四种官方 JSON 使用 `rule-set compile`。
 - 域名、子域名、例外、通配符等匹配语义由官方转换器处理；内容相同时不提交。
 - 校验 OISD 的 `Entries`、HaGeZi 的 `Number of entries`，以及 JSON 的版本字段、规则数组和最小规则数量，
   避免把错误页、截断文件或空列表发布出去。
-- sing-box 对部分不支持的规则会跳过并成功退出；构建检测其跳过日志并失败，避免发布不完整的转换结果。
+- 默认检测 sing-box 跳过日志并失败；AdGuard DNS Filter 显式允许有上限的兼容转换，记录每条跳过原因。
+- 转换前处理 DNS `$badfilter`，取消其对应规则；编译后核对输入、取消、跳过和成功转换的数量，防止漏算。
 - 下载支持重试、低速超时和可配置的备用地址；OISD 使用维护者的官方 GitHub 镜像作为备用。
-- 全部规则集构建成功并通过完整性校验后才发布，任一来源失败时远端保留上一版。
+- 全部规则集按各自配置的兼容策略构建成功并通过完整性校验后才发布，任一来源失败时远端保留上一版。
 - `rule-set` 分支保留 `.srs`、上游原文件、许可证及带哈希的 `metadata.json`。
 - 发布通过普通 Git 提交和推送完成；规则更新保留分支历史。
 - PR 执行转换、SRS 匹配和本地 Git 发布测试，不下载上游规则；手动选择其他分支运行时
   只构建和上传 artifact，`main` 才能发布。
 
-OISD 和 HaGeZi 的转换命令见 [AdGuard DNS Filter 文档](https://sing-box.sagernet.org/configuration/rule-set/adguard/)。
+OISD、HaGeZi 和 AdGuard DNS Filter 的转换命令见 [AdGuard DNS Filter 文档](https://sing-box.sagernet.org/configuration/rule-set/adguard/)。
 其专门的 AdGuard 二进制规则不能反编译成普通规则集 JSON，因此保留上游 `.txt` 供审阅。
 转换时移除订阅文件头并规范空白行，完整原文件保持原样。
 秋风则直接保留官方 `.json` 并编译，命令见
@@ -142,8 +188,9 @@ python3 scripts/build.py --upstream oisd --output build-oisd
 
 ```text
 sources/
+  adguard.json              # AdGuard DNS Filter 的地址、格式和可选校验
   awavenue.json             # 秋风的地址、格式和可选校验
-  hagezi.json               # HaGeZi TIF Full 的地址、格式和可选校验
+  hagezi.json               # HaGeZi Pro、TIF 和 Native Tracker 的地址、格式和可选校验
   oisd.json                 # OISD 的地址、格式和可选校验
 scripts/
   build.py                  # 读取上游配置、下载、按格式分发、汇总产物
@@ -192,6 +239,7 @@ sing-box AdGuard DNS 转换器决定；`[Adblock Plus]` 文件头只是订阅标
 | 通配符 | `\|\|track*.example.com^`，支持 `*` |
 | 域名正则 | `/ads[0-9]+\.example\.com/`；受 sing-box 正则引擎和转换器限制 |
 | 有限的修饰符 | `$important`；其他修饰符需按官方支持范围确认 |
+| 取消规则 | DNS `$badfilter` 在编译前取消文本相同的目标规则，支持与 `$important` 组合；不支持浏览器 `$domain` 等部分取消语法 |
 | 注释与订阅头 | 注释不计入规则数量；`[Adblock Plus]` / `[AdGuard]` 订阅头在转换输入中移除 |
 
 `$dnsrewrite=0.0.0.0` 可被官方转换器接受，但改写动作会被忽略，仅保留匹配逻辑；
@@ -199,13 +247,22 @@ sing-box AdGuard DNS 转换器决定；`[Adblock Plus]` 文件头只是订阅标
 
 浏览器专用的 CSS 元素隐藏、脚本注入，以及 URL 路径、端口、查询参数和
 `$script`、`$image`、`$third-party` 等修饰符不在支持范围内。
-应选择 OISD、HaGeZi 这类 DNS 域名过滤列表。sing-box 报告跳过不支持的规则时，
-构建会失败，不会发布该次结果。详细兼容范围见
+应选择 OISD、HaGeZi、AdGuard DNS Filter 这类 DNS 域名过滤列表。默认情况下，sing-box 报告
+跳过不支持的规则时，构建会失败。AdGuard DNS Filter 使用下述显式报告策略发布兼容部分。
+详细兼容范围见
 [官方 AdGuard DNS Filter 文档](https://sing-box.sagernet.org/configuration/rule-set/adguard/)。
 
 JSON 编译产物的 SRS 版本由官方编译器根据源格式版本及实际使用字段决定，可能低于源 JSON 版本。
 源 JSON 版本与实际 SRS 版本分别记录在 `metadata.json` 中。
-当前 OISD、HaGeZi 的 Adblock 转换产物及秋风 JSON 编译产物均为 SRS 版本 2。
+当前 OISD、HaGeZi、AdGuard DNS Filter 的转换产物及秋风 JSON 编译产物均为 SRS 版本 2。
+
+`unsupported_policy` 可选，默认为 `"error"`。仅在明确接受部分转换时使用 `"report"`，
+并配置正整数 `max_skipped_rules` 作为跳过上限；不能将其视为完整兼容原列表。
+报告模式仍要求编译器报告的输入总数与实际输入相同，成功条数＋跳过条数必须与输入总数一致，
+且成功编译的规则数量不能低于 `min_rules`。不支持的 `$badfilter` 组合始终失败。
+`metadata.json` 的 `rule_count` 保留上游原始规则行数，`conversion` 记录实际编译数量、
+取消指令、被取消的规则，以及逐条跳过原因；构建摘要同步展示数量和跳过详情。
+原文件仍完整保留，订阅顶部元数据不会被内嵌子列表的同名字段覆盖。
 
 `min_rules` 可选，默认 1。`adguard` / `adblock` 格式统计非注释规则行；sing-box JSON 格式统计
 顶层 `rules` 数组的规则对象数量，二者都在转换前校验。
@@ -252,6 +309,10 @@ AWAvenue 秋风广告规则由 [TG-Twilight/AWAvenue-Ads-Rule](https://github.co
 维护，其规则和转换产物遵循上游当前的 [GNU GPL v3 许可证](https://github.com/TG-Twilight/AWAvenue-Ads-Rule/blob/main/LICENSE)。
 官方原始 JSON 保留在 `sources/awavenue*.json` 中，来源地址与文件哈希记录在 `metadata.json`。
 
-HaGeZi TIF Full 来源于 [hagezi/dns-blocklists](https://github.com/hagezi/dns-blocklists#tif)，
+HaGeZi Pro、TIF 和 Native Tracker 来源于 [hagezi/dns-blocklists](https://github.com/hagezi/dns-blocklists)，
 遵循上游的 [GNU GPL v3 许可证](https://github.com/hagezi/dns-blocklists/blob/main/LICENSE)。
-原始列表及其作者、项目、许可证声明保留在 `sources/hagezi-tif-full.txt` 中。
+原始列表及其作者、项目、许可证声明保留在 `sources/hagezi-*.txt` 中。
+
+AdGuard DNS Filter 来源于 [AdguardTeam/AdGuardSDNSFilter](https://github.com/AdguardTeam/AdGuardSDNSFilter)，
+遵循上游的 [GNU GPL v3 许可证](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE)。
+原始列表及其来源、作者和许可证声明保留在 `sources/adguard-dns-filter.txt` 中。

@@ -55,6 +55,11 @@ class PublishTests(unittest.TestCase):
                         "sha256": {path.relative_to(output).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
                                    for path in (raw, binary)},
                     })
+                    if item.get("unsupported_policy") == "report":
+                        records[-1]["conversion"] = {
+                            "compiled_rule_count": 1, "skipped_rule_count": 0,
+                            "badfilter_rules": [], "disabled_rules": [], "skipped_rules": [],
+                        }
 
             def save_metadata():
                 (output / "metadata.json").write_text(json.dumps({"compiler": "fixture", "sources": records}))
@@ -80,6 +85,15 @@ class PublishTests(unittest.TestCase):
             second = git("rev-parse", "refs/heads/rule-set", cwd=remote)
             self.assertNotEqual(first, second)
             self.assertEqual(first, git("rev-parse", f"{second}^", cwd=remote))
+            # A report must account for every input line before publication.
+            reported = next(record for record in records if record.get("conversion"))
+            reported["conversion"]["skipped_rule_count"] = 1
+            save_metadata()
+            with self.assertRaises(subprocess.CalledProcessError):
+                publish()
+            self.assertEqual(second, git("rev-parse", "refs/heads/rule-set", cwd=remote))
+            reported["conversion"]["skipped_rule_count"] = 0
+            save_metadata()
             # Corrupt output must be rejected before the publication branch changes.
             binary.write_bytes(b"corrupted")
             with self.assertRaises(subprocess.CalledProcessError):

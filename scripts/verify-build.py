@@ -22,6 +22,7 @@ def verify(output, config_dir):
         raise ValueError("Missing or unexpected SRS files")
     allowed = {"metadata.json", "README.md", "LICENSE"}
     rows = []
+    notes = []
     for record in records:
         name = record["name"]
         provider, converter, source = expected[name]
@@ -36,9 +37,29 @@ def verify(output, config_dir):
                 raise ValueError(f"{name}: missing, empty or corrupt file: {filename}")
         if srs_version(output / f"{name}.srs") != record["srs_version"]:
             raise ValueError(f"{name}: SRS version mismatch")
+        conversion = record.get("conversion", {})
+        compiled = conversion.get("compiled_rule_count", record["rule_count"])
+        skipped = conversion.get("skipped_rule_count", 0)
+        if source.get("unsupported_policy") == "report" and not conversion:
+            raise ValueError(f"{name}: missing conversion report")
+        if conversion:
+            skipped_rules = conversion["skipped_rules"]
+            badfilters = conversion["badfilter_rules"]
+            disabled = conversion["disabled_rules"]
+            if (skipped != len(skipped_rules)
+                    or compiled + skipped + len(badfilters) + len(disabled) != record["rule_count"]
+                    or skipped > source.get("max_skipped_rules", 0)):
+                raise ValueError(f"{name}: invalid conversion counts")
+            if skipped or badfilters:
+                notes.append(f"\n{name}: resolved {len(badfilters)} badfilter directives, "
+                             f"disabled {len(disabled)} rules, skipped {skipped} unsupported rules.\n")
+            if skipped:
+                notes.append(f"\n<details><summary>{name}: unsupported rules and reasons</summary>\n\n"
+                             "```text\n" + "\n".join(skipped_rules) + "\n```\n\n</details>\n")
         allowed.update(files)
         rows.append(f"| {name} | {record['format']} | {record['rule_count']:,} | "
-                    f"{(output / (name + '.srs')).stat().st_size:,} | {record['srs_version']} |")
+                    f"{compiled:,} | {skipped:,} | {(output / (name + '.srs')).stat().st_size:,} | "
+                    f"{record['srs_version']} |")
     actual = {path.relative_to(output).as_posix() for path in output.rglob("*") if path.is_file()}
     if actual != allowed:
         raise ValueError(f"Unexpected or missing build files: {sorted(actual ^ allowed)}")
@@ -46,8 +67,8 @@ def verify(output, config_dir):
         if not (output / filename).stat().st_size:
             raise ValueError(f"Empty {filename}")
     return (f"Verified {len(records)} rule sets; all files and SHA-256 checksums match.\n\n"
-            "| Rule set | Format | Rule objects/lines | SRS bytes | SRS version |\n"
-            "| --- | --- | ---: | ---: | ---: |\n" + "\n".join(rows) + "\n")
+            "| Rule set | Format | Upstream objects/lines | Compiled | Skipped | SRS bytes | SRS version |\n"
+            "| --- | --- | ---: | ---: | ---: | ---: | ---: |\n" + "\n".join(rows) + "\n" + "".join(notes))
 
 
 def main():

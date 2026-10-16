@@ -6,8 +6,205 @@
       "format": "adblock",
       "min_rules": 500000,
       "validation": {
-        "headers": ["[Adblock Plus]"],
+        "headers": [
+          "[Adblock Plus]"
+        ],
         "title_prefix": "HaGeZi's Threat Intelligence Feeds",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-pro",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt",
+      "format": "adblock",
+      "min_rules": 50000,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Multi PRO -",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-tif-medium",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.medium.txt",
+      "format": "adblock",
+      "min_rules": 100000,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Threat Intelligence Feeds - medium version",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-tif-mini",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.mini.txt",
+      "format": "adblock",
+      "min_rules": 50000,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Threat Intelligence Feeds - mini version",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-amazon",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.amazon.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Amazon Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-apple",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.apple.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Apple Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-huawei",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.huawei.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Huawei Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-microsoft",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.winoffice.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Microsoft Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-samsung",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.samsung.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Samsung Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-tiktok",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.tiktok.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's TikTok Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-tiktok-aggressive",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.tiktok.extended.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's TikTok Extended Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-lgwebos",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.lgwebos.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's LG webOS Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-roku",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.roku.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Roku Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-vivo",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.vivo.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Vivo Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-oppo-realme",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.oppo-realme.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's OPPO & Realme Tracker",
+        "count_field": "number of entries"
+      }
+    },
+    {
+      "name": "hagezi-native-xiaomi",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.xiaomi.txt",
+      "format": "adblock",
+      "min_rules": 10,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Xiaomi Tracker",
         "count_field": "number of entries"
       }
     }

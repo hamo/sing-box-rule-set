@@ -80,7 +80,7 @@ class BuildTests(unittest.TestCase):
 
             def run(command, **kwargs):
                 Path(command[command.index("--output") + 1]).write_bytes(b"SRS\x02fake")
-                return type("Result", (), {"returncode": 0, "stdout": ""})()
+                return type("Result", (), {"returncode": 0, "stdout": "parsed rules: 1/1\n"})()
 
             with patch.object(builder.subprocess, "check_output", return_value="sing-box test\n"), \
                     patch.object(builder, "download", side_effect=download), \

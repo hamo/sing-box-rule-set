@@ -72,6 +72,49 @@ class SRSTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "skipped unsupported"):
                 adguard.convert(source, Path(temp) / "output.srs", str(COMPILER), {})
 
+    def test_badfilter_cancels_blocking_and_exception_rules_before_compilation(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "source.txt"
+            source.write_text("||disabled.example.com^\n||active.example.com^\n"
+                              "@@||allowed.active.example.com^$important\n"
+                              "||disabled.example.com^$badfilter\n"
+                              "@@||allowed.active.example.com^$badfilter,important\n"
+                              "||absent.example.com^$badfilter\n")
+            output = Path(temp) / "output.srs"
+            record = adguard.convert(source, output, str(COMPILER), {})
+            self.assertEqual(record["rule_count"], 6)
+            self.assertEqual(record["conversion"]["compiled_rule_count"], 1)
+            self.assertEqual(len(record["conversion"]["disabled_rules"]), 2)
+            self.assertEqual(len(record["conversion"]["badfilter_rules"]), 3)
+            for domain, expected in (("disabled.example.com", False), ("active.example.com", True),
+                                     ("allowed.active.example.com", True), ("absent.example.com", False)):
+                with self.subTest(domain=domain):
+                    result = subprocess.check_output([
+                        str(COMPILER), "rule-set", "match", "--format", "binary", str(output), domain,
+                    ], text=True, stderr=subprocess.STDOUT)
+                    self.assertEqual("match rules." in result, expected)
+
+    def test_explicit_report_policy_tracks_unsupported_rules_and_enforces_limit(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "source.txt"
+            source.write_text("||ads.example.com^\n||192.0.2.1^\n||other.example^$dnstype=A\n")
+            options = {"name": "fixture", "unsupported_policy": "report", "max_skipped_rules": 2}
+            record = adguard.convert(source, Path(temp) / "output.srs", str(COMPILER), options)
+            self.assertEqual(record["conversion"]["compiled_rule_count"], 1)
+            self.assertEqual(record["conversion"]["skipped_rule_count"], 2)
+            self.assertTrue(any("192.0.2.1" in rule for rule in record["conversion"]["skipped_rules"]))
+            with self.assertRaisesRegex(ValueError, "exceeds max_skipped_rules"):
+                adguard.convert(source, Path(temp) / "output.srs", str(COMPILER),
+                                {**options, "max_skipped_rules": 1})
+            with self.assertRaisesRegex(ValueError, "Too few compiled rules"):
+                adguard.convert(source, Path(temp) / "output.srs", str(COMPILER),
+                                {**options, "min_rules": 2})
+            # The native raw-domain fast path can omit totals after skipping.
+            # Refuse ambiguous accounting even in explicitly enabled report mode.
+            source.write_text("ads.example.com\n||192.0.2.1^\n")
+            with self.assertRaisesRegex(ValueError, "Cannot account"):
+                adguard.convert(source, Path(temp) / "output.srs", str(COMPILER), options)
+
 
 if __name__ == "__main__":
     unittest.main()
