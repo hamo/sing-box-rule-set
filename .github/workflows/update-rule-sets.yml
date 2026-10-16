@@ -43,6 +43,8 @@ jobs:
       - name: Verify complete build
         id: verify
         run: python scripts/verify-build.py build --summary "$GITHUB_STEP_SUMMARY"
+      - name: Load all SRS with sing-box
+        run: python scripts/check-srs-load.py build
       - name: Publish rule-set branch
         if: github.ref == 'refs/heads/main'
         run: bash scripts/publish.sh build

@@ -65,6 +65,8 @@ Native Tracker 按设备或服务选择，部分规则可能影响相关功能�
 workflow 已声明 `contents: write`，使用内置 `GITHUB_TOKEN`，无需额外配置 PAT 或 Secret。
 构建后会检查全部配置项对应的产物、SHA-256 和 SRS 版本；发布前再次校验，
 缺失或损坏的产物不会推送。Actions 运行摘要会列出完整构建结果。
+发布前还会用全部本地 SRS 生成临时配置，实际启动 sing-box，要求成功初始化并正常退出。
+任一 SRS 无法加载时，workflow 失败并阻止发布。
 如果组织策略限制 Actions 写入，需允许该仓库的 workflow 写入；不要为 `rule-set`
 分支设置禁止机器人直接推送的保护规则。
 
@@ -148,6 +150,7 @@ sources/*.json → 下载 → 按 format 选择通用转换器 → 校验与转�
 - 默认检测 sing-box 跳过日志并失败；AdGuard DNS Filter 显式允许有上限的兼容转换，记录每条跳过原因。
 - 转换前处理 DNS `$badfilter`，取消其对应规则，再将支持的简单域名片段改写为等价正则。
 - 编译后核对输入、取消、跳过和成功转换的数量；改写规则已计入成功数量，元数据和摘要保留改写映射。
+- 实际启动 sing-box 加载全部 SRS；测试同时验证损坏的 SRS 内容会导致启动检查失败。
 - 下载支持重试、低速超时和可配置的备用地址；OISD 使用维护者的官方 GitHub 镜像作为备用。
 - 全部规则集按各自配置的兼容策略构建成功并通过完整性校验后才发布，任一来源失败时远端保留上一版。
 - `rule-set` 分支保留 `.srs`、上游原文件、许可证及带哈希的 `metadata.json`。
@@ -169,6 +172,8 @@ OISD、HaGeZi 和 AdGuard DNS Filter 的转换命令见 [AdGuard DNS Filter 文�
 python3 scripts/install-sing-box.py
 python3 -m unittest discover -s tests -v
 python3 scripts/build.py
+python3 scripts/verify-build.py build
+python3 scripts/check-srs-load.py build
 ```
 
 生成结果在 `build/`。也可以使用已安装的官方编译器：
