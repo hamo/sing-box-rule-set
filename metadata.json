@@ -129,7 +129,7 @@
         "watson news app for ios https": "//github.com/AdguardTeam/AdguardFilters/issues/4524"
       },
       "conversion": {
-        "compiled_rule_count": 185369,
+        "compiled_rule_count": 185379,
         "badfilter_rules": [
           "||tn.porngo.xxx^$badfilter",
           "||pl.ua^$badfilter",
@@ -140,7 +140,49 @@
         "disabled_rules": [
           "||linksprf.com^"
         ],
-        "skipped_rule_count": 98,
+        "rewritten_rules": [
+          {
+            "original": "||countly-",
+            "converted": "/(?i)(^|\\.)countly-/"
+          },
+          {
+            "original": "-ad123-",
+            "converted": "/(?i)-ad123-/"
+          },
+          {
+            "original": "-iklan-gif-",
+            "converted": "/(?i)-iklan-gif-/"
+          },
+          {
+            "original": "-iklan789-",
+            "converted": "/(?i)-iklan789-/"
+          },
+          {
+            "original": "-1080x140-",
+            "converted": "/(?i)-1080x140-/"
+          },
+          {
+            "original": "-1080x180-",
+            "converted": "/(?i)-1080x180-/"
+          },
+          {
+            "original": "-1300-x-200-",
+            "converted": "/(?i)-1300-x-200-/"
+          },
+          {
+            "original": "-720x90-",
+            "converted": "/(?i)-720x90-/"
+          },
+          {
+            "original": "-728-x-90-",
+            "converted": "/(?i)-728-x-90-/"
+          },
+          {
+            "original": "-970x90-",
+            "converted": "/(?i)-970x90-/"
+          }
+        ],
+        "skipped_rule_count": 88,
         "skipped_rules": [
           "rule with IPCIDR: ||194.63.143.96^",
           "rule with IPCIDR: ||103.179.189.35^",
@@ -221,22 +263,12 @@
           "rule with IPCIDR: ||31.14.252.148^",
           "rule with IPCIDR: ||184.106.248.76^",
           "rule with IPCIDR: ||200.72.40.46^",
-          "rule with invalid domain: ||countly-",
           "rule with IPCIDR: ||110.93.143.144^",
           "rule with IPCIDR: ||180.76.2.18^",
           "rule with IPCIDR: ||66.228.52.30^",
           "rule with IPCIDR: ||67.228.151.70^",
           "rule with IPCIDR: ||74.55.82.102^",
           "rule with IPCIDR: ||79.125.117.123^",
-          "rule with invalid domain: -ad123-",
-          "rule with invalid domain: -iklan-gif-",
-          "rule with invalid domain: -iklan789-",
-          "rule with invalid domain: -1080x140-",
-          "rule with invalid domain: -1080x180-",
-          "rule with invalid domain: -1300-x-200-",
-          "rule with invalid domain: -720x90-",
-          "rule with invalid domain: -728-x-90-",
-          "rule with invalid domain: -970x90-",
           "rule with IPCIDR regexp: /(https?:\\/\\/)213\\.32\\.115\\..{100,}/",
           "rule with IPCIDR regexp: /(https?:\\/\\/)217\\.182\\.11\\..{100,}/",
           "rule with IPCIDR regexp: /(https?:\\/\\/)51\\.195\\.31\\..{100,}/"
@@ -247,7 +279,7 @@
       "download_url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "sha256": {
         "sources/adguard-dns-filter.txt": "7b4c71ef7e922de9a0b82d5694fd7026210f7cf200d167a1931c5c832d407d64",
-        "adguard-dns-filter.srs": "aedbb349947c26d43a1f03ea1b86a154dd5e0e927e89094867b735304ac6e43e"
+        "adguard-dns-filter.srs": "0a768180fe4a7b40b4351d80dcd6273856013fc2f9b326e3c75f97464055e357"
       }
     },
     {
@@ -345,6 +377,7 @@
         "compiled_rule_count": 1584682,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -387,6 +420,7 @@
         "compiled_rule_count": 200596,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -428,6 +462,7 @@
         "compiled_rule_count": 792819,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -469,6 +504,7 @@
         "compiled_rule_count": 227685,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -510,6 +546,7 @@
         "compiled_rule_count": 368,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -551,6 +588,7 @@
         "compiled_rule_count": 106,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -592,6 +630,7 @@
         "compiled_rule_count": 135,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -633,6 +672,7 @@
         "compiled_rule_count": 383,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -674,6 +714,7 @@
         "compiled_rule_count": 200,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -715,6 +756,7 @@
         "compiled_rule_count": 447,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -756,6 +798,7 @@
         "compiled_rule_count": 613,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -797,6 +840,7 @@
         "compiled_rule_count": 230,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -838,6 +882,7 @@
         "compiled_rule_count": 73,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -879,6 +924,7 @@
         "compiled_rule_count": 241,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -920,6 +966,7 @@
         "compiled_rule_count": 488,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -961,6 +1008,7 @@
         "compiled_rule_count": 345,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -986,23 +1034,24 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 235802,
+      "rule_count": 235869,
       "upstream": {
-        "version": "202610161605",
+        "version": "202610161706",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "235802",
-        "last modified": "2026-10-16T16:05:10+0000",
+        "entries": "235869",
+        "last modified": "2026-10-16T17:06:13+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 235802,
+        "compiled_rule_count": 235869,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },
@@ -1010,8 +1059,8 @@
       "srs_version": 2,
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "f4c38119dddf8524c76992259d2d9fd1a79817b19e438a93a6e53902bad5dcb6",
-        "oisd-big.srs": "1ae64d0373d1a3cfe71b5ad112a4b30ec9df279e6e01853ce08af14d05a28260"
+        "sources/oisd-big.txt": "a1d44af11fb3900527a41082a58876b84a13a6f886b475f191089f39a24c7f09",
+        "oisd-big.srs": "e551379bc7c3e5755efe6bf2c3c350b4d138ef5d1a3bb5da6b5ce5410b298739"
       }
     },
     {
@@ -1045,6 +1094,7 @@
         "compiled_rule_count": 56548,
         "badfilter_rules": [],
         "disabled_rules": [],
+        "rewritten_rules": [],
         "skipped_rule_count": 0,
         "skipped_rules": []
       },

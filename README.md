@@ -38,9 +38,11 @@ HaGeZi TIF Full/Medium/Mini 三选一；Medium/Mini 为轻量替代版本。
 Native Tracker 按设备或服务选择，部分规则可能影响相关功能；TikTok 普通版与 Aggressive 版选一个。
 
 [metadata.json](metadata.json) 记录上游版本、规则数量、编译器版本和 SHA-256。
-AdGuard DNS Filter 提供 sing-box 兼容部分：原文件中的少量 IP 规则和非域名片段无法转换，
+AdGuard DNS Filter 提供 sing-box 兼容部分：原文件中的少量 IP 规则和 IP/URL 正则无法转换，
 跳过条目及原因见 `conversion.skipped_rules`，实际编译数量见 `conversion.compiled_rule_count`。
 其跳过上限为 200 条；其他列表默认不允许跳过。所有列表先处理 DNS `$badfilter`，取消对应规则。
+`||countly-`、`-ad123-` 等无修饰符的简单域名片段及其例外规则，转换前改写为等价的域名正则，
+保留大小写不敏感及域名标签边界。改写前后内容见 `conversion.rewritten_rules`，已计入实际编译数量。
 `sources/` 保存本次构建使用的完整上游原文件。OISD、HaGeZi 和 AdGuard DNS Filter 使用 sing-box 官方
 `rule-set convert --type adguard` 直接生成 `.srs`，保留原生 AdGuard 匹配语义。
 OISD 和 HaGeZi 的上游文件均声明为 Adblock 格式，构建配置和 `metadata.json` 使用
