@@ -22,6 +22,7 @@ class SRSTests(unittest.TestCase):
             output = directory / "build"
             sources = [
                 {"name": "adguard", "url": "https://fixture.example/adguard", "format": "adguard"},
+                {"name": "adblock", "url": "https://fixture.example/adblock", "format": "adblock"},
                 {"name": "source", "url": "https://fixture.example/source", "format": "sing-box"},
             ]
             (configs / "arbitrary_provider.json").write_text(json.dumps({"sources": sources}))
@@ -33,6 +34,7 @@ class SRSTests(unittest.TestCase):
                     "domain_keyword": ["ad-keyword"],
                 }]}),
             }
+            texts["adblock"] = texts["adguard"]
             with patch.object(builder, "download", side_effect=lambda url, path:
                               path.write_text(texts[url.rsplit("/", 1)[1]])):
                 builder.build(configs, output, str(COMPILER))
@@ -53,13 +55,15 @@ class SRSTests(unittest.TestCase):
                     ], text=True, stderr=subprocess.STDOUT)
                     self.assertEqual("match rules." in result, expected)
             self.assertEqual((output / "sources/adguard.txt").read_text(), texts["adguard"])
+            self.assertEqual((output / "sources/adblock.txt").read_text(), texts["adblock"])
+            self.assertEqual((output / "adblock.srs").read_bytes(), (output / "adguard.srs").read_bytes())
             self.assertEqual((output / "sources/source.json").read_text(), texts["source"])
             records = json.loads((output / "metadata.json").read_text())["sources"]
-            self.assertEqual([r["format"] for r in records], ["adguard", "sing-box"])
+            self.assertEqual([r["format"] for r in records], ["adguard", "adblock", "sing-box"])
             self.assertTrue(all(r["provider"] == "arbitrary_provider" for r in records))
             # The compiler downgrades v3 JSON to SRS v2 when no v3-only fields are used.
-            self.assertEqual([r["srs_version"] for r in records], [2, 2])
-            self.assertEqual(records[1]["upstream"]["version"], 3)
+            self.assertEqual([r["srs_version"] for r in records], [2, 2, 2])
+            self.assertEqual(records[2]["upstream"]["version"], 3)
 
     def test_unsupported_modifier_fails_even_when_native_converter_exits_zero(self):
         with tempfile.TemporaryDirectory() as temp:

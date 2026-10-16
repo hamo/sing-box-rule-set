@@ -2,7 +2,7 @@
 
 from . import adguard, sing_box
 
-CONVERTERS = {"adguard": adguard, "sing-box": sing_box}
+CONVERTERS = {"adguard": adguard, "adblock": adguard, "sing-box": sing_box}
 
 
 def get_converter(format_name):

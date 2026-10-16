@@ -160,7 +160,7 @@ scripts/
     {
       "name": "example-list",
       "url": "https://example.com/list.txt",
-      "format": "adguard"
+      "format": "adblock"
     }
   ]
 }
@@ -173,16 +173,41 @@ scripts/
 | format | 输入 | 转换工具 | 原始文件保存 |
 | --- | --- | --- | --- |
 | `adguard` | AdGuard 兼容过滤列表 | `sing-box rule-set convert --type adguard` | `sources/<name>.txt` |
+| `adblock` | `adguard` 的别名，适用于兼容的 Adblock 风格 DNS 列表 | 同上，复用同一个转换器 | `sources/<name>.txt` |
 | `sing-box` | sing-box source-format JSON | `sing-box rule-set compile` | `sources/<name>.json` |
+
+### AdGuard / Adblock 语法范围
+
+`adblock` 与 `adguard` 的转换、校验和失败处理完全相同。支持范围由固定版本的
+sing-box AdGuard DNS 转换器决定；`[Adblock Plus]` 文件头只是订阅标识，
+不代表整套浏览器过滤语法都可以用于 DNS 规则集。
+
+| 规则类型 | 示例 / 说明 |
+| --- | --- |
+| 域名及子域名 | `\|\|example.com^` |
+| 例外规则 | `@@\|\|allowed.example.com^` |
+| 通配符 | `\|\|track*.example.com^`，支持 `*` |
+| 域名正则 | `/ads[0-9]+\.example\.com/`；受 sing-box 正则引擎和转换器限制 |
+| 有限的修饰符 | `$important`；其他修饰符需按官方支持范围确认 |
+| 注释与订阅头 | 注释不计入规则数量；`[Adblock Plus]` / `[AdGuard]` 订阅头在转换输入中移除 |
+
+`$dnsrewrite=0.0.0.0` 可被官方转换器接受，但改写动作会被忽略，仅保留匹配逻辑；
+本项目生成的 SRS 不包含 DNS 改写动作。
+
+浏览器专用的 CSS 元素隐藏、脚本注入，以及 URL 路径、端口、查询参数和
+`$script`、`$image`、`$third-party` 等修饰符不在支持范围内。
+应选择 OISD、HaGeZi 这类 DNS 域名过滤列表。sing-box 报告跳过不支持的规则时，
+构建会失败，不会发布该次结果。详细兼容范围见
+[官方 AdGuard DNS Filter 文档](https://sing-box.sagernet.org/configuration/rule-set/adguard/)。
 
 JSON 编译产物的 SRS 版本由官方编译器根据源格式版本及实际使用字段决定，可能低于源 JSON 版本。
 源 JSON 版本与实际 SRS 版本分别记录在 `metadata.json` 中。
 当前 OISD、HaGeZi 的 AdGuard 转换产物及秋风 JSON 编译产物均为 SRS 版本 2。
 
-`min_rules` 可选，默认 1。AdGuard 格式统计非注释规则行；sing-box JSON 格式统计
+`min_rules` 可选，默认 1。`adguard` / `adblock` 格式统计非注释规则行；sing-box JSON 格式统计
 顶层 `rules` 数组的规则对象数量，二者都在转换前校验。
 
-AdGuard 列表还支持可选的声明式校验，例如 OISD：
+`adguard` / `adblock` 列表还支持可选的声明式校验，例如 OISD：
 
 ```json
 {
