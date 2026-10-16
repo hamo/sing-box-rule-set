@@ -1,0 +1,56 @@
+name: Update rule sets
+
+on:
+  schedule:
+    - cron: '23 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'sources/**'
+      - 'tools/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'docs/**'
+      - 'LICENSE'
+      - '.github/workflows/update-rule-sets.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-rule-sets
+  cancel-in-progress: false
+
+jobs:
+  update:
+    # Manual runs on other branches may validate changes but cannot publish them.
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install pinned sing-box
+        run: python scripts/install-sing-box.py
+      - name: Test converter and SRS semantics
+        run: python -m unittest discover -s tests -v
+      - name: Build rule sets
+        run: python scripts/build.py
+      - name: Verify complete build
+        id: verify
+        run: python scripts/verify-build.py build --summary "$GITHUB_STEP_SUMMARY"
+      - name: Publish rule-set branch
+        if: github.ref == 'refs/heads/main'
+        run: bash scripts/publish.sh build
+      - name: Upload build
+        if: ${{ !cancelled() && steps.verify.outcome == 'success' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: rule-sets
+          path: build/
+          if-no-files-found: error
+          retention-days: 7

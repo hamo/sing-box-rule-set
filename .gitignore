@@ -1,0 +1,7 @@
+.tools/
+build/
+build-*/
+.rule-set-*/
+__pycache__/
+*.py[cod]
+.DS_Store

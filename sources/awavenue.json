@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "name": "awavenue",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json",
+      "format": "sing-box"
+    },
+    {
+      "name": "awavenue-only-ads",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-Only.Ads.json",
+      "format": "sing-box"
+    },
+    {
+      "name": "awavenue-no-privacy",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Privacy.json",
+      "format": "sing-box"
+    },
+    {
+      "name": "awavenue-no-unwelcome",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Unwelcome.json",
+      "format": "sing-box"
+    }
+  ]
+}

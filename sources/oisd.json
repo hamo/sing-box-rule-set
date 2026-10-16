@@ -1,0 +1,26 @@
+{
+  "sources": [
+    {
+      "name": "oisd-big",
+      "url": "https://big.oisd.nl/",
+      "fallback_urls": ["https://raw.githubusercontent.com/sjhgvr/oisd/main/abp_big.txt"],
+      "format": "adguard",
+      "min_rules": 10000,
+      "validation": {
+        "headers": ["[Adblock Plus]", "[AdGuard]"],
+        "count_field": "entries"
+      }
+    },
+    {
+      "name": "oisd-small",
+      "url": "https://small.oisd.nl/",
+      "fallback_urls": ["https://raw.githubusercontent.com/sjhgvr/oisd/main/abp_small.txt"],
+      "format": "adguard",
+      "min_rules": 1000,
+      "validation": {
+        "headers": ["[Adblock Plus]", "[AdGuard]"],
+        "count_field": "entries"
+      }
+    }
+  ]
+}

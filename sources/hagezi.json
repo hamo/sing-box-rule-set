@@ -1,0 +1,15 @@
+{
+  "sources": [
+    {
+      "name": "hagezi-tif-full",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt",
+      "format": "adguard",
+      "min_rules": 500000,
+      "validation": {
+        "headers": ["[Adblock Plus]"],
+        "title_prefix": "HaGeZi's Threat Intelligence Feeds",
+        "count_field": "number of entries"
+      }
+    }
+  ]
+}
