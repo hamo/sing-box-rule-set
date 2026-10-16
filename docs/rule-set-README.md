@@ -6,11 +6,11 @@
 | --- | --- | --- | --- |
 | OISD big | [oisd-big.srs](oisd-big.srs) | [oisd-big.txt](sources/oisd-big.txt) | <https://big.oisd.nl/> |
 | OISD small | [oisd-small.srs](oisd-small.srs) | [oisd-small.txt](sources/oisd-small.txt) | <https://small.oisd.nl/> |
-| AWAvenue 完整防护 | [awavenue.srs](awavenue.srs) | [awavenue.json](sources/awavenue.json) | <https://awavenue.top/> |
-| AWAvenue 仅广告 | [awavenue-only-ads.srs](awavenue-only-ads.srs) | [awavenue-only-ads.json](sources/awavenue-only-ads.json) | <https://awavenue.top/> |
-| AWAvenue 不含隐私 | [awavenue-no-privacy.srs](awavenue-no-privacy.srs) | [awavenue-no-privacy.json](sources/awavenue-no-privacy.json) | <https://awavenue.top/> |
-| AWAvenue 不含不受欢迎 | [awavenue-no-unwelcome.srs](awavenue-no-unwelcome.srs) | [awavenue-no-unwelcome.json](sources/awavenue-no-unwelcome.json) | <https://awavenue.top/> |
-| HaGeZi TIF Full | [hagezi-tif-full.srs](hagezi-tif-full.srs) | [hagezi-tif-full.txt](sources/hagezi-tif-full.txt) | [官方项目](https://github.com/hagezi/dns-blocklists#tif) |
+| AWAvenue 完整防护 | [awavenue.srs](awavenue.srs) | [awavenue.json](sources/awavenue.json) | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json) |
+| AWAvenue 仅广告 | [awavenue-only-ads.srs](awavenue-only-ads.srs) | [awavenue-only-ads.json](sources/awavenue-only-ads.json) | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-Only.Ads.json) |
+| AWAvenue 不含隐私 | [awavenue-no-privacy.srs](awavenue-no-privacy.srs) | [awavenue-no-privacy.json](sources/awavenue-no-privacy.json) | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Privacy.json) |
+| AWAvenue 不含不受欢迎 | [awavenue-no-unwelcome.srs](awavenue-no-unwelcome.srs) | [awavenue-no-unwelcome.json](sources/awavenue-no-unwelcome.json) | [官方 JSON](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Unwelcome.json) |
+| HaGeZi TIF Full | [hagezi-tif-full.srs](hagezi-tif-full.srs) | [hagezi-tif-full.txt](sources/hagezi-tif-full.txt) | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt) |
 
 当前提供的 SRS 格式版本均为 2，要求 sing-box 1.10.0+。
 AWAvenue 原始 JSON 为版本 3，官方编译器根据实际字段生成版本 2 的 SRS。
