@@ -11,13 +11,13 @@
       "validation": {
         "title_prefix": "AdGuard DNS filter"
       },
-      "rule_count": 185473,
+      "rule_count": 185531,
       "upstream": {
         "title": "AdGuard DNS filter",
         "description": "Filter composed of several other filters (AdGuard Base filter, Tracking Protection filter, Mobile ads filter, EasyList, EasyPrivacy, etc) and simplified specifically to be better compatible with DNS-level ad blocking.",
         "homepage": "https://github.com/AdguardTeam/AdguardSDNSFilter",
         "license": "https://github.com/AdguardTeam/AdguardSDNSFilter/blob/master/LICENSE",
-        "last modified": "2026-10-16T16:15:57.582Z",
+        "last modified": "2026-10-16T20:13:41.179Z",
         "source name": "AdGuard Base filter ad servers",
         "source": "https://adguardteam.github.io/AdguardFilters/BaseFilter/sections/adservers.txt",
         "good": "||doubleclick.net^$third-party",
@@ -129,7 +129,7 @@
         "watson news app for ios https": "//github.com/AdguardTeam/AdguardFilters/issues/4524"
       },
       "conversion": {
-        "compiled_rule_count": 185379,
+        "compiled_rule_count": 185437,
         "badfilter_rules": [
           "||tn.porngo.xxx^$badfilter",
           "||pl.ua^$badfilter",
@@ -278,8 +278,8 @@
       "srs_version": 2,
       "download_url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "sha256": {
-        "sources/adguard-dns-filter.txt": "7b4c71ef7e922de9a0b82d5694fd7026210f7cf200d167a1931c5c832d407d64",
-        "adguard-dns-filter.srs": "0a768180fe4a7b40b4351d80dcd6273856013fc2f9b326e3c75f97464055e357"
+        "sources/adguard-dns-filter.txt": "4e5fe494500fb3ff0667776910020a38ad9c789b1adb8c974ca3136c544e9d21",
+        "adguard-dns-filter.srs": "b59c38aa19721ed6d318fd44874be10ea1d7c485499ba5a2aba3aa9229957ba6"
       }
     },
     {
@@ -1034,21 +1034,21 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 235869,
+      "rule_count": 236004,
       "upstream": {
-        "version": "202610161706",
+        "version": "202610162105",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "235869",
-        "last modified": "2026-10-16T17:06:13+0000",
+        "entries": "236004",
+        "last modified": "2026-10-16T21:05:17+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 235869,
+        "compiled_rule_count": 236004,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1059,8 +1059,8 @@
       "srs_version": 2,
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "a1d44af11fb3900527a41082a58876b84a13a6f886b475f191089f39a24c7f09",
-        "oisd-big.srs": "e551379bc7c3e5755efe6bf2c3c350b4d138ef5d1a3bb5da6b5ce5410b298739"
+        "sources/oisd-big.txt": "e44f284d49888b4e030b1d78055e9810ded37d69d64c61a5037ee137f68a0825",
+        "oisd-big.srs": "89f7c8e0cba48cb9f0573124aea13a21121dd9f2587c2d2cbdc803a545ae7b6a"
       }
     },
     {
@@ -1077,21 +1077,21 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 56548,
+      "rule_count": 56636,
       "upstream": {
-        "version": "202610161105",
+        "version": "202610162105",
         "title": "oisd small",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "56548",
-        "last modified": "2026-10-16T11:05:31+0000",
+        "entries": "56636",
+        "last modified": "2026-10-16T21:05:40+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 56548,
+        "compiled_rule_count": 56636,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1102,8 +1102,8 @@
       "srs_version": 2,
       "download_url": "https://small.oisd.nl/",
       "sha256": {
-        "sources/oisd-small.txt": "57c49aa247163a2a4d3873f2076036bb5480fdb85459fc77bd43dfec7c23ae5a",
-        "oisd-small.srs": "1f8a2ea9d875125c789f1498cae79b182bff04064791771ee1aa5a10cec6926e"
+        "sources/oisd-small.txt": "4688ecf1b9dd368fabdc70d7fc4079316dee0e635f04eebf4d716d61311c23d0",
+        "oisd-small.srs": "00177a75d3c9d3e6adcc6f9ecc1c547bc3f596eec11022d5f5cfa1a5d3d6c6ff"
       }
     }
   ]
