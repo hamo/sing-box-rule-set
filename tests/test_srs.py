@@ -115,6 +115,50 @@ class SRSTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Cannot account"):
                 adguard.convert(source, Path(temp) / "output.srs", str(COMPILER), options)
 
+    def test_all_ten_domain_fragments_compile_and_preserve_hostname_matching(self):
+        fragments = ["||countly-", "-ad123-", "-iklan-gif-", "-iklan789-", "-1080x140-",
+                     "-1080x180-", "-1300-x-200-", "-720x90-", "-728-x-90-", "-970x90-"]
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "source.txt"
+            output = Path(temp) / "output.srs"
+            source.write_text("\n".join(fragments) + "\n")
+            record = adguard.convert(source, output, str(COMPILER), {})
+            self.assertEqual(record["conversion"]["compiled_rule_count"], 10)
+            self.assertEqual(record["conversion"]["skipped_rule_count"], 0)
+            self.assertEqual([r["original"] for r in record["conversion"]["rewritten_rules"]], fragments)
+            cases = [("countly-analytics.example.com", True), ("x.countly-analytics.example.com", True),
+                     ("COUNTLY-ANALYTICS.EXAMPLE.COM", True), ("notcountly-analytics.example.com", False),
+                     ("countly.example.com", False), ("ordinary.example.com", False)]
+            for fragment in fragments[1:]:
+                cases.extend([("x" + fragment + "y.example.com", True),
+                              ("X" + fragment.upper() + "Y.EXAMPLE.COM", True),
+                              ("x" + fragment.replace("-", "") + "y.example.com", False)])
+            for domain, expected in cases:
+                with self.subTest(domain=domain):
+                    result = subprocess.check_output([
+                        str(COMPILER), "rule-set", "match", "--format", "binary", str(output), domain,
+                    ], text=True, stderr=subprocess.STDOUT)
+                    self.assertEqual("match rules." in result, expected)
+
+    def test_fragment_exceptions_and_badfilter_keep_their_effect_after_rewrite(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "source.txt"
+            output = Path(temp) / "output.srs"
+            source.write_text("||countly-\n@@||countly-safe-\n-ad123-\n@@-safe-ad123-\n"
+                              "-iklan-gif-\n-iklan-gif-$badfilter\n")
+            record = adguard.convert(source, output, str(COMPILER), {})
+            self.assertEqual(record["conversion"]["compiled_rule_count"], 4)
+            self.assertEqual(len(record["conversion"]["rewritten_rules"]), 4)
+            self.assertEqual(record["conversion"]["disabled_rules"], ["-iklan-gif-"])
+            for domain, expected in (("countly-ads.example.com", True), ("countly-safe-ads.example.com", False),
+                                     ("x.countly-safe-ads.example.com", False), ("x-ad123-y.example.com", True),
+                                     ("x-safe-ad123-y.example.com", False), ("x-iklan-gif-y.example.com", False)):
+                with self.subTest(domain=domain):
+                    result = subprocess.check_output([
+                        str(COMPILER), "rule-set", "match", "--format", "binary", str(output), domain,
+                    ], text=True, stderr=subprocess.STDOUT)
+                    self.assertEqual("match rules." in result, expected)
+
 
 if __name__ == "__main__":
     unittest.main()

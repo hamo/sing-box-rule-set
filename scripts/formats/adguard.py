@@ -97,9 +97,32 @@ def apply_badfilter(normalized):
     return "\n".join(filtered) + "\n", badfilters, disabled
 
 
+def rewrite_domain_fragments(normalized):
+    """Express simple hostname fragments as native domain regex rules."""
+    rewritten = []
+    lines = []
+    for line in normalized.splitlines():
+        original = line
+        exception = "@@" if line.startswith("@@") else ""
+        pattern = line[len(exception):]
+        prefix = re.fullmatch(r"\|\|([a-z0-9][a-z0-9-]*-)", pattern, re.IGNORECASE)
+        keyword = re.fullmatch(r"-[a-z0-9]+(?:-[a-z0-9]+)*-", pattern, re.IGNORECASE)
+        # These grammars contain only regex literals. Preserve the hostname
+        # label boundary for || and case-insensitive AdGuard matching.
+        if prefix:
+            line = exception + "/(?i)(^|\\.)" + prefix[1] + "/"
+        elif keyword:
+            line = exception + "/(?i)" + pattern + "/"
+        if line != original:
+            rewritten.append({"original": original, "converted": line})
+        lines.append(line)
+    return "\n".join(lines) + "\n", rewritten
+
+
 def convert(raw, output, compiler, source):
     normalized, count, metadata = inspect_list(raw.read_text(encoding="utf-8-sig"), source)
     normalized, badfilters, disabled = apply_badfilter(normalized)
+    normalized, rewritten = rewrite_domain_fragments(normalized)
     effective_count = count - len(badfilters) - len(disabled)
     with tempfile.TemporaryDirectory(prefix="adguard-") as temp:
         converter_input = Path(temp) / "input.txt"
@@ -134,6 +157,7 @@ def convert(raw, output, compiler, source):
         "conversion": {
             "compiled_rule_count": compiled_count,
             "badfilter_rules": badfilters, "disabled_rules": disabled,
+            "rewritten_rules": rewritten,
             "skipped_rule_count": len(skipped), "skipped_rules": skipped,
         },
     }

@@ -46,6 +46,7 @@ def verify(output, config_dir):
             skipped_rules = conversion["skipped_rules"]
             badfilters = conversion["badfilter_rules"]
             disabled = conversion["disabled_rules"]
+            rewritten = conversion.get("rewritten_rules", [])
             if (skipped != len(skipped_rules)
                     or compiled + skipped + len(badfilters) + len(disabled) != record["rule_count"]
                     or skipped > source.get("max_skipped_rules", 0)):
@@ -53,6 +54,12 @@ def verify(output, config_dir):
             if skipped or badfilters:
                 notes.append(f"\n{name}: resolved {len(badfilters)} badfilter directives, "
                              f"disabled {len(disabled)} rules, skipped {skipped} unsupported rules.\n")
+            if rewritten:
+                notes.append(f"\n{name}: rewrote {len(rewritten)} domain-fragment rules "
+                             "as equivalent hostname regex rules (included in compiled count).\n")
+                mappings = [f"{rule['original']} -> {rule['converted']}" for rule in rewritten]
+                notes.append(f"\n<details><summary>{name}: rewritten domain fragments</summary>\n\n"
+                             "```text\n" + "\n".join(mappings) + "\n```\n\n</details>\n")
             if skipped:
                 notes.append(f"\n<details><summary>{name}: unsupported rules and reasons</summary>\n\n"
                              "```text\n" + "\n".join(skipped_rules) + "\n```\n\n</details>\n")

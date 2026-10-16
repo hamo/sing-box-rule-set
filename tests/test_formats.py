@@ -64,6 +64,13 @@ class AdGuardTests(unittest.TestCase):
             with self.subTest(rule=rule), self.assertRaisesRegex(ValueError, "Unsupported badfilter"):
                 adguard.apply_badfilter(rule + "\n")
 
+    def test_fragment_rewrite_leaves_ip_regex_comments_and_modifiers_unchanged(self):
+        lines = ["! -ad123-", "# ||countly-", "||192.0.2.1^", "||192.0.2.1",
+                 r"/^192\.0\.2\.[1234]$/", "||ordinary.example^", "-ad123-$important",
+                 "-ad123-$dnstype=A", "||countly-*", "||countly-^", "/-ad123-/"]
+        text = "\n".join(lines) + "\n"
+        self.assertEqual(adguard.rewrite_domain_fragments(text), (text, []))
+
 
 class SingBoxTests(unittest.TestCase):
     def test_invalid_or_empty_json_fails_before_compilation(self):

@@ -43,7 +43,9 @@ HaGeZi 提供 [Pro](https://github.com/hagezi/dns-blocklists#pro)、
 这些上游文件声明 `Syntax: AdBlock`，配置使用 `adblock`，并校验 `Number of entries` 与实际规则行数。
 [AdGuard DNS Filter](https://github.com/AdguardTeam/AdGuardSDNSFilter) 是针对 DNS 过滤优化的综合列表，
 配置使用 `adguard`，校验标题和最小规则数量；本项目发布其 sing-box 兼容部分。
-官方原文件含少量 sing-box 不支持的 IP 规则及非域名片段，跳过条目和原因逐项记录在
+转换前将 `||countly-`、`-ad123-` 等简单域名片段改写为等价的域名正则，
+保留大小写不敏感、域名标签边界及例外语义；改写前后内容记录在 `conversion.rewritten_rules`。
+官方原文件含少量 sing-box 不支持的 IP 规则及 IP/URL 正则，跳过条目和原因逐项记录在
 `metadata.json` 的 `conversion.skipped_rules` 及 Actions 构建摘要中。
 AdGuard DNS Filter 显式配置 `unsupported_policy: "report"`，最多允许跳过 200 条；超过上限即失败。
 OISD、HaGeZi 和 AdGuard DNS Filter 都使用 sing-box 的 `adguard` 转换器；
@@ -144,7 +146,8 @@ sources/*.json → 下载 → 按 format 选择通用转换器 → 校验与转�
 - 校验 OISD 的 `Entries`、HaGeZi 的 `Number of entries`，以及 JSON 的版本字段、规则数组和最小规则数量，
   避免把错误页、截断文件或空列表发布出去。
 - 默认检测 sing-box 跳过日志并失败；AdGuard DNS Filter 显式允许有上限的兼容转换，记录每条跳过原因。
-- 转换前处理 DNS `$badfilter`，取消其对应规则；编译后核对输入、取消、跳过和成功转换的数量，防止漏算。
+- 转换前处理 DNS `$badfilter`，取消其对应规则，再将支持的简单域名片段改写为等价正则。
+- 编译后核对输入、取消、跳过和成功转换的数量；改写规则已计入成功数量，元数据和摘要保留改写映射。
 - 下载支持重试、低速超时和可配置的备用地址；OISD 使用维护者的官方 GitHub 镜像作为备用。
 - 全部规则集按各自配置的兼容策略构建成功并通过完整性校验后才发布，任一来源失败时远端保留上一版。
 - `rule-set` 分支保留 `.srs`、上游原文件、许可证及带哈希的 `metadata.json`。
@@ -154,7 +157,7 @@ sources/*.json → 下载 → 按 format 选择通用转换器 → 校验与转�
 
 OISD、HaGeZi 和 AdGuard DNS Filter 的转换命令见 [AdGuard DNS Filter 文档](https://sing-box.sagernet.org/configuration/rule-set/adguard/)。
 其专门的 AdGuard 二进制规则不能反编译成普通规则集 JSON，因此保留上游 `.txt` 供审阅。
-转换时移除订阅文件头并规范空白行，完整原文件保持原样。
+转换时移除订阅文件头、规范空白行，并改写支持的简单域名片段；完整原文件保持原样。
 秋风则直接保留官方 `.json` 并编译，命令见
 [sing-box source format 文档](https://sing-box.sagernet.org/configuration/rule-set/source-format/)。
 
@@ -240,7 +243,12 @@ sing-box AdGuard DNS 转换器决定；`[Adblock Plus]` 文件头只是订阅标
 | 域名正则 | `/ads[0-9]+\.example\.com/`；受 sing-box 正则引擎和转换器限制 |
 | 有限的修饰符 | `$important`；其他修饰符需按官方支持范围确认 |
 | 取消规则 | DNS `$badfilter` 在编译前取消文本相同的目标规则，支持与 `$important` 组合；不支持浏览器 `$domain` 等部分取消语法 |
+| 简单域名片段 | 无修饰符的 `\|\|countly-`、`-ad123-` 等及其 `@@` 例外，在编译前改写为等价的域名正则 |
 | 注释与订阅头 | 注释不计入规则数量；`[Adblock Plus]` / `[AdGuard]` 订阅头在转换输入中移除 |
+
+域名片段改写限于无修饰符的 `||label-`（字母/数字开头的标签前缀）及 `-word-`（字母、数字和连字符组成的关键词）。
+例如 `||countly-` → `/(?i)(^|\.)countly-/`，`-ad123-` → `/(?i)-ad123-/`。
+例外标记 `@@` 保留；先执行 `$badfilter` 取消，再做改写。已有正则、带修饰符规则和 IP 规则不参与此改写。
 
 `$dnsrewrite=0.0.0.0` 可被官方转换器接受，但改写动作会被忽略，仅保留匹配逻辑；
 本项目生成的 SRS 不包含 DNS 改写动作。
@@ -261,7 +269,8 @@ JSON 编译产物的 SRS 版本由官方编译器根据源格式版本及实际�
 报告模式仍要求编译器报告的输入总数与实际输入相同，成功条数＋跳过条数必须与输入总数一致，
 且成功编译的规则数量不能低于 `min_rules`。不支持的 `$badfilter` 组合始终失败。
 `metadata.json` 的 `rule_count` 保留上游原始规则行数，`conversion` 记录实际编译数量、
-取消指令、被取消的规则，以及逐条跳过原因；构建摘要同步展示数量和跳过详情。
+取消指令、被取消的规则、`rewritten_rules` 中的改写映射，以及逐条跳过原因。
+改写不改变规则条数，改写成功的规则计入实际编译数量；构建摘要同步展示改写和跳过详情。
 原文件仍完整保留，订阅顶部元数据不会被内嵌子列表的同名字段覆盖。
 
 `min_rules` 可选，默认 1。`adguard` / `adblock` 格式统计非注释规则行；sing-box JSON 格式统计
