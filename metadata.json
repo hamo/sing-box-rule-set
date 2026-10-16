@@ -77,7 +77,7 @@
         "title_prefix": "HaGeZi's Threat Intelligence Feeds",
         "count_field": "number of entries"
       },
-      "rule_count": 1562619,
+      "rule_count": 1584682,
       "upstream": {
         "title": "HaGeZi's Threat Intelligence Feeds - a serious security boost (recommended)",
         "description": "This blocklist targets malware, cryptojacking, scams, spam, and phishing. It blocks domains known for spreading malware, running phishing attacks, and hosting command-and-control servers.",
@@ -87,17 +87,17 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "16 Oct 2026 08:44 UTC",
-        "version": "2026.1016.0844.46",
+        "last modified": "16 Oct 2026 14:22 UTC",
+        "version": "2026.1016.1422.11",
         "syntax": "AdBlock",
-        "number of entries": "1562619"
+        "number of entries": "1584682"
       },
       "provider": "hagezi",
       "srs_version": 2,
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt",
       "sha256": {
-        "sources/hagezi-tif-full.txt": "0374649aa7becf60aff6362dfe88ee4bbc4b597d9de660f2f4835cfafdf98bbf",
-        "hagezi-tif-full.srs": "1d12960451e285b72991f40241336f690bd942a4571097537f90f0085ef58c81"
+        "sources/hagezi-tif-full.txt": "7326353b905a01a2544043b8ae040a62d03764747c04f3d3c3cb9ca5e3afae9b",
+        "hagezi-tif-full.srs": "c726ceb4a32570b43cb1bb90975074790650aef4939533502e4ece2f75066922"
       }
     },
     {
