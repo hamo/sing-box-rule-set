@@ -1,0 +1,176 @@
+{
+  "compiler": "sing-box version 1.14.3",
+  "sources": [
+    {
+      "name": "awavenue",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json",
+      "format": "sing-box",
+      "rule_count": 1,
+      "upstream": {
+        "version": 3
+      },
+      "provider": "awavenue",
+      "srs_version": 2,
+      "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json",
+      "sha256": {
+        "sources/awavenue.json": "23cab6d71cc577b18d8081ad4db3a13baf2f5196378c05893494464074d04fa1",
+        "awavenue.srs": "0550d96b2928f143cf8b38d4690f96a5545ffdb162c70bd214a713665dbb4513"
+      }
+    },
+    {
+      "name": "awavenue-only-ads",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-Only.Ads.json",
+      "format": "sing-box",
+      "rule_count": 1,
+      "upstream": {
+        "version": 3
+      },
+      "provider": "awavenue",
+      "srs_version": 2,
+      "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-Only.Ads.json",
+      "sha256": {
+        "sources/awavenue-only-ads.json": "9cd273d158c379355a195a80bfe19c8ded8c2637a8c4e1ddcf558738183f9471",
+        "awavenue-only-ads.srs": "b80a418b9d87c93e5cc93b15d047ff5fd39e846be96af671d494dfe019a3a603"
+      }
+    },
+    {
+      "name": "awavenue-no-privacy",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Privacy.json",
+      "format": "sing-box",
+      "rule_count": 1,
+      "upstream": {
+        "version": 3
+      },
+      "provider": "awavenue",
+      "srs_version": 2,
+      "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Privacy.json",
+      "sha256": {
+        "sources/awavenue-no-privacy.json": "9e261cb983e35e2382f03d1697c199bc811e4f99c39a8b4e03e9d2e81e25d5a2",
+        "awavenue-no-privacy.srs": "ec04ca770166b9a0c92d479390bb713ef6987078375cfe4d334bc2226e0b2e5e"
+      }
+    },
+    {
+      "name": "awavenue-no-unwelcome",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Unwelcome.json",
+      "format": "sing-box",
+      "rule_count": 1,
+      "upstream": {
+        "version": 3
+      },
+      "provider": "awavenue",
+      "srs_version": 2,
+      "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Unwelcome.json",
+      "sha256": {
+        "sources/awavenue-no-unwelcome.json": "17c5156c904f87c86a482620aa710285dca491e091fd3b703f676a854e83cf47",
+        "awavenue-no-unwelcome.srs": "50c188436e3e2cd3d3e3796975d910abcdf27061dedbc0ef0ad6ee52b99b9b50"
+      }
+    },
+    {
+      "name": "hagezi-tif-full",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt",
+      "format": "adguard",
+      "min_rules": 500000,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]"
+        ],
+        "title_prefix": "HaGeZi's Threat Intelligence Feeds",
+        "count_field": "number of entries"
+      },
+      "rule_count": 1562619,
+      "upstream": {
+        "title": "HaGeZi's Threat Intelligence Feeds - a serious security boost (recommended)",
+        "description": "This blocklist targets malware, cryptojacking, scams, spam, and phishing. It blocks domains known for spreading malware, running phishing attacks, and hosting command-and-control servers.",
+        "warning": "This list is huge and can eat up a lot of memory depending on your ad blocker. If that's an issue, grab the medium or mini version instead. It's too big for the iOS AdGuard mobile app, and AdGuard Home needs at least 2 GB RAM. The RPZ version had to be split into two files because of its size, you need both.",
+        "homepage": "https://github.com/hagezi/dns-blocklists",
+        "license": "https://github.com/hagezi/dns-blocklists/blob/main/LICENSE",
+        "issues": "https://github.com/hagezi/dns-blocklists/issues",
+        "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
+        "expires": "8 hours",
+        "last modified": "16 Oct 2026 08:44 UTC",
+        "version": "2026.1016.0844.46",
+        "syntax": "AdBlock",
+        "number of entries": "1562619"
+      },
+      "provider": "hagezi",
+      "srs_version": 2,
+      "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt",
+      "sha256": {
+        "sources/hagezi-tif-full.txt": "0374649aa7becf60aff6362dfe88ee4bbc4b597d9de660f2f4835cfafdf98bbf",
+        "hagezi-tif-full.srs": "1d12960451e285b72991f40241336f690bd942a4571097537f90f0085ef58c81"
+      }
+    },
+    {
+      "name": "oisd-big",
+      "url": "https://big.oisd.nl/",
+      "fallback_urls": [
+        "https://raw.githubusercontent.com/sjhgvr/oisd/main/abp_big.txt"
+      ],
+      "format": "adguard",
+      "min_rules": 10000,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]",
+          "[AdGuard]"
+        ],
+        "count_field": "entries"
+      },
+      "rule_count": 235822,
+      "upstream": {
+        "version": "202610161511",
+        "title": "oisd big",
+        "description": "Block. Don't break.",
+        "syntax": "Adblock Plus Filter List",
+        "entries": "235822",
+        "last modified": "2026-10-16T15:11:08+0000",
+        "expires": "1 hours",
+        "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
+        "maintainer": "Stephan van Ruth",
+        "homepage": "https://oisd.nl"
+      },
+      "provider": "oisd",
+      "srs_version": 2,
+      "download_url": "https://big.oisd.nl/",
+      "sha256": {
+        "sources/oisd-big.txt": "f918182017d1275905c04e11e462873c92f9c10539c4f333e362971fbb3cd123",
+        "oisd-big.srs": "1e391d275bc8b6c02f227b98ef479f071089d8b586f3c766cad98dfbcb2872b7"
+      }
+    },
+    {
+      "name": "oisd-small",
+      "url": "https://small.oisd.nl/",
+      "fallback_urls": [
+        "https://raw.githubusercontent.com/sjhgvr/oisd/main/abp_small.txt"
+      ],
+      "format": "adguard",
+      "min_rules": 1000,
+      "validation": {
+        "headers": [
+          "[Adblock Plus]",
+          "[AdGuard]"
+        ],
+        "count_field": "entries"
+      },
+      "rule_count": 56548,
+      "upstream": {
+        "version": "202610161105",
+        "title": "oisd small",
+        "description": "Block. Don't break.",
+        "syntax": "Adblock Plus Filter List",
+        "entries": "56548",
+        "last modified": "2026-10-16T11:05:31+0000",
+        "expires": "1 hours",
+        "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
+        "maintainer": "Stephan van Ruth",
+        "homepage": "https://oisd.nl"
+      },
+      "provider": "oisd",
+      "srs_version": 2,
+      "download_url": "https://small.oisd.nl/",
+      "sha256": {
+        "sources/oisd-small.txt": "57c49aa247163a2a4d3873f2076036bb5480fdb85459fc77bd43dfec7c23ae5a",
+        "oisd-small.srs": "1f8a2ea9d875125c789f1498cae79b182bff04064791771ee1aa5a10cec6926e"
+      }
+    }
+  ]
+}
