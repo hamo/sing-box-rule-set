@@ -11,7 +11,11 @@
         "bofa.com",
         "capitalone.com",
         "chase.com",
+        "chasecdn.com",
         "chime.com",
+        "chimebank.com",
+        "chimecard.com",
+        "chimepayments.com",
         "citi.com",
         "citibank.com",
         "citizensbank.com",
@@ -85,7 +89,9 @@
         "vanguard.com",
         "wealthfront.com",
         "wealthscape.com",
-        "wealthscapeinvestor.com"
+        "wealthscapeinvestor.com",
+        "wellsfargoadvisors.com",
+        "wfafinet.com"
       ]
     },
     {
@@ -119,17 +125,34 @@
     },
     {
       "domain": [
+        "0geo.cardinalcommerce.com",
+        "1geo.cardinalcommerce.com",
+        "applepay.cdn-apple.com",
+        "assets.secure.checkout.visa.com",
+        "boa-api.arkoselabs.com",
         "cash-f.squarecdn.com",
+        "cash-images-f.squarecdn.com",
+        "centinelapi.cardinalcommerce.com",
         "client.osaicinstitutions.com",
         "creditkarmacdn-a.akamaihd.net",
         "firstcitizens.netxinvestor.com",
+        "fp.robinhood.net",
+        "geo.cardinalcommerce.com",
+        "hostedfields.cardinalcommerce.com",
         "login.bdreporting.com",
         "navyfederal-mba.lendkey.com",
         "navyfederal-refi-med.lendkey.com",
         "navyfederal.lendkey.com",
+        "pay.discovernetwork.com",
+        "pay.google.com",
+        "pci-connect.squareup.com",
         "santandercards-web.oflows.net",
+        "secure.checkout.visa.com",
+        "songbird.cardinalcommerce.com",
+        "static.client.cardinaltrusted.com",
         "tdinvestmentservices.netxinvestor.com",
         "tdwealth.netxinvestor.com",
+        "writer.cardinalcommerce.com",
         "www.accessmycardonline.com"
       ]
     }
