@@ -1,6 +1,7 @@
 {
   // 每条域名前记录机构、既有来源依据和直接来源 URL，便于人工 review。
   // domain_suffix 覆盖根域及全部子域；domain 只匹配该精确主机。
+  // 第三方仅保留机构专属主机及官方来源明确确认用途的金融账户门户；排除公共 SDK、聚合 API、采集与行情组件。
   // CSP / SDK 配置表示允许或可能使用该端点，不等于实际请求或 App 全链路验证。
   // 官网链接证明入口；资产清单证明归属；相关证据的限制保留在逐条注释中。
   "version": 2,
@@ -422,24 +423,14 @@
         "transunion.com"
       ]
     },
-    // 金融机构专属主机及金融业务端点（精确匹配）
+    // 金融机构专属主机及直接账户入口（精确匹配）
     {
       "domain": [
-        // Chase 账户聚合、认证及退休测算；依据：官方页面或资源；官方业务程序配置的账户聚合、授权及退休测算端点。
-        // 来源（官方页面或资源）：https://secure.chase.com/web/auth/dashboard
-        "aggapi.wealthaccess.com",
-        // Wise / 业务 API；依据：官方页面或资源；生产登录页 CSP 明示的 Wise 业务主机。
-        // 来源（官方页面或资源）：https://wise.com/login
-        "api.moscwise.com",
-        // Chase 账户聚合、认证及退休测算；依据：官方页面或资源；官方业务程序配置的账户聚合、授权及退休测算端点。
-        // 来源（官方页面或资源）：https://secure.chase.com/web/auth/dashboard
-        "app.quovo.com",
-        // Robinhood 退休账户转入；依据：官方页面或资源；正式登录页 CSP 明示的退休账户转入服务；排除 QA / UAT 地址。
-        // 来源（官方页面或资源）：https://robinhood.com/login
+        // Robinhood 退休账户转入；依据：机构 CSP 证明关联，SS&C 官方说明确认 Rollover Central 的 IRA 转入业务；公开门户返回同品牌退休业务页面。
+        // 来源（机构登录页）：https://robinhood.com/login
+        // 来源（服务商官方 IRA 业务说明）：https://www.ssctech.com/resources/form/streamlining-ira-rollovers-smarter-approach-2025
+        // 来源（账户业务门户）：https://app.rollovercentral.com/
         "app.rollovercentral.com",
-        // Synchrony / Truist 账户连接与账单；依据：Truist 登录页；生产登录 CSP 的账户连接与信用卡业务；billdetail.getbills.com 由 Truist 登录页 CSP 引用。
-        // 来源（Truist 登录页）：https://bank.truist.com/web/authentication
-        "billdetail.getbills.com",
         // Bank of America；依据：验证码组件配置。
         // 来源（验证码组件）：https://secure1.bac-assets.com/auth/signon/spa-assets/js/common-chunks/common-es6-components-37b4bd18d0d4b150bdbf.m.js
         "boa-api.arkoselabs.com",
@@ -451,66 +442,39 @@
         // 来源（官网）：https://cash.app/
         // 来源（登录页）：https://cash.app/login
         "cash-images-f.squarecdn.com",
-        // Vanguard 认证及登录资源；依据：投资者页面；Vanguard 投资者页面及登录页 CSP；排除 oktapreview 测试租户。
-        // 来源（投资者页面）：https://investor.vanguard.com/
+        // Vanguard 专属登录资源；依据：官方登录页实际加载的 vg-vgn 样式与脚本，不是仅凭 CSP 收录。
+        // 来源（官方登录页）：https://logon.vanguard.com/logon
         "ccc.vgcontent.info",
-        // Wealthfront 账户连接与业务接口；依据：官方页面或资源；登录页生产 CSP 中的账户连接服务；排除 sandbox.plaid.com。
-        // 来源（官方页面或资源）：https://www.wealthfront.com/login
-        "cdn.plaid.com",
-        // Synchrony / Truist 账户连接与账单；依据：官方页面或资源；生产登录 CSP 的账户连接与信用卡业务；billdetail.getbills.com 由 Truist 登录页 CSP 引用。
-        // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
-        "cdn.yodlee.com",
-        // First Citizens 网银组件；依据：官方页面或资源；正式网银页面的脚本、SDK 配置及财务管理组件。
-        // 来源（官方页面或资源）：https://digitalbanking.firstcitizens.com/
-        "cdn1.onlineaccess1.com",
-        // First Citizens 网银组件；依据：官方页面或资源；正式网银页面的脚本、SDK 配置及财务管理组件。
-        // 来源（官方页面或资源）：https://digitalbanking.firstcitizens.com/
-        "cds-sdkcfg.onlineaccess1.com",
-        // Chase 账户聚合、认证及退休测算；依据：官方页面或资源；官方业务程序配置的账户聚合、授权及退休测算端点。
+        // Chase 退休测算；依据：官方网银程序配置的 Chase 专属退休测算主机。
         // 来源（官方页面或资源）：https://secure.chase.com/web/auth/dashboard
         "chaseretcalculator.moneyguidepro.com",
         // Navy Federal；依据：官网 的学生贷款、贷款再融资及投资账户入口 / 官方域名配置。
         // 来源（官网）：https://www.navyfederal.org/
         "client.osaicinstitutions.com",
-        // TD / Citizens 信用卡、财富及账单服务；依据：官方页面或资源；美国官网提供的账单、信托投资及信用卡账户入口；Citizens 官网也引用 CentreSuite。
+        // TD 账户入口；依据：美国官网直接提供的 TD Wealth / TD Commercial Plus Card / 账单账户入口。
         // 来源（官方页面或资源）：https://www.td.com/us/en/personal-banking
         "clientpoint.fisglobal.com",
-        // First Citizens 网银组件；依据：官方页面或资源；正式网银页面的脚本、SDK 配置及财务管理组件。
-        // 来源（官方页面或资源）：https://digitalbanking.firstcitizens.com/
-        "content.mx.com",
         // Credit Karma；依据：官网 引用的 CSS / JS 资源。
         // 来源（官网）：https://www.creditkarma.com/
         "creditkarmacdn-a.akamaihd.net",
-        // Chase 账户聚合、认证及退休测算；依据：官方页面或资源；官方业务程序配置的账户聚合、授权及退休测算端点。
-        // 来源（官方页面或资源）：https://secure.chase.com/web/auth/dashboard
-        "fin02.finicity.com",
-        // Synchrony / Truist 账户连接与账单；依据：官方页面或资源；生产登录 CSP 的账户连接与信用卡业务；billdetail.getbills.com 由 Truist 登录页 CSP 引用。
+        // Synchrony 账户服务；依据：官方登录页配置的 Synchrony 专属账户连接租户或信用卡账户入口，不收录 Yodlee 公共 CDN。
         // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
         "finapp.synchrony.yodlee.com",
-        // Synchrony / Truist 账户连接与账单；依据：官方页面或资源；生产登录 CSP 的账户连接与信用卡业务；billdetail.getbills.com 由 Truist 登录页 CSP 引用。
+        // Synchrony 账户服务；依据：官方登录页配置的 Synchrony 专属账户连接租户或信用卡账户入口，不收录 Yodlee 公共 CDN。
         // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
         "finapp.synchronyiav.yodlee.com",
-        // Wealthfront 账户连接与业务接口；依据：官方页面或资源；登录页生产 CSP 中的账户连接服务；排除 sandbox.plaid.com。
+        // Wealthfront 专属账户连接；依据：官方登录页 CSP 明示的 finapp.wealthfront 银行租户主机，不收录 Yodlee 公共 CDN。
         // 来源（官方页面或资源）：https://www.wealthfront.com/login
         "finapp.wealthfront.yodlee.com",
         // First Citizens；依据：官网 的投资账户入口。
         // 来源（官网）：https://www.firstcitizens.com/personal
         "firstcitizens.netxinvestor.com",
-        // First Citizens 投资与退休账户；依据：官方页面或资源；官网提供的账户入口。
+        // First Citizens 投资与退休账户；依据：官网直接提供的 Wealth / Retirement Plan 登录入口。
         // 来源（官方页面或资源）：https://www.firstcitizens.com/personal
         "firstcitizens.wealthaccess.com",
         // Robinhood；依据：官方登录页 的预连接主机；该证据不单独证明原生 App 调用或具体采集行为。
         // 来源（官方登录页）：https://robinhood.com/login
         "fp.robinhood.net",
-        // Vanguard 认证及登录资源；依据：投资者页面；Vanguard 投资者页面及登录页 CSP；排除 oktapreview 测试租户。
-        // 来源（投资者页面）：https://investor.vanguard.com/
-        "frontgate-us.factset.com",
-        // Synchrony / 行为采集与登录保护；依据：官方页面或资源；CSP 明示的业务采集、日志及保护主机；排除 synchronybankdev 测试主机。
-        // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
-        "log-d0b2efe1.us.v2.we-stats.com",
-        // Santander 奖励账户登录；依据：官方页面或资源；网银登录页配置的奖励账户入口。
-        // 来源（官方页面或资源）：https://rolb.santanderbank.com/
-        "login.awardcenter.com",
         // Citizens Bank；依据：官网 的信用卡及 Clarfeld Client Access 登录入口。
         // 来源（官网）：https://www.citizensbank.com/
         "login.bdreporting.com",
@@ -523,40 +487,28 @@
         // Navy Federal；依据：官网 的学生贷款、贷款再融资及投资账户入口 / 官方域名配置。
         // 来源（官网）：https://www.navyfederal.org/
         "navyfederal.lendkey.com",
-        // Chase 账户聚合、认证及退休测算；依据：官方页面或资源；官方业务程序配置的账户聚合、授权及退休测算端点。
-        // 来源（官方页面或资源）：https://secure.chase.com/web/auth/dashboard
-        "partnerauth.platform.intuit.com",
-        // Wealthfront 账户连接与业务接口；依据：官方页面或资源；登录页生产 CSP 中的账户连接服务；排除 sandbox.plaid.com。
-        // 来源（官方页面或资源）：https://www.wealthfront.com/login
-        "production.plaid.com",
-        // First Citizens 网银组件；依据：官方页面或资源；正式网银页面的脚本、SDK 配置及财务管理组件。
-        // 来源（官方页面或资源）：https://digitalbanking.firstcitizens.com/
-        "q2smart.q2ebanking.com",
         // Santander；依据：官网 的 connect-src 业务端点。
         // 来源（官网）：https://www.santanderbank.com/
         "santandercards-web.oflows.net",
-        // First Citizens 网银组件；依据：官方页面或资源；正式网银页面的脚本、SDK 配置及财务管理组件。
-        // 来源（官方页面或资源）：https://digitalbanking.firstcitizens.com/
-        "sdk-cdn.onlineaccess1.com",
-        // First Citizens 投资与退休账户；依据：官方页面或资源；官网提供的账户入口。
+        // First Citizens 投资与退休账户；依据：官网直接提供的 Wealth / Retirement Plan 登录入口。
         // 来源（官方页面或资源）：https://www.firstcitizens.com/personal
         "secure.newportgroup.com",
-        // Synchrony / 行为采集与登录保护；依据：官方页面或资源；CSP 明示的业务采集、日志及保护主机；排除 synchronybankdev 测试主机。
+        // Synchrony 专属登录保护；依据：官方登录页配置明确带 synchronybank-us 租户标识的主机；排除公共采集服务及 synchronybankdev 测试主机。
         // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
         "synchronybank-us.cdn-gw-dv.vip",
-        // Synchrony / 行为采集与登录保护；依据：官方页面或资源；CSP 明示的业务采集、日志及保护主机；排除 synchronybankdev 测试主机。
+        // Synchrony 专属登录保护；依据：官方登录页配置明确带 synchronybank-us 租户标识的主机；排除公共采集服务及 synchronybankdev 测试主机。
         // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
         "synchronybank-us.ck123.io",
-        // Synchrony / 行为采集与登录保护；依据：官方页面或资源；CSP 明示的业务采集、日志及保护主机；排除 synchronybankdev 测试主机。
+        // Synchrony 专属登录保护；依据：官方登录页配置明确带 synchronybank-us 租户标识的主机；排除公共采集服务及 synchronybankdev 测试主机。
         // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
         "synchronybank-us.gw-dv.io",
-        // Synchrony / 行为采集与登录保护；依据：官方页面或资源；CSP 明示的业务采集、日志及保护主机；排除 synchronybankdev 测试主机。
+        // Synchrony 专属登录保护；依据：官方登录页配置明确带 synchronybank-us 租户标识的主机；排除公共采集服务及 synchronybankdev 测试主机。
         // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
         "synchronybank-us.gw-dv.vip",
-        // Synchrony / 行为采集与登录保护；依据：官方页面或资源；CSP 明示的业务采集、日志及保护主机；排除 synchronybankdev 测试主机。
+        // Synchrony 专属登录保护；依据：官方登录页配置明确带 synchronybank-us 租户标识的主机；排除公共采集服务及 synchronybankdev 测试主机。
         // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
         "synchronybank-us.gw-dv.xyz",
-        // TD / Citizens 信用卡、财富及账单服务；依据：官方页面或资源；美国官网提供的账单、信托投资及信用卡账户入口；Citizens 官网也引用 CentreSuite。
+        // TD 账户入口；依据：美国官网直接提供的 TD Wealth / TD Commercial Plus Card / 账单账户入口。
         // 来源（官方页面或资源）：https://www.td.com/us/en/personal-banking
         "tdbank.billeriq.com",
         // TD Bank；依据：美国官网 的投资及财富账户入口。
@@ -568,23 +520,15 @@
         // Vanguard 认证及登录资源；依据：官方页面或资源；Vanguard 投资者页面及登录页 CSP；排除 oktapreview 测试租户。
         // 来源（官方页面或资源）：https://logon.vanguard.com/logon
         "vanguard.okta.com",
-        // First Citizens 网银组件；依据：官方页面或资源；正式网银页面的脚本、SDK 配置及财务管理组件。
-        // 来源（官方页面或资源）：https://digitalbanking.firstcitizens.com/
-        "widgets.moneydesktop.com",
-        // Synchrony / 行为采集与登录保护；依据：官方页面或资源；CSP 明示的业务采集、日志及保护主机；排除 synchronybankdev 测试主机。
-        // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
-        "wup-d0b2efe1.us.v2.we-stats.com",
         // Citizens Bank；依据：官网 的信用卡及 Clarfeld Client Access 登录入口。
         // 来源（官网）：https://www.citizensbank.com/
         "www.accessmycardonline.com",
-        // TD / Citizens 信用卡、财富及账单服务；依据：官方页面或资源；美国官网提供的账单、信托投资及信用卡账户入口；Citizens 官网也引用 CentreSuite。
+        // TD 账户入口；依据：美国官网直接提供的 TD Wealth / TD Commercial Plus Card / 账单账户入口。
         // 来源（官方页面或资源）：https://www.td.com/us/en/personal-banking
         "www.centresuite.com",
-        // Santander 奖励账户登录；依据：官方页面或资源；网银登录页配置的奖励账户入口。
-        // 来源（官方页面或资源）：https://rolb.santanderbank.com/
-        "www.login.awardcenter.com",
-        // Synchrony / Truist 账户连接与账单；依据：官方页面或资源；生产登录 CSP 的账户连接与信用卡业务；billdetail.getbills.com 由 Truist 登录页 CSP 引用。
-        // 来源（官方页面或资源）：https://securelogin.synchronybank.com/
+        // Synchrony 信用卡账户；依据：发行方官方资产披露列出 onlinecreditcenter6.com，当前登录页配置引用 www 主机；公开页面含 Synchrony 品牌。
+        // 来源（发行方官方资产披露）：https://investors.synchrony.com/filings-regulatory/sec-filings/all-sec-filings/content/0001193125-14-228938/d680310dex101.htm
+        // 来源（当前官方登录配置）：https://securelogin.synchronybank.com/
         "www.onlinecreditcenter6.com"
       ]
     }
