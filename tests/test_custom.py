@@ -104,16 +104,31 @@ class CustomTests(unittest.TestCase):
                 "www.wfafinet.com", "boa-api.arkoselabs.com", "fp.robinhood.net",
                 "cash-images-f.squarecdn.com",
                 "synchronybank-us.gw-dv.io",
-                "vanguard.okta.com",
+                "vanguard.okta.com", "chaseretcalculator.moneyguidepro.com",
+                "client.osaicinstitutions.com", "clientpoint.fisglobal.com",
+                "www.centresuite.com", "secure.newportgroup.com",
+                "app.rollovercentral.com", "finapp.synchrony.yodlee.com",
+                "finapp.synchronyiav.yodlee.com",
                 "www.citibankonline.com", "www.thankyou.com", "login.fidelityrewards.com",
                 "online1.elancard.com", "www.myaccountaccess.com", "ccc.vgcontent.info",
-                "cdn1.onlineaccess1.com", "production.plaid.com", "finapp.wealthfront.yodlee.com",
+                "finapp.wealthfront.yodlee.com",
                 "firstcitizens.wealthaccess.com", "www.subarumotorsfinance.com",
             ))
             # General-purpose shared hosts must not be routed as finance, even
             # when a financial login page references them. Consumer wallets and
-            # card-network checkout pages and generic payment SDKs are excluded.
+            # card-network checkout pages, public financial SDKs, aggregators,
+            # market-data feeds and unverified shared endpoints are excluded.
             cases.extend((host, False) for host in (
+                "aggapi.wealthaccess.com", "api.moscwise.com",
+                "app.quovo.com", "billdetail.getbills.com",
+                "cdn.plaid.com", "cdn.yodlee.com",
+                "cdn1.onlineaccess1.com", "cds-sdkcfg.onlineaccess1.com",
+                "content.mx.com", "fin02.finicity.com",
+                "frontgate-us.factset.com", "log-d0b2efe1.us.v2.we-stats.com",
+                "login.awardcenter.com", "partnerauth.platform.intuit.com",
+                "production.plaid.com", "q2smart.q2ebanking.com",
+                "sdk-cdn.onlineaccess1.com", "widgets.moneydesktop.com",
+                "wup-d0b2efe1.us.v2.we-stats.com", "www.login.awardcenter.com",
                 "0geo.cardinalcommerce.com", "1geo.cardinalcommerce.com", "api.braintreegateway.com",
                 "api.stripe.com", "b.stripecdn.com", "braintree-api.com",
                 "braintreegateway.com", "centinelapi.cardinalcommerce.com", "checkout.com",
