@@ -13,6 +13,35 @@ from formats import adguard
 
 
 class DiscoveryTests(unittest.TestCase):
+    def test_local_sources_reject_ambiguous_missing_and_escaping_paths(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            configs = root / "sources"
+            configs.mkdir()
+            (root / "rules").mkdir()
+            (root / "rules/example.json").write_text('{"version":2,"rules":[{}]}')
+            (root / "rules/escape.json").symlink_to(ROOT / "README.md")
+            source = {"name": "fixture", "format": "sing-box", "path": "rules/example.json"}
+            for changes, remove_path, message in (
+                ({"url": "https://example.org/list.json"}, False, "exactly one"),
+                ({}, True, "exactly one"),
+                ({"path": "../outside.json"}, False, "inside the repository"),
+                ({"path": str(root / "rules/example.json")}, False, "inside the repository"),
+                ({"path": "rules/missing.json"}, False, "existing file"),
+                ({"path": ".git/config"}, False, "under rules/"),
+                ({"path": "rules/escape.json"}, False, "existing file"),
+                ({"path": ""}, False, "nonempty"),
+                ({"path": "rules"}, False, "existing file"),
+                ({"fallback_urls": []}, False, "do not support"),
+            ):
+                with self.subTest(changes=changes, remove_path=remove_path):
+                    configured = {**source, **changes}
+                    if remove_path:
+                        configured.pop("path")
+                    (configs / "custom.json").write_text(json.dumps({"sources": [configured]}))
+                    with patch.object(builder, "ROOT", root), self.assertRaisesRegex(ValueError, message):
+                        builder.load_sources(configs)
+
     def test_new_upstream_only_requires_url_and_format_config(self):
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)

@@ -1,10 +1,10 @@
 # sing-box-rule-set
 
-通过 GitHub Actions 自动下载上游规则，转换为 sing-box 的 `.srs` 二进制规则集。
+通过 GitHub Actions 自动下载上游规则或读取仓库内自定义规则，转换为 sing-box 的 `.srs` 二进制规则集。
 支持 **OISD big/small**、**AWAvenue 秋风广告规则的全部四种变体**、**HaGeZi Pro**、
-**HaGeZi TIF Full/Medium/Mini**、**HaGeZi Native Tracker 全部 12 个列表**及 **AdGuard DNS Filter**，共 23 个规则集。
+**HaGeZi TIF Full/Medium/Mini**、**HaGeZi Native Tracker 全部 12 个列表**、**AdGuard DNS Filter**及本仓库维护的 **geosite-finance-us**，共 24 个规则集。
 
-| 规则集 | 上游 | format | 输出 | 用途 |
+| 规则集 | 来源 | format | 输出 | 用途 |
 | --- | --- | --- | --- | --- |
 | OISD big | <https://big.oisd.nl/> | `adblock` | `oisd-big.srs` | 广告、跟踪、恶意域名等 |
 | OISD small | <https://small.oisd.nl/> | `adblock` | `oisd-small.srs` | 以广告拦截为主的较小版本 |
@@ -29,6 +29,7 @@
 | HaGeZi Native OPPO/Realme | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.oppo-realme.txt) | `adblock` | `hagezi-native-oppo-realme.srs` | OPPO、Realme 设备内置跟踪 |
 | HaGeZi Native Xiaomi | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.xiaomi.txt) | `adblock` | `hagezi-native-xiaomi.srs` | 小米设备内置跟踪 |
 | AdGuard DNS Filter | [官方 DNS Filter](https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt) | `adguard` | `adguard-dns-filter.srs` | 针对 DNS 优化的综合广告和跟踪拦截 |
+| 美国个人金融服务 | [本仓库 JSON](https://raw.githubusercontent.com/hamo/sing-box-rule-set/main/rules/geosite-finance-us.json) | `sing-box` | `geosite-finance-us.srs` | 银行、信用卡、投资、支付及消费金融域名分类，用于分流 |
 
 big 包含 small，选择一个即可。规则说明见 [OISD 官网](https://oisd.nl/)。
 OISD big/small 的文件头为 `[Adblock Plus]`，声明 `Syntax: Adblock Plus Filter List`，
@@ -55,13 +56,16 @@ OISD、HaGeZi 和 AdGuard DNS Filter 都使用 sing-box 的 `adguard` 转换器�
 TIF Full/Medium/Mini 三选一；Medium/Mini 为轻量替代版本。
 Native Tracker 按设备或服务选择，部分规则可能影响相关功能；TikTok 普通版与 Aggressive 版选一个。
 
+`geosite-finance-us` 为本仓库手工维护的分类规则，覆盖美国面向个人的银行与金融服务，
+用于 `route.rules` 分流，勿加入广告拦截列表。来源和收录范围见 [自定义规则说明](rules/README.md)。
+
 ## 启用自动更新
 
 1. 将本项目推送到 GitHub 公开仓库，默认分支使用 `main`。
 2. 在 **Actions → Update rule sets → Run workflow** 运行首次构建。
 3. 成功后会自动创建 `rule-set` 分支，之后每 6 小时更新一次。
 
-推送构建脚本、规则来源或 workflow 的变更也会自动触发构建。
+推送 `rules/**`、构建脚本、规则来源或 workflow 的变更也会自动触发构建。
 workflow 已声明 `contents: write`，使用内置 `GITHUB_TOKEN`，无需额外配置 PAT 或 Secret。
 构建后会检查全部配置项对应的产物、SHA-256 和 SRS 版本；发布前再次校验，
 缺失或损坏的产物不会推送。Actions 运行摘要会列出完整构建结果。
@@ -103,6 +107,7 @@ https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-
 https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-oppo-realme.srs
 https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-xiaomi.srs
 https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/adguard-dns-filter.srs
+https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/geosite-finance-us.srs
 ```
 
 在现有配置的 `route.rule_set` 中加入：
@@ -136,10 +141,69 @@ https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/adguard-dns-fi
 建议启用 `experimental.cache_file.enabled`，缓存远程规则集。
 以上是配置片段，需要合并到现有配置。仅添加 `rule_set` 定义不会自动拦截。
 
+## 自定义规则的维护与使用
+
+本仓库直接维护的源文件位于 `rules/`，由 `sources/custom.json` 注册。例如：
+
+```json
+{
+  "sources": [
+    {
+      "name": "geosite-finance-us",
+      "path": "rules/geosite-finance-us.json",
+      "format": "sing-box"
+    }
+  ]
+}
+```
+
+`path` 为仓库根目录的相对文件路径，必须指向 `rules/` 内文件，不能与 `url` 同时配置，不能通过符号链接跳出目录；
+本地来源不支持 `fallback_urls`。构建复制本次 checkout 内的文件，再复用对应 `format` 转换器，
+不下载第三方列表。原文保存在发布分支 `sources/<name>.json`，元数据标记 `source_type: "local"` 并记录原路径和哈希。
+修改原文后必须重新构建；发布校验会拒绝与当前源文件不一致的旧产物。
+
+第一套使用 `geosite-finance-us` 命名，范围包含个人银行、信用卡、券商与退休投资、支付汇款、个人信用与消费金融。
+分类及官方域名依据见 [rules/README.md](rules/README.md)。该集合包含服务商第一方域名及子域名，
+并不表示服务器均位于美国；部分域名也承载其他地区业务。
+
+可以在现有 `route.rule_set` 中添加：
+
+```json
+{
+  "type": "remote",
+  "tag": "geosite-finance-us",
+  "format": "binary",
+  "url": "https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/geosite-finance-us.srs",
+  "update_interval": "6h"
+}
+```
+
+然后在现有 `route.rules` 中、相关兜底规则之前配置目标出站（将 `US-FINANCE` 替换为你已有的出站标签）：
+
+```json
+{
+  "rule_set": ["geosite-finance-us"],
+  "action": "route",
+  "outbound": "US-FINANCE"
+}
+```
+
+这是分流集合，应按实际需求配置出站，不作为广告拦截的 `reject` 规则。
+仅构建仓库内规则：
+
+```sh
+python3 scripts/build.py --source custom --output build-custom
+python3 scripts/verify-build.py build-custom --source custom
+python3 scripts/check-srs-load.py build-custom
+```
+
+提交 `rules/**` 或 `sources/custom.json` 的修改后，GitHub Actions 会完整构建、校验、加载并更新 `rule-set` 分支。
+后续添加自定义集合只需增加 `rules/<name>.json` 和配置记录，同样可使用 `adguard` / `adblock` 格式的本地文本。
+
 ## 构建与发布
 
 ```text
-sources/*.json → 下载 → 按 format 选择通用转换器 → 校验与转换 → rule-set 分支
+sources/*.json → 下载远端 / 复制仓库文件 → 按 format 转换 → 校验及实际加载 → rule-set 分支
 ```
 
 - 固定官方 sing-box 编译器版本，并验证下载包的 SHA-256。
@@ -152,6 +216,7 @@ sources/*.json → 下载 → 按 format 选择通用转换器 → 校验与转�
 - 编译后核对输入、取消、跳过和成功转换的数量；改写规则已计入成功数量，元数据和摘要保留改写映射。
 - 实际启动 sing-box 加载全部 SRS；测试同时验证损坏的 SRS 内容会导致启动检查失败。
 - 下载支持重试、低速超时和可配置的备用地址；OISD 使用维护者的官方 GitHub 镜像作为备用。
+- 远端和仓库内自定义规则一起构建；本地规则不进行上游下载，改动 `rules/**` 自动触发更新。
 - 全部规则集按各自配置的兼容策略构建成功并通过完整性校验后才发布，任一来源失败时远端保留上一版。
 - `rule-set` 分支保留 `.srs`、上游原文件、许可证及带哈希的 `metadata.json`。
 - 发布通过普通 Git 提交和推送完成；规则更新保留分支历史。
@@ -182,24 +247,27 @@ python3 scripts/check-srs-load.py build
 python3 scripts/build.py --sing-box /absolute/path/to/sing-box
 ```
 
-只构建指定上游（可重复传入 `--upstream`）；此操作会用选中的结果替换本地输出目录：
+只构建指定来源组（可重复传入 `--source`，`--upstream` 保持兼容）；此操作会用选中的结果替换本地输出目录：
 
 ```sh
 python3 scripts/build.py --upstream oisd --output build-oisd
 ```
 
-自动发布 workflow 始终构建所有上游，避免发布时缺少未选中的规则集。
+自动发布 workflow 始终构建所有来源（含自定义规则），避免发布时缺少未选中的规则集。
 
 ## 添加其他来源
 
-上游仅保存配置，转换工具按输入格式组织；构建入口自动读取所有上游配置：
+来源仅保存配置，转换工具按输入格式组织；构建入口自动读取所有来源配置：
 
 ```text
 sources/
   adguard.json              # AdGuard DNS Filter 的地址、格式和可选校验
   awavenue.json             # 秋风的地址、格式和可选校验
+  custom.json               # 仓库内自定义规则的相对路径和格式
   hagezi.json               # HaGeZi Pro、TIF 和 Native Tracker 的地址、格式和可选校验
   oisd.json                 # OISD 的地址、格式和可选校验
+rules/
+  geosite-finance-us.json    # 手工维护的美国个人金融服务域名
 scripts/
   build.py                  # 读取上游配置、下载、按格式分发、汇总产物
   common.py                 # HTTPS 下载、哈希和 SRS 输出校验
@@ -224,7 +292,7 @@ scripts/
 }
 ```
 
-`name` 决定输出文件名，必须全局唯一；`url` 必须使用 HTTPS；`format` 决定转换方式。
+`name` 决定输出文件名，必须全局唯一；`url`（HTTPS）和 `path`（指向 `rules/` 内文件的仓库相对路径）必须二选一；`format` 决定转换方式。
 可选 `fallback_urls` 为 HTTPS 地址数组：主地址下载失败时依次尝试备用地址，
 转换和完整性校验仍然执行；实际下载地址记录在 `metadata.json` 的 `download_url` 中。
 
@@ -330,3 +398,5 @@ HaGeZi Pro、TIF 和 Native Tracker 来源于 [hagezi/dns-blocklists](https://gi
 AdGuard DNS Filter 来源于 [AdguardTeam/AdGuardSDNSFilter](https://github.com/AdguardTeam/AdGuardSDNSFilter)，
 遵循上游的 [GNU GPL v3 许可证](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE)。
 原始列表及其来源、作者和许可证声明保留在 `sources/adguard-dns-filter.txt` 中。
+
+本仓库手工维护的 `rules/` 分类规则同样采用 [GNU GPL v3](LICENSE)，各机构官方域名依据记录在 [rules/README.md](rules/README.md)。

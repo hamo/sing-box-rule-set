@@ -5,13 +5,13 @@ import argparse
 import json
 from pathlib import Path
 
-from build import ROOT, load_sources
+from build import ROOT, load_sources, local_source_path
 from common import sha256, srs_version
 
 
-def verify(output, config_dir):
+def verify(output, config_dir, selected=None):
     expected = {source["name"]: (provider, converter, source)
-                for provider, converter, source in load_sources(config_dir)}
+                for provider, converter, source in load_sources(config_dir, selected)}
     metadata = json.loads((output / "metadata.json").read_text(encoding="utf-8"))
     records = metadata["sources"]
     names = [record["name"] for record in records]
@@ -35,6 +35,11 @@ def verify(output, config_dir):
             path = output / filename
             if not path.is_file() or path.stat().st_size == 0 or sha256(path) != record["sha256"][filename]:
                 raise ValueError(f"{name}: missing, empty or corrupt file: {filename}")
+        if "path" in source:
+            original = output / "sources" / f"{name}{converter.EXTENSION}"
+            if (record.get("source_type") != "local" or "download_url" in record
+                    or sha256(original) != sha256(local_source_path(source))):
+                raise ValueError(f"{name}: local source changed or provenance is incorrect; rebuild required")
         if srs_version(output / f"{name}.srs") != record["srs_version"]:
             raise ValueError(f"{name}: SRS version mismatch")
         conversion = record.get("conversion", {})
@@ -82,9 +87,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("output", type=Path)
     parser.add_argument("--sources-dir", type=Path, default=ROOT / "sources")
+    parser.add_argument("--source", "--upstream", dest="selected", action="append",
+                        help="Verify only this source group; repeatable")
     parser.add_argument("--summary", type=Path)
     args = parser.parse_args()
-    summary = verify(args.output.resolve(), args.sources_dir.resolve())
+    summary = verify(args.output.resolve(), args.sources_dir.resolve(), args.selected)
     print(summary)
     if args.summary:
         with args.summary.open("a", encoding="utf-8") as stream:

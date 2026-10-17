@@ -1,0 +1,9 @@
+{
+  "sources": [
+    {
+      "name": "geosite-finance-us",
+      "path": "rules/geosite-finance-us.json",
+      "format": "sing-box"
+    }
+  ]
+}

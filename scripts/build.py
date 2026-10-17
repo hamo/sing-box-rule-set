@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build configured upstreams using shared format-based converters."""
+"""Build remote and repository-maintained rules using format-based converters."""
 
 import argparse
 import json
@@ -13,6 +13,22 @@ from common import download, sha256, srs_version, write_json
 from formats import get_converter
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def local_source_path(source):
+    value = source.get("path")
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError("Local source path must be a nonempty repository-relative path")
+    path = Path(value)
+    if path.is_absolute() or ".." in path.parts:
+        raise ValueError("Local source path must stay inside the repository")
+    if not path.parts or path.parts[0] != "rules":
+        raise ValueError("Local sources must be maintained under rules/")
+    resolved = (ROOT / path).resolve()
+    if (not resolved.is_relative_to(ROOT.resolve())
+            or not resolved.is_relative_to((ROOT / "rules").resolve()) or not resolved.is_file()):
+        raise ValueError(f"Local source must be an existing file inside the repository: {value}")
+    return resolved
 
 
 def load_sources(directory, selected=None):
@@ -34,7 +50,13 @@ def load_sources(directory, selected=None):
             name = source["name"]
             if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name) or name in names:
                 raise ValueError(f"Invalid or duplicate source name: {name}")
-            if not isinstance(source.get("url"), str) or not source["url"].startswith("https://"):
+            if ("url" in source) == ("path" in source):
+                raise ValueError("Source must specify exactly one of url or path")
+            if "path" in source:
+                local_source_path(source)
+                if "fallback_urls" in source:
+                    raise ValueError("Local sources do not support fallback_urls")
+            elif not isinstance(source["url"], str) or not source["url"].startswith("https://"):
                 raise ValueError("Source URLs must use HTTPS")
             fallbacks = source.get("fallback_urls", [])
             if not isinstance(fallbacks, list) or any(
@@ -76,13 +98,18 @@ def build(config_dir, output, compiler, selected=None):
         (staged / "sources").mkdir()
         for provider, converter, source in sources:
             raw = staged / "sources" / f"{source['name']}{converter.EXTENSION}"
-            used_url = download_source(source, raw)
+            if "path" in source:
+                shutil.copyfile(local_source_path(source), raw)
+                origin = {"source_type": "local"}
+            else:
+                used_url = download_source(source, raw)
+                origin = {"source_type": "remote", "download_url": used_url}
             binary = staged / f"{source['name']}.srs"
             record = converter.convert(raw, binary, compiler, source)
             actual_version = srs_version(binary)
             records.append({
                 **source, **record, "provider": provider, "srs_version": actual_version,
-                "download_url": used_url,
+                **origin,
                 "sha256": {path.relative_to(staged).as_posix(): sha256(path) for path in (raw, binary)},
             })
             print(f"{source['name']}: {binary.stat().st_size:,} bytes (SRS v{actual_version})",
@@ -103,7 +130,8 @@ def build(config_dir, output, compiler, selected=None):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sources-dir", type=Path, default=ROOT / "sources")
-    parser.add_argument("--upstream", action="append", help="Build only this upstream; repeatable")
+    parser.add_argument("--source", "--upstream", dest="upstream", action="append",
+                        help="Build only this source group (including custom); repeatable")
     parser.add_argument("--output", type=Path, default=ROOT / "build")
     parser.add_argument("--sing-box", default=str(ROOT / ".tools/sing-box"))
     args = parser.parse_args()

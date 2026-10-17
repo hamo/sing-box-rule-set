@@ -2,7 +2,7 @@
 
 此分支由 GitHub Actions 自动生成。转换代码和使用说明见本仓库的 `main` 分支。
 
-| 规则集 | 二进制订阅 | 上游原文件 | 上游 |
+| 规则集 | 二进制订阅 | 来源原文件 | 来源 |
 | --- | --- | --- | --- |
 | OISD big | [oisd-big.srs](oisd-big.srs) | [oisd-big.txt](sources/oisd-big.txt) | <https://big.oisd.nl/> |
 | OISD small | [oisd-small.srs](oisd-small.srs) | [oisd-small.txt](sources/oisd-small.txt) | <https://small.oisd.nl/> |
@@ -27,6 +27,7 @@
 | HaGeZi Native OPPO/Realme | [hagezi-native-oppo-realme.srs](hagezi-native-oppo-realme.srs) | [hagezi-native-oppo-realme.txt](sources/hagezi-native-oppo-realme.txt) | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.oppo-realme.txt) |
 | HaGeZi Native Xiaomi | [hagezi-native-xiaomi.srs](hagezi-native-xiaomi.srs) | [hagezi-native-xiaomi.txt](sources/hagezi-native-xiaomi.txt) | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.xiaomi.txt) |
 | AdGuard DNS Filter | [adguard-dns-filter.srs](adguard-dns-filter.srs) | [adguard-dns-filter.txt](sources/adguard-dns-filter.txt) | [官方 DNS Filter](https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt) |
+| 美国个人金融服务 | [geosite-finance-us.srs](geosite-finance-us.srs) | [geosite-finance-us.json](sources/geosite-finance-us.json) | [本仓库 JSON](https://raw.githubusercontent.com/hamo/sing-box-rule-set/main/rules/geosite-finance-us.json) |
 
 当前提供的 SRS 格式版本均为 2，要求 sing-box 1.10.0+。
 AWAvenue 原始 JSON 为版本 3，官方编译器根据实际字段生成版本 2 的 SRS。
@@ -36,6 +37,11 @@ AWAvenue 四种变体选用其中一个：完整防护为广告＋隐私＋不�
 综合广告列表可先在 OISD、HaGeZi Pro、AdGuard DNS Filter 中选择一个，秋风按需补充。
 HaGeZi TIF Full/Medium/Mini 三选一；Medium/Mini 为轻量替代版本。
 Native Tracker 按设备或服务选择，部分规则可能影响相关功能；TikTok 普通版与 Aggressive 版选一个。
+
+`geosite-finance-us` 是本仓库手工维护的美国个人银行与金融服务域名分类，
+在 `route.rules` 中配合选定出站分流使用，勿加入广告拦截的 `reject` 列表。
+来源、收录范围与维护方式见 [主分支规则说明](https://github.com/hamo/sing-box-rule-set/blob/main/rules/README.md)。
+`metadata.json` 用 `source_type: "local"` 标记仓库内来源，记录相对路径及原文件哈希；构建不下载上游列表。
 
 [metadata.json](metadata.json) 记录上游版本、规则数量、编译器版本和 SHA-256。
 AdGuard DNS Filter 提供 sing-box 兼容部分：原文件中的少量 IP 规则和 IP/URL 正则无法转换，
@@ -64,3 +70,5 @@ HaGeZi Pro、TIF 和 Native Tracker 由 [hagezi/dns-blocklists](https://github.c
 AdGuard DNS Filter 由 [AdguardTeam/AdGuardSDNSFilter](https://github.com/AdguardTeam/AdGuardSDNSFilter) 维护，
 规则及衍生文件遵循 [GNU GPL v3](LICENSE)，
 [上游许可证](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE)及来源声明保留在原始列表中。
+
+本仓库手工维护的 `geosite-finance-us` 分类规则采用 [GNU GPL v3](LICENSE)。

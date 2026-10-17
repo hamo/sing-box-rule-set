@@ -49,9 +49,13 @@ class PublishTests(unittest.TestCase):
                     binary = output / f"{name}.srs"
                     raw = output / "sources" / f"{name}{extension}"
                     binary.write_bytes(b"SRS\x02fixture")
-                    raw.write_text("original source fixture\n")
+                    if "path" in item:
+                        raw.write_bytes(builder.local_source_path(item).read_bytes())
+                    else:
+                        raw.write_text("original source fixture\n")
                     records.append({
                         **item, "provider": config.stem, "srs_version": 2, "rule_count": 1,
+                        "source_type": "local" if "path" in item else "remote",
                         "sha256": {path.relative_to(output).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
                                    for path in (raw, binary)},
                     })
