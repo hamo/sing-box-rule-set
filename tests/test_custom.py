@@ -9,6 +9,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from test_build import ROOT, builder
+from formats import sing_box
 
 COMPILER = ROOT / ".tools/sing-box"
 spec = importlib.util.spec_from_file_location("custom_verify", ROOT / "scripts/verify-build.py")
@@ -27,7 +28,8 @@ class CustomTests(unittest.TestCase):
             (root / "docs/rule-set-README.md").write_text("custom rules\n")
             (root / "LICENSE").write_text("fixture license\n")
             raw = root / "rules/example.json"
-            raw.write_text(json.dumps({"version": 2, "rules": [{"domain_suffix": ["example.com"]}]}))
+            raw.write_text('{\n// Source: https://example.com/\n"version": 2,\n'
+                           '"rules": [/* repository-owned */ {"domain_suffix": ["example.com"]}]}')
             config = {"name": "example", "path": "rules/example.json", "format": "sing-box"}
             (root / "sources/custom.json").write_text(json.dumps({"sources": [config]}))
             output = root / "output"
@@ -41,6 +43,13 @@ class CustomTests(unittest.TestCase):
                 self.assertNotIn("download_url", record)
                 verifier.verify(output, root / "sources")
                 original = (output / "example.srs").read_bytes()
+                raw.write_text(raw.read_text() + "\n// Reviewed source reference\n")
+                with self.assertRaisesRegex(ValueError, "rebuild required"):
+                    verifier.verify(output, root / "sources")
+                builder.build(root / "sources", output, str(COMPILER))
+                self.assertEqual((output / "example.srs").read_bytes(), original)
+                self.assertEqual((output / "sources/example.json").read_bytes(), raw.read_bytes())
+                verifier.verify(output, root / "sources")
                 raw.write_text(json.dumps({"version": 2, "rules": [{"domain_suffix": ["example.net"]}]}))
                 with self.assertRaisesRegex(ValueError, "rebuild required"):
                     verifier.verify(output, root / "sources")
@@ -60,7 +69,7 @@ class CustomTests(unittest.TestCase):
                 builder.build(ROOT / "sources", output, str(COMPILER), ["custom"])
                 download.assert_not_called()
             verifier.verify(output, ROOT / "sources", ["custom"])
-            config = json.loads((ROOT / "rules/geosite-finance-us.json").read_text())
+            config = sing_box.load_config((ROOT / "rules/geosite-finance-us.json").read_text())
             domains = [domain for rule in config["rules"] for domain in rule.get("domain_suffix", [])]
             hosts = [host for rule in config["rules"] for host in rule.get("domain", [])]
             self.assertEqual(len(domains), len(set(domains)))
@@ -86,20 +95,14 @@ class CustomTests(unittest.TestCase):
                 "consumercenter.mysynchrony.com", "api.syf.com", "cdn2.etrade.net",
                 "login.fidelity.com", "netbenefits.fidelity.com", "www.netbenefits.com",
                 "client.schwabcdn.com", "trade.thinkorswim.com", "api.robinhood.com",
-                "api-m.paypal.com", "www.paypalobjects.com", "api.braintreegateway.com",
-                "payments.braintree-api.com", "cash-f.squarecdn.com",
+                "api-m.paypal.com", "www.paypalobjects.com",
+                "cash-f.squarecdn.com",
                 "navyfederal.lendkey.com", "creditkarmacdn-a.akamaihd.net",
                 "onlinebanking.tdbank.com", "login.openbank.us", "my.equifax.com",
                 "members.transunion.com", "firstcitizens.netxinvestor.com",
                 "api-v2.chimebank.com", "secure.chasecdn.com", "www.wellsfargoadvisors.com",
                 "www.wfafinet.com", "boa-api.arkoselabs.com", "fp.robinhood.net",
-                "cash-images-f.squarecdn.com", "pci-connect.squareup.com",
-                "centinelapi.cardinalcommerce.com", "geo.cardinalcommerce.com",
-                "0geo.cardinalcommerce.com", "1geo.cardinalcommerce.com",
-                "hostedfields.cardinalcommerce.com", "writer.cardinalcommerce.com",
-                "songbird.cardinalcommerce.com", "static.client.cardinaltrusted.com",
-                "applepay.cdn-apple.com", "pay.google.com", "secure.checkout.visa.com",
-                "assets.secure.checkout.visa.com", "pay.discovernetwork.com",
+                "cash-images-f.squarecdn.com",
                 "synchronybank-us.gw-dv.io",
                 "vanguard.okta.com",
                 "www.citibankonline.com", "www.thankyou.com", "login.fidelityrewards.com",
@@ -108,9 +111,19 @@ class CustomTests(unittest.TestCase):
                 "firstcitizens.wealthaccess.com", "www.subarumotorsfinance.com",
             ))
             # General-purpose shared hosts must not be routed as finance, even
-            # when a financial login page references them. Payment-specific and
-            # institution-specific hosts above remain positive regression cases.
+            # when a financial login page references them. Consumer wallets and
+            # card-network checkout pages and generic payment SDKs are excluded.
             cases.extend((host, False) for host in (
+                "0geo.cardinalcommerce.com", "1geo.cardinalcommerce.com", "api.braintreegateway.com",
+                "api.stripe.com", "b.stripecdn.com", "braintree-api.com",
+                "braintreegateway.com", "centinelapi.cardinalcommerce.com", "checkout.com",
+                "geo.cardinalcommerce.com", "hostedfields.cardinalcommerce.com", "js.checkout.com",
+                "payments.braintree-api.com", "pci-connect.squareup.com", "secure.paymentech.com",
+                "songbird.cardinalcommerce.com", "static.client.cardinaltrusted.com", "stripe-camo.global.ssl.fastly.net",
+                "stripe.com", "writer.cardinalcommerce.com",
+                "applepay.cdn-apple.com", "pay.google.com",
+                "secure.checkout.visa.com", "assets.secure.checkout.visa.com",
+                "pay.discovernetwork.com",
                 "aa.online-metrix.net", "accounts.google.com", "analytics.dv.socure.io",
                 "api-js.datadome.co", "api.ipdata.co", "api.sardine.ai",
                 "api.sjpf.io", "api.transmitsecurity.io", "appleid.apple.com",

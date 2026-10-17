@@ -73,6 +73,18 @@ class AdGuardTests(unittest.TestCase):
 
 
 class SingBoxTests(unittest.TestCase):
+    def test_json_comments_preserve_urls_escaped_strings_and_reject_invalid_json(self):
+        expected = {"url": "https://example.com/a//b/*path*/", "note": '引号 " // /*',
+                    "version": 2, "rules": [{"domain": ["example.com"]}]}
+        text = "// 来源: https://example.com/\r\n" + json.dumps(expected, ensure_ascii=False)
+        text = text.replace('"version":', '/* multiline\n source */ "version":')
+        self.assertEqual(sing_box.load_config(text), expected)
+        for invalid in ('{/* unterminated', '{"version": 2, // comment\n}',
+                        '{"value": "unterminated // comment\n}',
+                        '{"value": "bad\\escape"}'):
+            with self.subTest(text=invalid), self.assertRaises(ValueError):
+                sing_box.load_config(invalid)
+
     def test_invalid_or_empty_json_fails_before_compilation(self):
         with tempfile.TemporaryDirectory() as temp:
             source = Path(temp) / "source.json"
