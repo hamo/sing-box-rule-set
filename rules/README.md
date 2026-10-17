@@ -17,12 +17,11 @@
 `domain_suffix` 同时匹配根域名和全部子域名，因此 `secure.chase.com`、`api.robinhood.com` 等无需逐条列出。
 共享服务仅在能明确关联到金融业务时收录具体主机，使用 `domain` 精确匹配；不会将整个 CDN 或通用身份验证平台加入集合。
 
-当前有 102 条域名后缀和 29 条精确主机规则。不添加 IP、域名关键词或按名称猜测的正则。
+当前有 129 条域名后缀和 102 条精确主机规则。不添加 IP、域名关键词或按名称猜测的正则。
 这些是公开资料中已核实的业务入口和依赖，并未经过所有机构登录后的浏览器及手机 App 全链路抓包验证。
 未知的 App 端点、直连 IP 和无法按域名区分租户的共享服务仍可能遗漏；仅靠此集合无法保证所有请求均被匹配，或保证机构判定访问者位于美国。
 
 官方来源核对日期：2026-10-17。下面前五组为 `domain_suffix`，最后一组为 `domain`，与 JSON 中的 `rules` 顺序一致。
-App 关联文件、登录资源、风控及支付 SDK 的本轮核对结果与证据类型见 [移动端核对记录](finance-us-mobile-audit.md)。
 
 ## 银行与综合个人金融
 
@@ -35,9 +34,9 @@ App 关联文件、登录资源、风控及支付 SDK 的本轮核对结果与�
 | Capital One | `capitalone.com` | [官方站点](https://www.capitalone.com/) |
 | Chase / J.P. Morgan | `chase.com`, `chasecdn.com`, `jpmorgan.com` | [Chase 官网及 J.P. Morgan 业务链接](https://www.chase.com/)、[登录程序的独立资源配置](https://secure.chase.com/web/auth/dashboard) |
 | Chime | `chime.com`, `chimebank.com`, `chimecard.com`, `chimepayments.com` | [官方站点](https://www.chime.com/)、[官方安全计划的金融服务资产清单](https://bugcrowd.com/engagements/chime#targets)；清单证明归属，不等同于原生 App 的生产请求清单 |
-| Citi | `citi.com`, `citibank.com` | [官方站点](https://www.citi.com/) |
+| Citi | `citi.com`, `citibank.com`, `citibankonline.com` | [官方站点](https://www.citi.com/)、[官方网银使用说明](https://www.ipbus.citi.com/assets/pdf/benefits_steps/benefits-steps-en.pdf) |
 | Citizens Bank | `citizensbank.com`, `citizensbankonline.com` | [官网的 Pay My Loan / 网银登录入口](https://www.citizensbank.com/) |
-| First Citizens | `firstcitizens.com` | [个人银行及数字银行登录入口](https://www.firstcitizens.com/personal) |
+| First Citizens | `firstcitizens.com`, `firstcitizensrewards.com` | [个人银行及数字银行登录入口](https://www.firstcitizens.com/personal) |
 | Huntington | `huntington.com`, `huntingtonbank.com` | [官网、网银入口及独立资源域名](https://www.huntington.com/) |
 | KeyBank | `key.com` | [个人银行](https://www.key.com/personal/index.html) |
 | Marcus by Goldman Sachs | `marcus.com` | [储蓄及账户登录](https://www.marcus.com/us/en) |
@@ -49,13 +48,17 @@ App 关联文件、登录资源、风控及支付 SDK 的本轮核对结果与�
 | TD Bank US | `td.com`, `tdbank.com`, `tdfitloan.com` | [美国个人银行、网银及贷款入口](https://www.td.com/us/en/personal-banking) |
 | Truist | `truist.com` | [官方站点](https://www.truist.com/) |
 | USAA | `usaa.com` | [官方站点](https://www.usaa.com/) |
-| U.S. Bank | `usbank.com` | [官方站点](https://www.usbank.com/) |
+| U.S. Bank | `usbank.com`, `usbankgomobile.com` | [官方站点](https://www.usbank.com/) |
 | Wells Fargo | `wellsfargo.com`, `wellsfargomedia.com`, `wf.com`, `wfinterface.com` | [官网及独立资源、接口引用](https://www.wellsfargo.com/) |
+| Chase 汽车贷款及旧账户入口 | `astonmartinfinancial.com`, `fiskerfinance.com`, `jaguarfinancialgroup.com`, `landroverfinancialgroup.com`, `maseraticapitalusa.com`, `mclarenfinancialservices.com`, `myjaguarfinancialgroup.com`, `mylandroverfinancialgroup.com`, `mymaseraticapitalusa.com`, `mymazdacapitalservices.com`, `mysubarumotorsfinance.com`, `rivianfinancialservices.com`, `subarumotorsfinance.com` | [官方网银业务配置](https://secure.chase.com/web/auth/dashboard) 中明示的消费金融域名，含存量贷款账户入口 |
 
 ## 信用卡与零售融资
 
 | 机构 / 服务 | 收录域名 | 官方站点依据 |
 | --- | --- | --- |
+| Citi 信用卡及积分 | `citicards.com`, `thankyou.com`, `cititravel.com` | [信用卡入口](https://www.citicards.com/)、[Citi 官方积分说明](https://www.citi.com/credit-cards/money-management/citi-thankyou-rewards-faqs)、[官方卡片权益与 Citi Travel](https://www.citi.com/credit-cards/citi-strata-credit-card) |
+| Elan / Fidelity Rewards | `elancard.com`, `fidelityrewards.com`, `myaccountaccess.com` | [Fidelity 官方信用卡页面的 Elan 链接](https://www.fidelity.com/spend-save/visa-signature-card)、[Fidelity Rewards 正式入口](https://www.fidelityrewards.com/credit/welcome.do)、[Elan 官方持卡人登录说明](https://www.elanfinancialservices.com/credit-card/news-and-community/unlimited-cash-card.html) |
+| U.S. Bank / Elan 卡片权益 | `myvisacardportal.com`, `mycardbenefits.com` | [U.S. Bank 信用卡页面](https://www.usbank.com/credit-cards.html) 的卡片权益入口；Fidelity 信用卡页面也引用 myvisacardportal.com |
 | American Express | `americanexpress.com`, `aexp.com`, `aexp-static.com` | [官网的接口及脚本资源引用](https://www.americanexpress.com/en-us/) |
 | Discover | `discover.com`, `discovercard.com` | [官网及信用卡账户入口](https://www.discover.com/) |
 | Synchrony / CareCredit | `synchrony.com`, `synchronybank.com`, `mysynchrony.com`, `syf.com`, `carecredit.com`, `synchronycredit.com`, `synchronybankterms.com` | [Synchrony 登录、信用卡及 CareCredit 入口](https://www.synchrony.com/)、[PayPal 信用产品入口及条款](https://www.paypal.com/us/home) |
@@ -68,12 +71,13 @@ App 关联文件、登录资源、风控及支付 SDK 的本轮核对结果与�
 | E*TRADE / Morgan Stanley | `etrade.com`, `etrade.net`, `morganstanley.com`, `morganstanleyclientserv.com` | [E*TRADE 官网资源及 Morgan Stanley Online 链接](https://us.etrade.com/) |
 | Fidelity / NetBenefits | `fidelity.com`, `netbenefits.com`, `wealthscape.com`, `fidelityinvestments.com`, `mystreetscape.com`, `wealthscapeinvestor.com` | [登录帮助](https://www.fidelity.com/customer-service/need-help-logging-in)、[年度业务说明](https://about.fidelity.com/data-and-insights/2025-annual-report)、[官方活动资料](https://www.fidelity.com/bin-public/060_www_fidelity_com/documents/learning-center/Market_Sense_Slides_03_28.pdf)、[Citizens 券商入口](https://www.citizensbank.com/)、[Santander 投资入口](https://www.santanderbank.com/) |
 | Interactive Brokers | `ibkr.com`, `interactivebrokers.com` | [官方站点](https://www.interactivebrokers.com/) |
+| J.P. Morgan Securities | `jpmorgansecurities.com` | [Chase 网银投资业务配置](https://secure.chase.com/web/auth/dashboard) 提供的投资账户服务入口 |
 | Merrill | `merrilledge.com`, `ml.com`, `merrill.com` | [Merrill Edge 官网](https://www.merrilledge.com/)、[美国银行的 Merrill 链接](https://www.bankofamerica.com/) |
 | Robinhood | `robinhood.com` | [官方站点](https://robinhood.com/us/en/) |
-| Charles Schwab / thinkorswim | `schwab.com`, `schwabcdn.com`, `schwabinstitutional.com`, `schwabplan.com`, `schwabworkplaceservices.com`, `schwab529plan.com`, `thinkorswim.com` | [官网的退休、529 及工作福利入口](https://www.schwab.com/)、[登录页面资源](https://client.schwab.com/Areas/Access/Login)、[thinkorswim 官方说明](https://workplace.schwab.com/story/introduction-to-thinkorswim-web) |
+| Charles Schwab / thinkorswim | `schwab.com`, `schwabcdn.com`, `schwabinstitutional.com`, `schwabplan.com`, `schwabworkplaceservices.com`, `schwab529plan.com`, `schwabfunds.com`, `csimfunds.com`, `thinkorswim.com` | [官网的退休、529 及工作福利入口](https://www.schwab.com/)、[登录页面资源](https://client.schwab.com/Areas/Access/Login)、[thinkorswim 官方说明](https://workplace.schwab.com/story/introduction-to-thinkorswim-web) |
 | Vanguard | `vanguard.com` | [官方站点](https://investor.vanguard.com/) |
 | Wealthfront | `wealthfront.com` | [官网、账户及资源入口](https://www.wealthfront.com/) |
-| Wells Fargo Advisors | `wellsfargoadvisors.com`, `wfafinet.com` | [Wells Fargo 登录页](https://connect.secure.wellsfargo.com/auth/login/present) 所加载的登录程序配置；版本及源码依据见 [核对记录](finance-us-mobile-audit.md) |
+| Wells Fargo Advisors | `wellsfargoadvisors.com`, `wfafinet.com` | [Wells Fargo 登录页](https://connect.secure.wellsfargo.com/auth/login/present) 所加载的 [投资账户登录程序](https://connect.secure.wellsfargo.com/auth/static/ui/loginaltsignon/public/js/main.242a0e2a5ef9d2046d10.js) 配置 |
 
 ## 支付与汇款
 
@@ -99,7 +103,7 @@ App 关联文件、登录资源、风控及支付 SDK 的本轮核对结果与�
 
 ## 共享平台上的金融业务主机（精确匹配）
 
-下面仅匹配列出的主机本身，不匹配平台根域、其他租户或任意下级子域名。
+下面仅匹配列出的主机本身，不匹配平台根域、其他主机或任意下级子域名。同一主机上的其他租户和非金融业务请求也会匹配。
 
 | 机构 / 服务 | 精确主机 | 官方依据与用途 |
 | --- | --- | --- |
@@ -110,18 +114,45 @@ App 关联文件、登录资源、风控及支付 SDK 的本轮核对结果与�
 | First Citizens | `firstcitizens.netxinvestor.com` | [官网](https://www.firstcitizens.com/personal) 的投资账户入口 |
 | TD Bank | `tdinvestmentservices.netxinvestor.com`, `tdwealth.netxinvestor.com` | [美国官网](https://www.td.com/us/en/personal-banking) 的投资及财富账户入口 |
 | Santander | `santandercards-web.oflows.net` | [官网](https://www.santanderbank.com/) 的 `connect-src` 业务端点 |
-| Bank of America | `boa-api.arkoselabs.com` | [官方登录页](https://secure.bankofamerica.com/auth/signon/) 所加载的验证码程序；仅收录该租户，源码见 [核对记录](finance-us-mobile-audit.md) |
+| Bank of America | `boa-api.arkoselabs.com` | [官方登录页](https://secure.bankofamerica.com/auth/signon/) 引用的 [验证码组件](https://secure1.bac-assets.com/auth/signon/spa-assets/js/common-chunks/common-es6-components-37b4bd18d0d4b150bdbf.m.js) 配置 |
 | Robinhood | `fp.robinhood.net` | [官方登录页](https://robinhood.com/login) 的预连接主机；该证据不单独证明原生 App 调用或具体采集行为 |
-| PayPal / Braintree 3DS | `songbird.cardinalcommerce.com`, `static.client.cardinaltrusted.com`, `centinelapi.cardinalcommerce.com`, `hostedfields.cardinalcommerce.com`, `geo.cardinalcommerce.com`, `0geo.cardinalcommerce.com`, `1geo.cardinalcommerce.com`, `writer.cardinalcommerce.com` | [官方 SDK 生产 CSP](https://braintree.github.io/braintree-web/current/#content-security-policy) 及其引用的 Songbird 生产配置，接口、消息来源和日志端点分别见 [核对记录](finance-us-mobile-audit.md) |
-| 支付组件（按实际集成使用） | `applepay.cdn-apple.com`, `pay.google.com`, `secure.checkout.visa.com`, `assets.secure.checkout.visa.com`, `pay.discovernetwork.com` | [Braintree 官方 SDK 的 Apple Pay / Google Pay 生产配置](https://braintree.github.io/braintree-web/current/#content-security-policy) 及 Songbird 的 Visa Checkout / Discover Wallet 配置，见 [核对记录](finance-us-mobile-audit.md) |
+| PayPal / Braintree 3DS | `songbird.cardinalcommerce.com`, `static.client.cardinaltrusted.com`, `centinelapi.cardinalcommerce.com`, `hostedfields.cardinalcommerce.com`, `geo.cardinalcommerce.com`, `0geo.cardinalcommerce.com`, `1geo.cardinalcommerce.com`, `writer.cardinalcommerce.com` | [官方 SDK 生产 CSP](https://braintree.github.io/braintree-web/current/#content-security-policy) 及其引用的 [Songbird 生产配置](https://songbird.cardinalcommerce.com/edge/v1/597f4104d311c33d4189/1.597f4104d311c33d4189.songbird.js)，分别包含接口、消息来源和日志主机 |
+| 支付组件（按实际集成使用） | `applepay.cdn-apple.com`, `pay.google.com`, `secure.checkout.visa.com`, `assets.secure.checkout.visa.com`, `pay.discovernetwork.com` | [Braintree 官方 SDK 的 Apple Pay / Google Pay 生产配置](https://braintree.github.io/braintree-web/current/#content-security-policy) 及 [Songbird 的 Visa Checkout / Discover Wallet 生产配置](https://songbird.cardinalcommerce.com/edge/v1/597f4104d311c33d4189/1.597f4104d311c33d4189.songbird.js) |
 
-这些支付认证主机服务多个机构和商户，因此也会匹配其他网站中使用相同支付组件的请求；它们不是某家银行的专用域名。
+| Affirm / Transmit Security | `api.transmitsecurity.io` | [官方页面或资源](https://www.affirm.com/user/signin)；登录页的 risk-collect 配置 |
+| Robinhood / 共享指纹 SDK | `api.sjpf.io`, `tls-eun1.fpapi.io` | [官方页面或资源](https://cdn.robinhood.com/assets/generated_assets/webapp/Vendor-8824e94a2c92da8c.js)；官方登录页引用的 SDK 中的 US / EU 服务地址 |
+| American Express / InAuth | `www.cdn-path.com` | [官方页面或资源](https://www.americanexpress.com/en-us/account/login)；登录程序的 inauthScriptDomain 配置 |
+| PayPal / Venmo / DataDome | `js.datadome.co`, `api-js.datadome.co` | [官方页面或资源](https://ddbm2.paypal.com/tags.js)；金融登录页引用的防机器人脚本及 API |
+| Wells Fargo / Arkose | `iframe.arkoselabs.com` | [官方页面或资源](https://connect.secure.wellsfargo.com/auth/static/ui/loginaltsignon/public/js/vendor.f46d8d4ccc2fb3e1bf8a.js)；官方登录页所加载组件的验证码 iframe 来源 |
+| Citi / TD / Navy Federal / ThreatMetrix | `aa.online-metrix.net` | [官方页面或资源](https://onlinebanking.tdbank.com/async/after.ed.js)；登录风控脚本中的 TCP / UDP TURN 主机；非 IP 规则 |
+| Affirm / Synchrony / U.S. Bank / Iovation | `mpsnare.iesnare.com` | [官方页面或资源](https://cdn1.affirm.com/assets/identity_app/master/iovation-1e2e808699f330d0be0d.js)；身份登录组件的设备识别主机；U.S. Bank 信用卡页和 Synchrony 登录页也明确引用 |
+| Ally / Navy Federal 登录保护组件 | `p11.techlab-cdn.com` | [官方页面或资源](https://secure.ally.com/assets/75c79007ff2f854db976182f244dbd0bb0011c30a91)；登录页保护脚本的备用资源主机 |
+| Wise / 风控及身份验证 | `api.sardine.ai`, `api.moscwise.com`, `analytics.dv.socure.io`, `ingestion.dv.socure.io`, `network.dv.socure.io`, `challenges.cloudflare.com` | [官方页面或资源](https://wise.com/login)；生产登录页 CSP 明示的脚本、设备数据及验证主机 |
+| Synchrony / Prove 与运营商验证 | `device.proveapis.com`, `att-device.proveapis.com`, `auth.svcs.verizon.com`, `snap.att.com`, `snap.mobile.att.com`, `snap.mobile.att.net` | [官方页面或资源](https://securelogin.synchronybank.com/)；登录页 CSP 中的生产设备、手机号码与运营商验证地址；排除 UAT 地址 |
+| Synchrony / 行为采集与登录保护 | `wup-d0b2efe1.us.v2.we-stats.com`, `log-d0b2efe1.us.v2.we-stats.com`, `synchronybank-us.gw-dv.vip`, `synchronybank-us.gw-dv.io`, `synchronybank-us.gw-dv.xyz`, `synchronybank-us.cdn-gw-dv.vip`, `synchronybank-us.ck123.io` | [官方页面或资源](https://securelogin.synchronybank.com/)；CSP 明示的业务采集、日志及保护主机；排除 synchronybankdev 测试主机 |
+| 金融登录中的 reCAPTCHA | `www.google.com`, `www.gstatic.com`, `recaptcha.google.com` | [官方页面或资源](https://cash.app/login)、[reCAPTCHA 官方 CSP 要求](https://developers.google.com/recaptcha/docs/faq#im-using-content-security-policy-csp-on-my-website-how-can-i-configure-it-to-work-with-recaptcha)、[Robinhood 登录页](https://robinhood.com/login)；Cash App 登录页的 reCAPTCHA Enterprise 脚本与资源；Robinhood 登录 CSP 另明示 recaptcha.google.com |
+| Robinhood 第三方登录 | `accounts.google.com`, `appleid.apple.com`, `appleid.cdn-apple.com` | [官方页面或资源](https://robinhood.com/login)；登录页 CSP 的 Google / Apple 身份认证与资源主机 |
+| Vanguard 认证及登录资源 | `vanguard.okta.com`, `ccc.vgcontent.info`, `frontgate-us.factset.com` | [官方页面或资源](https://logon.vanguard.com/logon)、[投资者页面](https://investor.vanguard.com/)；Vanguard 投资者页面及登录页 CSP；排除 oktapreview 测试租户 |
+| Fidelity 登录辅助资源 | `ds-aksb-a.akamaihd.net` | [官方页面或资源](https://digital.fidelity.com/prgw/digital/login/full-page)；公开登录响应引用的辅助资源主机 |
+| First Citizens 网银组件 | `cdn1.onlineaccess1.com`, `sdk-cdn.onlineaccess1.com`, `cds-sdkcfg.onlineaccess1.com`, `q2smart.q2ebanking.com`, `widgets.moneydesktop.com`, `content.mx.com` | [官方页面或资源](https://digitalbanking.firstcitizens.com/)；正式网银页面的脚本、SDK 配置及财务管理组件 |
+| First Citizens 投资与退休账户 | `firstcitizens.wealthaccess.com`, `secure.newportgroup.com` | [官方页面或资源](https://www.firstcitizens.com/personal)；官网提供的账户入口 |
+| First Citizens IP 数据接口 | `api.ipdata.co` | [官方页面或资源](https://www.firstcitizens.com/personal)；官网 CSP 明示的 IP 数据服务 API |
+| Wealthfront 账户连接与业务接口 | `production.plaid.com`, `cdn.plaid.com`, `finapp.wealthfront.yodlee.com`, `www.prod-cde.net`, `www.wf-box.net` | [官方页面或资源](https://www.wealthfront.com/login)；登录页生产 CSP；排除 sandbox.plaid.com、www.test-cde.net |
+| Synchrony / Truist 账户连接与账单 | `cdn.yodlee.com`, `finapp.synchrony.yodlee.com`, `finapp.synchronyiav.yodlee.com`, `billdetail.getbills.com`, `www.onlinecreditcenter6.com` | [官方页面或资源](https://securelogin.synchronybank.com/)、[Truist 登录页](https://bank.truist.com/web/authentication)；生产登录 CSP 的账户连接与信用卡业务；billdetail.getbills.com 由 Truist 登录页 CSP 引用 |
+| Santander 奖励账户登录 | `login.awardcenter.com`, `www.login.awardcenter.com` | [官方页面或资源](https://rolb.santanderbank.com/)；网银登录页配置的奖励账户入口 |
+| TD / Citizens 信用卡、财富及账单服务 | `tdbank.billeriq.com`, `clientpoint.fisglobal.com`, `www.centresuite.com` | [官方页面或资源](https://www.td.com/us/en/personal-banking)；美国官网提供的账单、信托投资及信用卡账户入口；Citizens 官网也引用 CentreSuite |
+| Robinhood 支付及退休转入组件 | `js.checkout.com`, `b.stripecdn.com`, `stripe-camo.global.ssl.fastly.net`, `app.rollovercentral.com` | [官方页面或资源](https://robinhood.com/login)；正式登录页 CSP 明示的支付资源及退休账户转入服务；排除 QA / UAT 地址 |
+| Chase 账户聚合、认证及支付 | `partnerauth.platform.intuit.com`, `aggapi.wealthaccess.com`, `app.quovo.com`, `fin02.finicity.com`, `chaseretcalculator.moneyguidepro.com`, `secure.paymentech.com` | [官方页面或资源](https://secure.chase.com/web/auth/dashboard)；官方业务程序配置的账户聚合、授权、退休测算及支付端点 |
+
+上面的共享登录、风控、验证码、支付和账户服务主机可服务多个机构、商户及其他行业，因此其他网站发往同一主机的请求也会匹配。
+尤其 `www.google.com`、`www.gstatic.com` 还承载大量非金融请求，Google / Apple 登录主机也会匹配其他网站的登录流量。域名规则无法在同一主机内按金融租户或 URL 路径区分。
 SDK 的生产配置只证明特定组件可用到这些端点，不代表每家机构或每个原生 App 都会调用。
 
 `cloudfront.net`、`akamaihd.net`、`squarecdn.com`、`ctfassets.net`、`google.com`、`gstatic.com`、`okta.com` 等共享平台不会整域收录。
 例如某些 Contentful 图片使用相同主机、通过 URL 路径区分租户，域名规则无法仅选中金融机构的资源。
 共享验证码、广告和分析 SDK 也不会仅因出现在金融页面中就整域纳入；机构自有域名下的相关请求仍按域名后缀匹配。
-本轮未将通用的 `api.transmitsecurity.io`、`api.sjpf.io`、`www.cdn-path.com` 等跨行业共享端点纳入，具体依据与取舍见核对记录。
+有明确金融业务引用的共享风控、验证码和第三方登录主机已按精确主机纳入；不因跨行业共享而排除。
+CSP 明示的主机表示官方页面允许相应业务依赖，不等同于每次访问必然发出请求；代码中的测试环境、示例及广告拦截检测域名不据此收录。
 
 ## 维护方式
 
