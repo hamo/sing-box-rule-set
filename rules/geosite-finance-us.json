@@ -365,6 +365,16 @@
         // Cash App；依据：官方站点。
         // 来源（官方站点）：https://cash.app/
         "cash.me",
+        // X Money 专属支持站点；依据：官方账户说明直接提供此域名下的服务条款与支持表单。核对：2026-10-18。
+        // 来源（官方账户说明及支持入口）：https://money.x.com/customer/sweep-banks
+        // 来源（官方支持站点）：https://money-support.x.com/forms
+        "money-support.x.com",
+        // X Money 金融业务子域；依据：官方站点、FAQ 与 /customer/ 账户页面；同时覆盖配置中的 sdn.money.x.com。核对：2026-10-18。
+        // 官网登录使用共享的 x.com，域名规则无法按路径隔离金融登录；不因此收录整个 x.com。
+        // 来源（官方站点）：https://money.x.com/en
+        // 来源（官方账户 FAQ）：https://money.x.com/en/i/faq
+        // 来源（账户页面及专属子域配置）：https://money.x.com/customer/sweep-banks
+        "money.x.com",
         // PayPal；依据：官方 SDK / API 所需域名。
         // 来源（官方 SDK / API 所需域名）：https://developer.paypal.com/platforms/checkout/fastlane/getstarted/
         "paypal.com",
@@ -529,7 +539,16 @@
         // Synchrony 信用卡账户；依据：发行方官方资产披露列出 onlinecreditcenter6.com，当前登录页配置引用 www 主机；公开页面含 Synchrony 品牌。
         // 来源（发行方官方资产披露）：https://investors.synchrony.com/filings-regulatory/sec-filings/all-sec-filings/content/0001193125-14-228938/d680310dex101.htm
         // 来源（当前官方登录配置）：https://securelogin.synchronybank.com/
-        "www.onlinecreditcenter6.com"
+        "www.onlinecreditcenter6.com",
+        // X Money 专属文档资源；依据：官方账户页面 CSP 明示此 X Money 命名的文档桶主机，仅精确匹配该桶。核对：2026-10-18。
+        // 来源（官方账户页面及 CSP）：https://money.x.com/customer/sweep-banks
+        "x-money-prod-safe-sensitive-documents.s3.us-west-2.amazonaws.com",
+        // X Money 专属文档资源；依据：官方账户页面 CSP 明示此 X Money 命名的文档桶主机，仅精确匹配该桶。核对：2026-10-18。
+        // 来源（官方账户页面及 CSP）：https://money.x.com/customer/sweep-banks
+        "x-money-prod-sensitive-documents.s3.us-west-2.amazonaws.com",
+        // X Money 专属文档资源；依据：官方账户页面 CSP 明示此 X Money 命名的交易文档桶主机，仅精确匹配该桶。核对：2026-10-18。
+        // 来源（官方账户页面及 CSP）：https://money.x.com/customer/sweep-banks
+        "x-money-transaction-documents-prod.s3.us-west-2.amazonaws.com"
       ]
     }
   ]

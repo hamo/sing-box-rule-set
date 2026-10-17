@@ -113,12 +113,21 @@ class CustomTests(unittest.TestCase):
                 "online1.elancard.com", "www.myaccountaccess.com", "ccc.vgcontent.info",
                 "finapp.wealthfront.yodlee.com",
                 "firstcitizens.wealthaccess.com", "www.subarumotorsfinance.com",
+                "money.x.com", "money-support.x.com", "sdn.money.x.com",
+                "x-money-prod-safe-sensitive-documents.s3.us-west-2.amazonaws.com",
+                "x-money-prod-sensitive-documents.s3.us-west-2.amazonaws.com",
+                "x-money-transaction-documents-prod.s3.us-west-2.amazonaws.com",
             ))
             # General-purpose shared hosts must not be routed as finance, even
             # when a financial login page references them. Consumer wallets and
             # card-network checkout pages, public financial SDKs, aggregators,
             # market-data feeds and unverified shared endpoints are excluded.
             cases.extend((host, False) for host in (
+                "x.com", "www.x.com", "api.x.com", "help.x.com", "twitter.com",
+                "ton.twimg.com", "pbs.twimg.com", "abs.twimg.com", "xmoney.com",
+                "notmoney.x.com", "money.x.com.example.org", "money-support-other.x.com",
+                "amazonaws.com", "s3.us-west-2.amazonaws.com",
+                "other-account-documents.s3.us-west-2.amazonaws.com",
                 "aggapi.wealthaccess.com", "api.moscwise.com",
                 "app.quovo.com", "billdetail.getbills.com",
                 "cdn.plaid.com", "cdn.yodlee.com",

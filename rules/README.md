@@ -18,7 +18,7 @@
 仅出现在页面、CSP 白名单或 SDK 配置中不足以收录，不添加 IP、域名关键词或猜测的正则。
 
 逐条域名、用途及来源 URL 统一维护在 [geosite-finance-us.json](geosite-finance-us.json) 的相邻注释中；
-排除项的匹配回归样例见 [tests/test_custom.py](../tests/test_custom.py)。来源核对日期：2026-10-17。
+排除项的匹配回归样例见 [tests/test_custom.py](../tests/test_custom.py)。
 
 部分金融账户门户服务多家机构或其他地区业务，域名规则无法进一步区分；该集合也未经过所有机构 App 的完整抓包验证，
 无法保证覆盖全部请求或保证机构判定访问者位于美国。
