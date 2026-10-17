@@ -363,8 +363,8 @@
       "srs_version": 2,
       "source_type": "local",
       "sha256": {
-        "sources/geosite-finance-us.json": "5b1f558e0372a8fe97ccd38bbe7f1119ef0c8497658229d7ba6958a3864969a1",
-        "geosite-finance-us.srs": "baa2e1e3ba061ee6b9aa766d4cecf218c44b4aa4386977cc4e700fea2f2c1afb"
+        "sources/geosite-finance-us.json": "51cd63ccc4d8332eb15c30480fc8b43b9e4a98d772c563aa13a0f0d121485cf9",
+        "geosite-finance-us.srs": "9bdcad294504188b96b22ab68ad67faf10a607e01f88a874e346ea4b0c9af92e"
       }
     },
     {
@@ -1071,21 +1071,21 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 234173,
+      "rule_count": 234177,
       "upstream": {
-        "version": "202610171205",
+        "version": "202610171306",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "234173",
-        "last modified": "2026-10-17T12:05:12+0000",
+        "entries": "234177",
+        "last modified": "2026-10-17T13:06:02+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 234173,
+        "compiled_rule_count": 234177,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1097,8 +1097,8 @@
       "source_type": "remote",
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "281c9d8435a60611e8bf4426576043c94e16979e93f2a959394367aa3a352bde",
-        "oisd-big.srs": "3d2a070e047d8ca307e9ab053116291f663c3c61c1f3e0bf136fe22762aa8017"
+        "sources/oisd-big.txt": "299c8cadb03021cd45492cf14e03e806487c88a45bc23cf9c433bd09748a449e",
+        "oisd-big.srs": "7ff058ce55c61e7d13593314279e8cbfda004fee1894cafdf12d0fcd7ee2fe93"
       }
     },
     {
