@@ -91,6 +91,15 @@ class CustomTests(unittest.TestCase):
                 "navyfederal.lendkey.com", "creditkarmacdn-a.akamaihd.net",
                 "onlinebanking.tdbank.com", "login.openbank.us", "my.equifax.com",
                 "members.transunion.com", "firstcitizens.netxinvestor.com",
+                "api-v2.chimebank.com", "secure.chasecdn.com", "www.wellsfargoadvisors.com",
+                "www.wfafinet.com", "boa-api.arkoselabs.com", "fp.robinhood.net",
+                "cash-images-f.squarecdn.com", "pci-connect.squareup.com",
+                "centinelapi.cardinalcommerce.com", "geo.cardinalcommerce.com",
+                "0geo.cardinalcommerce.com", "1geo.cardinalcommerce.com",
+                "hostedfields.cardinalcommerce.com", "writer.cardinalcommerce.com",
+                "songbird.cardinalcommerce.com", "static.client.cardinaltrusted.com",
+                "applepay.cdn-apple.com", "pay.google.com", "secure.checkout.visa.com",
+                "assets.secure.checkout.visa.com", "pay.discovernetwork.com",
             ))
             cases.extend((host, False) for host in (
                 "cloudfront.net", "unrelated.cloudfront.net", "squarecdn.com",
@@ -98,6 +107,13 @@ class CustomTests(unittest.TestCase):
                 "images.ctfassets.net", "www.google.com", "www.gstatic.com", "example.okta.com",
                 "lendkey.com", "other.lendkey.com", "netxinvestor.com", "other.netxinvestor.com",
                 "other.oflows.net", "creditkarma.com.example.org", "notpaypal.com",
+                "arkoselabs.com", "other-api.arkoselabs.com", "iframe.arkoselabs.com",
+                "squareup.com", "pci-connect.squareupstaging.com", "cashstaging.app",
+                "cardinalcommerce.com", "songbirdstag.cardinalcommerce.com",
+                "cas.static.client.cardinaltrusted.com", "other.cardinaltrusted.com",
+                "www.cdn-path.com", "api.transmitsecurity.io", "api.sjpf.io",
+                "h.online-metrix.net", "js.datadome.co", "api-js.datadome.co",
+                "www.apple.com", "cdn-apple.com", "other.cdn-apple.com",
             ))
             for candidate, expected in cases:
                 with self.subTest(domain=candidate):

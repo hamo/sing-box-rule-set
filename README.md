@@ -163,10 +163,11 @@ https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/geosite-financ
 修改原文后必须重新构建；发布校验会拒绝与当前源文件不一致的旧产物。
 
 第一套使用 `geosite-finance-us` 命名，范围包含个人银行、信用卡、券商与退休投资、支付汇款、个人信用与消费金融。
-分类及官方依据见 [rules/README.md](rules/README.md)。该集合覆盖服务商第一方域名及子域名、已核实的独立登录 / API / 交易 / 资源域名，
+分类及官方依据见 [rules/README.md](rules/README.md)。该集合覆盖服务商第一方域名及子域名、已核实的独立登录 / API / 交易 / 风控 / 资源域名，
 以及共享平台上的特定金融业务主机（精确匹配）。不会整域匹配通用 CDN、验证码或身份验证平台。
 不表示服务器均位于美国；部分域名也承载其他地区业务。尚未验证所有机构登录后的完整 App 流量，
 无法保证覆盖所有金融请求或保证机构认定访问者位于美国。
+公开 App 关联记录及登录、风控、支付 SDK 的证据和限制见 [移动端核对记录](rules/finance-us-mobile-audit.md)。
 
 可以在现有 `route.rule_set` 中添加：
 
