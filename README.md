@@ -40,6 +40,8 @@ Native Tracker 按设备或服务选择，部分规则可能影响相关功能�
 
 `geosite-finance-us` 是本仓库手工维护的美国个人银行与金融服务域名分类，
 在 `route.rules` 中配合选定出站分流使用，勿加入广告拦截的 `reject` 列表。
+包含已核实的独立登录、API、交易和资源域名，以及共享平台上的特定金融业务主机。
+无法保证覆盖所有金融请求或保证机构认定访问者位于美国。
 来源、收录范围与维护方式见 [主分支规则说明](https://github.com/hamo/sing-box-rule-set/blob/main/rules/README.md)。
 `metadata.json` 用 `source_type: "local"` 标记仓库内来源，记录相对路径及原文件哈希；构建不下载上游列表。
 

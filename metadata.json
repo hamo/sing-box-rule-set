@@ -355,7 +355,7 @@
       "name": "geosite-finance-us",
       "path": "rules/geosite-finance-us.json",
       "format": "sing-box",
-      "rule_count": 5,
+      "rule_count": 6,
       "upstream": {
         "version": 2
       },
@@ -363,8 +363,8 @@
       "srs_version": 2,
       "source_type": "local",
       "sha256": {
-        "sources/geosite-finance-us.json": "fb467fe9216414a348c8cfb19737620faf95a1e0863f06eebd88d01b562f515e",
-        "geosite-finance-us.srs": "40fc905008bf4baf684e12c60d89917ce320b1fad50f551229c0303b207586c9"
+        "sources/geosite-finance-us.json": "c84f9bcbd60b3d289a4cb334a1df7d3b6482c3d3e1ca2f1de72df727044961f3",
+        "geosite-finance-us.srs": "bc8326064e6ea355a34b05ad2851cfa0c43fecf12fcba8f9edd4d8f07777dd24"
       }
     },
     {
@@ -1071,21 +1071,21 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 234336,
+      "rule_count": 234201,
       "upstream": {
-        "version": "202610170805",
+        "version": "202610170921",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "234336",
-        "last modified": "2026-10-17T08:05:07+0000",
+        "entries": "234201",
+        "last modified": "2026-10-17T09:21:06+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 234336,
+        "compiled_rule_count": 234201,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1097,8 +1097,8 @@
       "source_type": "remote",
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "e17dfa33d8a13f9bbcf5549a7a8866f49b9c67eeeefa1369cf35f3a3b717d8b7",
-        "oisd-big.srs": "47501ea599a1ce87940f3b0f3814289aebab12b7fc83a421144ebb5996c0e887"
+        "sources/oisd-big.txt": "495fc54ff85af4c8737bce18c1bd9055af4185be0e2a232abfebd884e0744cd2",
+        "oisd-big.srs": "92ff9345a8f4c3e9ceedb820ba975a338284247a4a5c54048e69dbba2b85a387"
       }
     },
     {
