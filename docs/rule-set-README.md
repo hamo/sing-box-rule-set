@@ -1,6 +1,6 @@
 # sing-box rule sets
 
-此分支由 GitHub Actions 自动生成。转换代码和使用说明见本仓库的 `main` 分支。
+此分支由 GitHub Actions 按每 6 小时的计划生成。订阅下表的 SRS 链接；[使用方法](https://github.com/hamo/sing-box-rule-set#在-sing-box-中使用)与[规则选择](https://github.com/hamo/sing-box-rule-set#规则选择)见主分支。
 
 | 规则集 | 二进制订阅 | 来源原文件 | 来源 |
 | --- | --- | --- | --- |
@@ -29,52 +29,18 @@
 | AdGuard DNS Filter | [adguard-dns-filter.srs](adguard-dns-filter.srs) | [adguard-dns-filter.txt](sources/adguard-dns-filter.txt) | [官方 DNS Filter](https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt) |
 | 美国个人金融服务 | [geosite-finance-us.srs](geosite-finance-us.srs) | [geosite-finance-us.json](sources/geosite-finance-us.json) | [本仓库 JSON](https://raw.githubusercontent.com/hamo/sing-box-rule-set/main/rules/geosite-finance-us.json) |
 
-当前提供的 SRS 格式版本均为 2，要求 sing-box 1.10.0+。
-AWAvenue 原始 JSON 为版本 3，官方编译器根据实际字段生成版本 2 的 SRS。
-big 已包含 small，选用其中一个即可。
-AWAvenue 四种变体选用其中一个：完整防护为广告＋隐私＋不受欢迎；仅广告为最小集合；
-不含隐私为广告＋不受欢迎；不含不受欢迎为广告＋隐私。
-综合广告列表可先在 OISD、HaGeZi Pro、AdGuard DNS Filter 中选择一个，秋风按需补充。
-HaGeZi TIF Full/Medium/Mini 三选一；Medium/Mini 为轻量替代版本。
-Native Tracker 按设备或服务选择，部分规则可能影响相关功能；TikTok 普通版与 Aggressive 版选一个。
+SRS 格式版本均为 2，要求 sing-box 1.10.0+。
+`geosite-finance-us` 用于 `route.rules` 分流，不用于广告拦截；范围及来源维护方式见 [自定义规则说明](https://github.com/hamo/sing-box-rule-set/blob/main/rules/README.md)。
 
-`geosite-finance-us` 是本仓库手工维护的美国个人银行与金融服务域名分类，
-在 `route.rules` 中配合选定出站分流使用，勿加入广告拦截的 `reject` 列表。
-包含已核实的独立登录、API、交易、风控和资源域名，以及金融机构专属的第三方租户主机、官方来源明确确认用途的金融账户门户（精确匹配）。
-排除公共 SDK、聚合 / 授权 API、行情 / 采集组件和通用登录、验证码、身份验证及 CDN 主机；金融页面引用不足以收录。
-仅保留金融机构的账户、业务域名及专属资源；官网直链的金融账户门户可能同时匹配其他机构或不同地区业务的请求。
-Apple Pay、Google Pay、卡组织的 Checkout / 钱包页面、Stripe、Checkout.com、Cardinal 3DS 等通用支付组件均不纳入。
-无法保证覆盖所有金融请求或保证机构认定访问者位于美国。
-来源、收录范围与维护方式见 [主分支规则说明](https://github.com/hamo/sing-box-rule-set/blob/main/rules/README.md)。
-规则原文在每条域名前保留机构、证据及来源 URL 的 `//` 注释，供人工审阅；这些注释不参与 SRS 匹配。
-`metadata.json` 用 `source_type: "local"` 标记仓库内来源，记录相对路径及原文件哈希；构建不下载上游列表。
+[metadata.json](metadata.json) 记录来源版本、规则数量、编译器及 SHA-256；`sources/` 保留完整原文，自定义规则的逐条来源见 JSON 注释。
+AdGuard DNS Filter 发布 sing-box 兼容部分；跳过原因及片段改写映射分别见 `conversion.skipped_rules`、`conversion.rewritten_rules`。
+其他列表默认不允许跳过，详细[转换语法与策略](https://github.com/hamo/sing-box-rule-set#adguard--adblock-语法范围)见主分支。
 
-[metadata.json](metadata.json) 记录上游版本、规则数量、编译器版本和 SHA-256。
-AdGuard DNS Filter 提供 sing-box 兼容部分：原文件中的少量 IP 规则和 IP/URL 正则无法转换，
-跳过条目及原因见 `conversion.skipped_rules`，实际编译数量见 `conversion.compiled_rule_count`。
-其跳过上限为 200 条；其他列表默认不允许跳过。所有列表先处理 DNS `$badfilter`，取消对应规则。
-`||countly-`、`-ad123-` 等无修饰符的简单域名片段及其例外规则，转换前改写为等价的域名正则，
-保留大小写不敏感及域名标签边界。改写前后内容见 `conversion.rewritten_rules`，已计入实际编译数量。
-`sources/` 保存本次构建使用的完整上游原文件。OISD、HaGeZi 和 AdGuard DNS Filter 使用 sing-box 官方
-`rule-set convert --type adguard` 直接生成 `.srs`，保留原生 AdGuard 匹配语义。
-OISD 和 HaGeZi 的上游文件均声明为 Adblock 格式，构建配置和 `metadata.json` 使用
-`format: "adblock"`；它是 `adguard` 转换器的别名。AdGuard DNS Filter 使用 `format: "adguard"`。
-AdGuard 二进制规则无法反编译成普通规则集 JSON，请通过原始 `.txt` 审阅来源。
-AWAvenue 四种变体直接编译官方 sing-box JSON，保留原始匹配字段及语义，可通过 `.json` 审阅来源。
+本项目独立于上游，代码和自定义规则采用 [GPL-3.0](LICENSE)，上游规则及转换产物遵循对应 GPL v3 许可证；作者和来源声明保留在原文中。
 
-本项目不是 OISD 官方项目。OISD 由 Stephan van Ruth 维护，来源：<https://oisd.nl/>。
-OISD 规则及衍生文件遵循 [GNU GPL v3](LICENSE)，原始声明保留在 `sources/` 中。
-
-AWAvenue 秋风广告规则由 [TG-Twilight/AWAvenue-Ads-Rule](https://github.com/TG-Twilight/AWAvenue-Ads-Rule)
-维护，规则及衍生文件遵循 [GNU GPL v3](LICENSE)，
-[上游许可证](https://github.com/TG-Twilight/AWAvenue-Ads-Rule/blob/main/LICENSE)及原始 JSON 来源可供查阅。
-
-HaGeZi Pro、TIF 和 Native Tracker 由 [hagezi/dns-blocklists](https://github.com/hagezi/dns-blocklists) 维护，
-规则及衍生文件遵循 [GNU GPL v3](LICENSE)，
-[上游许可证](https://github.com/hagezi/dns-blocklists/blob/main/LICENSE)及作者声明保留在原始列表中。
-
-AdGuard DNS Filter 由 [AdguardTeam/AdGuardSDNSFilter](https://github.com/AdguardTeam/AdGuardSDNSFilter) 维护，
-规则及衍生文件遵循 [GNU GPL v3](LICENSE)，
-[上游许可证](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE)及来源声明保留在原始列表中。
-
-本仓库手工维护的 `geosite-finance-us` 分类规则采用 [GNU GPL v3](LICENSE)。
+| 上游 / 维护者 | 许可证 |
+| --- | --- |
+| OISD / Stephan van Ruth | [GPL v3](https://github.com/sjhgvr/oisd/blob/main/LICENSE) |
+| [AWAvenue / TG-Twilight](https://github.com/TG-Twilight/AWAvenue-Ads-Rule) | [GPL v3](https://github.com/TG-Twilight/AWAvenue-Ads-Rule/blob/main/LICENSE) |
+| [HaGeZi](https://github.com/hagezi/dns-blocklists) | [GPL v3](https://github.com/hagezi/dns-blocklists/blob/main/LICENSE) |
+| [AdGuard DNS Filter](https://github.com/AdguardTeam/AdGuardSDNSFilter) | [GPL v3](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE) |
