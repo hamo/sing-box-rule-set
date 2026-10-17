@@ -539,16 +539,7 @@
         // Synchrony 信用卡账户；依据：发行方官方资产披露列出 onlinecreditcenter6.com，当前登录页配置引用 www 主机；公开页面含 Synchrony 品牌。
         // 来源（发行方官方资产披露）：https://investors.synchrony.com/filings-regulatory/sec-filings/all-sec-filings/content/0001193125-14-228938/d680310dex101.htm
         // 来源（当前官方登录配置）：https://securelogin.synchronybank.com/
-        "www.onlinecreditcenter6.com",
-        // X Money 专属文档资源；依据：官方账户页面 CSP 明示此 X Money 命名的文档桶主机，仅精确匹配该桶。核对：2026-10-18。
-        // 来源（官方账户页面及 CSP）：https://money.x.com/customer/sweep-banks
-        "x-money-prod-safe-sensitive-documents.s3.us-west-2.amazonaws.com",
-        // X Money 专属文档资源；依据：官方账户页面 CSP 明示此 X Money 命名的文档桶主机，仅精确匹配该桶。核对：2026-10-18。
-        // 来源（官方账户页面及 CSP）：https://money.x.com/customer/sweep-banks
-        "x-money-prod-sensitive-documents.s3.us-west-2.amazonaws.com",
-        // X Money 专属文档资源；依据：官方账户页面 CSP 明示此 X Money 命名的交易文档桶主机，仅精确匹配该桶。核对：2026-10-18。
-        // 来源（官方账户页面及 CSP）：https://money.x.com/customer/sweep-banks
-        "x-money-transaction-documents-prod.s3.us-west-2.amazonaws.com"
+        "www.onlinecreditcenter6.com"
       ]
     }
   ]
