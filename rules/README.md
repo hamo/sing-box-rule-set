@@ -15,9 +15,10 @@
 
 按机构的官方站点、登录入口、页面资源引用及官方开发文档手工维护，覆盖官网之外的账户登录、业务 API、交易平台、退休账户、支付和静态资源。
 `domain_suffix` 同时匹配根域名和全部子域名，因此 `secure.chase.com`、`api.robinhood.com` 等无需逐条列出。
-共享服务仅在能明确关联到金融业务时收录具体主机，使用 `domain` 精确匹配；不会将整个 CDN 或通用身份验证平台加入集合。
+第三方服务只收录有明确依据的金融机构专属主机，或支付、账户聚合等金融业务端点，使用 `domain` 精确匹配。
+仅有金融页面引用不足以收录跨行业通用的登录、验证码、指纹、身份验证、IP 查询或 CDN 主机；即使精确匹配也不纳入。
 
-当前有 129 条域名后缀和 102 条精确主机规则。不添加 IP、域名关键词或按名称猜测的正则。
+当前有 129 条域名后缀和 71 条精确主机规则。不添加 IP、域名关键词或按名称猜测的正则。
 这些是公开资料中已核实的业务入口和依赖，并未经过所有机构登录后的浏览器及手机 App 全链路抓包验证。
 未知的 App 端点、直连 IP 和无法按域名区分租户的共享服务仍可能遗漏；仅靠此集合无法保证所有请求均被匹配，或保证机构判定访问者位于美国。
 
@@ -103,7 +104,7 @@
 
 ## 共享平台上的金融业务主机（精确匹配）
 
-下面仅匹配列出的主机本身，不匹配平台根域、其他主机或任意下级子域名。同一主机上的其他租户和非金融业务请求也会匹配。
+下面仅匹配列出的主机本身，不匹配平台根域、其他主机或任意下级子域名。金融业务端点可能由多家金融机构、商户或不同地区业务共用，不能按机构或地区进一步区分。
 
 | 机构 / 服务 | 精确主机 | 官方依据与用途 |
 | --- | --- | --- |
@@ -118,47 +119,38 @@
 | Robinhood | `fp.robinhood.net` | [官方登录页](https://robinhood.com/login) 的预连接主机；该证据不单独证明原生 App 调用或具体采集行为 |
 | PayPal / Braintree 3DS | `songbird.cardinalcommerce.com`, `static.client.cardinaltrusted.com`, `centinelapi.cardinalcommerce.com`, `hostedfields.cardinalcommerce.com`, `geo.cardinalcommerce.com`, `0geo.cardinalcommerce.com`, `1geo.cardinalcommerce.com`, `writer.cardinalcommerce.com` | [官方 SDK 生产 CSP](https://braintree.github.io/braintree-web/current/#content-security-policy) 及其引用的 [Songbird 生产配置](https://songbird.cardinalcommerce.com/edge/v1/597f4104d311c33d4189/1.597f4104d311c33d4189.songbird.js)，分别包含接口、消息来源和日志主机 |
 | 支付组件（按实际集成使用） | `applepay.cdn-apple.com`, `pay.google.com`, `secure.checkout.visa.com`, `assets.secure.checkout.visa.com`, `pay.discovernetwork.com` | [Braintree 官方 SDK 的 Apple Pay / Google Pay 生产配置](https://braintree.github.io/braintree-web/current/#content-security-policy) 及 [Songbird 的 Visa Checkout / Discover Wallet 生产配置](https://songbird.cardinalcommerce.com/edge/v1/597f4104d311c33d4189/1.597f4104d311c33d4189.songbird.js) |
-
-| Affirm / Transmit Security | `api.transmitsecurity.io` | [官方页面或资源](https://www.affirm.com/user/signin)；登录页的 risk-collect 配置 |
-| Robinhood / 共享指纹 SDK | `api.sjpf.io`, `tls-eun1.fpapi.io` | [官方页面或资源](https://cdn.robinhood.com/assets/generated_assets/webapp/Vendor-8824e94a2c92da8c.js)；官方登录页引用的 SDK 中的 US / EU 服务地址 |
-| American Express / InAuth | `www.cdn-path.com` | [官方页面或资源](https://www.americanexpress.com/en-us/account/login)；登录程序的 inauthScriptDomain 配置 |
-| PayPal / Venmo / DataDome | `js.datadome.co`, `api-js.datadome.co` | [官方页面或资源](https://ddbm2.paypal.com/tags.js)；金融登录页引用的防机器人脚本及 API |
-| Wells Fargo / Arkose | `iframe.arkoselabs.com` | [官方页面或资源](https://connect.secure.wellsfargo.com/auth/static/ui/loginaltsignon/public/js/vendor.f46d8d4ccc2fb3e1bf8a.js)；官方登录页所加载组件的验证码 iframe 来源 |
-| Citi / TD / Navy Federal / ThreatMetrix | `aa.online-metrix.net` | [官方页面或资源](https://onlinebanking.tdbank.com/async/after.ed.js)；登录风控脚本中的 TCP / UDP TURN 主机；非 IP 规则 |
-| Affirm / Synchrony / U.S. Bank / Iovation | `mpsnare.iesnare.com` | [官方页面或资源](https://cdn1.affirm.com/assets/identity_app/master/iovation-1e2e808699f330d0be0d.js)；身份登录组件的设备识别主机；U.S. Bank 信用卡页和 Synchrony 登录页也明确引用 |
-| Ally / Navy Federal 登录保护组件 | `p11.techlab-cdn.com` | [官方页面或资源](https://secure.ally.com/assets/75c79007ff2f854db976182f244dbd0bb0011c30a91)；登录页保护脚本的备用资源主机 |
-| Wise / 风控及身份验证 | `api.sardine.ai`, `api.moscwise.com`, `analytics.dv.socure.io`, `ingestion.dv.socure.io`, `network.dv.socure.io`, `challenges.cloudflare.com` | [官方页面或资源](https://wise.com/login)；生产登录页 CSP 明示的脚本、设备数据及验证主机 |
-| Synchrony / Prove 与运营商验证 | `device.proveapis.com`, `att-device.proveapis.com`, `auth.svcs.verizon.com`, `snap.att.com`, `snap.mobile.att.com`, `snap.mobile.att.net` | [官方页面或资源](https://securelogin.synchronybank.com/)；登录页 CSP 中的生产设备、手机号码与运营商验证地址；排除 UAT 地址 |
+| Wise / 业务 API | `api.moscwise.com` | [官方页面或资源](https://wise.com/login)；生产登录页 CSP 明示的 Wise 业务主机 |
 | Synchrony / 行为采集与登录保护 | `wup-d0b2efe1.us.v2.we-stats.com`, `log-d0b2efe1.us.v2.we-stats.com`, `synchronybank-us.gw-dv.vip`, `synchronybank-us.gw-dv.io`, `synchronybank-us.gw-dv.xyz`, `synchronybank-us.cdn-gw-dv.vip`, `synchronybank-us.ck123.io` | [官方页面或资源](https://securelogin.synchronybank.com/)；CSP 明示的业务采集、日志及保护主机；排除 synchronybankdev 测试主机 |
-| 金融登录中的 reCAPTCHA | `www.google.com`, `www.gstatic.com`, `recaptcha.google.com` | [官方页面或资源](https://cash.app/login)、[reCAPTCHA 官方 CSP 要求](https://developers.google.com/recaptcha/docs/faq#im-using-content-security-policy-csp-on-my-website-how-can-i-configure-it-to-work-with-recaptcha)、[Robinhood 登录页](https://robinhood.com/login)；Cash App 登录页的 reCAPTCHA Enterprise 脚本与资源；Robinhood 登录 CSP 另明示 recaptcha.google.com |
-| Robinhood 第三方登录 | `accounts.google.com`, `appleid.apple.com`, `appleid.cdn-apple.com` | [官方页面或资源](https://robinhood.com/login)；登录页 CSP 的 Google / Apple 身份认证与资源主机 |
 | Vanguard 认证及登录资源 | `vanguard.okta.com`, `ccc.vgcontent.info`, `frontgate-us.factset.com` | [官方页面或资源](https://logon.vanguard.com/logon)、[投资者页面](https://investor.vanguard.com/)；Vanguard 投资者页面及登录页 CSP；排除 oktapreview 测试租户 |
-| Fidelity 登录辅助资源 | `ds-aksb-a.akamaihd.net` | [官方页面或资源](https://digital.fidelity.com/prgw/digital/login/full-page)；公开登录响应引用的辅助资源主机 |
 | First Citizens 网银组件 | `cdn1.onlineaccess1.com`, `sdk-cdn.onlineaccess1.com`, `cds-sdkcfg.onlineaccess1.com`, `q2smart.q2ebanking.com`, `widgets.moneydesktop.com`, `content.mx.com` | [官方页面或资源](https://digitalbanking.firstcitizens.com/)；正式网银页面的脚本、SDK 配置及财务管理组件 |
 | First Citizens 投资与退休账户 | `firstcitizens.wealthaccess.com`, `secure.newportgroup.com` | [官方页面或资源](https://www.firstcitizens.com/personal)；官网提供的账户入口 |
-| First Citizens IP 数据接口 | `api.ipdata.co` | [官方页面或资源](https://www.firstcitizens.com/personal)；官网 CSP 明示的 IP 数据服务 API |
-| Wealthfront 账户连接与业务接口 | `production.plaid.com`, `cdn.plaid.com`, `finapp.wealthfront.yodlee.com`, `www.prod-cde.net`, `www.wf-box.net` | [官方页面或资源](https://www.wealthfront.com/login)；登录页生产 CSP；排除 sandbox.plaid.com、www.test-cde.net |
+| Wealthfront 账户连接与业务接口 | `production.plaid.com`, `cdn.plaid.com`, `finapp.wealthfront.yodlee.com` | [官方页面或资源](https://www.wealthfront.com/login)；登录页生产 CSP 中的账户连接服务；排除 sandbox.plaid.com |
 | Synchrony / Truist 账户连接与账单 | `cdn.yodlee.com`, `finapp.synchrony.yodlee.com`, `finapp.synchronyiav.yodlee.com`, `billdetail.getbills.com`, `www.onlinecreditcenter6.com` | [官方页面或资源](https://securelogin.synchronybank.com/)、[Truist 登录页](https://bank.truist.com/web/authentication)；生产登录 CSP 的账户连接与信用卡业务；billdetail.getbills.com 由 Truist 登录页 CSP 引用 |
 | Santander 奖励账户登录 | `login.awardcenter.com`, `www.login.awardcenter.com` | [官方页面或资源](https://rolb.santanderbank.com/)；网银登录页配置的奖励账户入口 |
 | TD / Citizens 信用卡、财富及账单服务 | `tdbank.billeriq.com`, `clientpoint.fisglobal.com`, `www.centresuite.com` | [官方页面或资源](https://www.td.com/us/en/personal-banking)；美国官网提供的账单、信托投资及信用卡账户入口；Citizens 官网也引用 CentreSuite |
 | Robinhood 支付及退休转入组件 | `js.checkout.com`, `b.stripecdn.com`, `stripe-camo.global.ssl.fastly.net`, `app.rollovercentral.com` | [官方页面或资源](https://robinhood.com/login)；正式登录页 CSP 明示的支付资源及退休账户转入服务；排除 QA / UAT 地址 |
 | Chase 账户聚合、认证及支付 | `partnerauth.platform.intuit.com`, `aggapi.wealthaccess.com`, `app.quovo.com`, `fin02.finicity.com`, `chaseretcalculator.moneyguidepro.com`, `secure.paymentech.com` | [官方页面或资源](https://secure.chase.com/web/auth/dashboard)；官方业务程序配置的账户聚合、授权、退休测算及支付端点 |
 
-上面的共享登录、风控、验证码、支付和账户服务主机可服务多个机构、商户及其他行业，因此其他网站发往同一主机的请求也会匹配。
-尤其 `www.google.com`、`www.gstatic.com` 还承载大量非金融请求，Google / Apple 登录主机也会匹配其他网站的登录流量。域名规则无法在同一主机内按金融租户或 URL 路径区分。
+共享支付、账户连接及金融数据服务可能被多家机构或商户调用；这些金融用途的请求也会匹配。
 SDK 的生产配置只证明特定组件可用到这些端点，不代表每家机构或每个原生 App 都会调用。
+
+不收录 `www.google.com`、`www.gstatic.com`、`accounts.google.com`、`appleid.apple.com` 等通用网页、资源和登录主机，
+也不收录 reCAPTCHA、Cloudflare Turnstile、DataDome 等跨行业通用服务的共享主机。
+跨行业共用的指纹、身份验证、风控、运营商验证及 IP 查询端点，同样不因金融页面引用就加入。
+无法确认属于金融机构专属或金融业务端点的共享资源从严排除。
+例如保留银行专属的 `boa-api.arkoselabs.com`、`vanguard.okta.com`，排除通用的 `iframe.arkoselabs.com` 和 Google / Apple 登录；
+`pay.google.com`、`applepay.cdn-apple.com` 属于专门的支付组件，仍按精确主机保留。
 
 `cloudfront.net`、`akamaihd.net`、`squarecdn.com`、`ctfassets.net`、`google.com`、`gstatic.com`、`okta.com` 等共享平台不会整域收录。
 例如某些 Contentful 图片使用相同主机、通过 URL 路径区分租户，域名规则无法仅选中金融机构的资源。
-共享验证码、广告和分析 SDK 也不会仅因出现在金融页面中就整域纳入；机构自有域名下的相关请求仍按域名后缀匹配。
-有明确金融业务引用的共享风控、验证码和第三方登录主机已按精确主机纳入；不因跨行业共享而排除。
+机构自有域名下的资源仍按域名后缀匹配。
 CSP 明示的主机表示官方页面允许相应业务依赖，不等同于每次访问必然发出请求；代码中的测试环境、示例及广告拦截检测域名不据此收录。
 
 ## 维护方式
 
 修改 `geosite-finance-us.json` 的对应 `domain_suffix` 或 `domain` 数组，保持小写、排序且不重复。
 添加服务或独立域名时同步更新上面的官方来源依据，记录其登录、API、静态资源或账户服务用途，避免根据名称猜测域名。
-第一方根域名已覆盖的子域名不重复加入；第三方共享平台优先使用精确主机。
+第一方根域名已覆盖的子域名不重复加入；第三方服务必须核实金融机构专属或金融业务用途，再使用精确主机，不能仅凭页面引用纳入通用服务。
 实际使用发现漏匹配时，可提供脱敏后的请求域名、对应机构和业务场景，核实关联后补充；不要提交账户信息、令牌或完整交易 URL。
 
 只构建自定义规则并检查完整性和实际加载：
