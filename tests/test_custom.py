@@ -61,17 +61,51 @@ class CustomTests(unittest.TestCase):
                 download.assert_not_called()
             verifier.verify(output, ROOT / "sources", ["custom"])
             config = json.loads((ROOT / "rules/geosite-finance-us.json").read_text())
-            domains = [domain for rule in config["rules"] for domain in rule["domain_suffix"]]
+            domains = [domain for rule in config["rules"] for domain in rule.get("domain_suffix", [])]
+            hosts = [host for rule in config["rules"] for host in rule.get("domain", [])]
             self.assertEqual(len(domains), len(set(domains)))
+            self.assertEqual(len(hosts), len(set(hosts)))
+            cases = []
+            for rule in config["rules"]:
+                for entries in rule.values():
+                    self.assertEqual(entries, sorted(entries))
             for domain in domains:
-                for candidate, expected in ((domain, True), ("login." + domain, True),
-                                            ("not" + domain, False), (domain + ".example.org", False)):
-                    with self.subTest(domain=candidate):
-                        result = subprocess.check_output([
-                            str(COMPILER), "rule-set", "match", "--format", "binary",
-                            str(output / "geosite-finance-us.srs"), candidate,
-                        ], text=True, stderr=subprocess.STDOUT)
-                        self.assertEqual("match rules." in result, expected)
+                cases.extend(((domain, True), ("login." + domain, True),
+                              ("not" + domain, False), (domain + ".example.org", False)))
+            for host in hosts:
+                self.assertFalse(any(host == domain or host.endswith("." + domain) for domain in domains))
+                cases.extend(((host, True), ("other." + host, False),
+                              ("not" + host, False), (host + ".example.org", False)))
+            # Real service endpoints catch missing independent domains, rather than
+            # deriving every positive case from the rule file under test.
+            cases.extend((host, True) for host in (
+                "secure.bankofamerica.com", "api1.bac-assets.com", "secure.chase.com",
+                "apix.chase.com", "online.citi.com", "www.citizensbankonline.com",
+                "mobile.usaa.com", "api-a.usaa.com", "c1.wfinterface.com",
+                "www17.wellsfargomedia.com", "cdaas.aexp.com", "www.aexp-static.com",
+                "consumercenter.mysynchrony.com", "api.syf.com", "cdn2.etrade.net",
+                "login.fidelity.com", "netbenefits.fidelity.com", "www.netbenefits.com",
+                "client.schwabcdn.com", "trade.thinkorswim.com", "api.robinhood.com",
+                "api-m.paypal.com", "www.paypalobjects.com", "api.braintreegateway.com",
+                "payments.braintree-api.com", "cash-f.squarecdn.com",
+                "navyfederal.lendkey.com", "creditkarmacdn-a.akamaihd.net",
+                "onlinebanking.tdbank.com", "login.openbank.us", "my.equifax.com",
+                "members.transunion.com", "firstcitizens.netxinvestor.com",
+            ))
+            cases.extend((host, False) for host in (
+                "cloudfront.net", "unrelated.cloudfront.net", "squarecdn.com",
+                "other.squarecdn.com", "akamaihd.net", "other.akamaihd.net",
+                "images.ctfassets.net", "www.google.com", "www.gstatic.com", "example.okta.com",
+                "lendkey.com", "other.lendkey.com", "netxinvestor.com", "other.netxinvestor.com",
+                "other.oflows.net", "creditkarma.com.example.org", "notpaypal.com",
+            ))
+            for candidate, expected in cases:
+                with self.subTest(domain=candidate):
+                    result = subprocess.check_output([
+                        str(COMPILER), "rule-set", "match", "--format", "binary",
+                        str(output / "geosite-finance-us.srs"), candidate,
+                    ], text=True, stderr=subprocess.STDOUT)
+                    self.assertEqual("match rules." in result, expected)
 
 
 if __name__ == "__main__":
