@@ -11,13 +11,13 @@
       "validation": {
         "title_prefix": "AdGuard DNS filter"
       },
-      "rule_count": 185651,
+      "rule_count": 185708,
       "upstream": {
         "title": "AdGuard DNS filter",
         "description": "Filter composed of several other filters (AdGuard Base filter, Tracking Protection filter, Mobile ads filter, EasyList, EasyPrivacy, etc) and simplified specifically to be better compatible with DNS-level ad blocking.",
         "homepage": "https://github.com/AdguardTeam/AdguardSDNSFilter",
         "license": "https://github.com/AdguardTeam/AdguardSDNSFilter/blob/master/LICENSE",
-        "last modified": "2026-10-17T04:15:14.477Z",
+        "last modified": "2026-10-17T08:16:34.070Z",
         "source name": "AdGuard Base filter ad servers",
         "source": "https://adguardteam.github.io/AdguardFilters/BaseFilter/sections/adservers.txt",
         "good": "||doubleclick.net^$third-party",
@@ -129,7 +129,7 @@
         "watson news app for ios https": "//github.com/AdguardTeam/AdguardFilters/issues/4524"
       },
       "conversion": {
-        "compiled_rule_count": 185557,
+        "compiled_rule_count": 185614,
         "badfilter_rules": [
           "||tn.porngo.xxx^$badfilter",
           "||pl.ua^$badfilter",
@@ -276,10 +276,11 @@
       },
       "provider": "adguard",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "sha256": {
-        "sources/adguard-dns-filter.txt": "dc5e537a1193dae5280340c51120221f8f34646617bff2103579ce2594d68770",
-        "adguard-dns-filter.srs": "f0c9d0fba112e6e09091409f146bc6eb19c0ef14bbeebff0cf8db968a41093f8"
+        "sources/adguard-dns-filter.txt": "1a6b9f1a5e37d2e9b70c9a9db2e08f1e73540e70087d359bfa3a3b216d4776f2",
+        "adguard-dns-filter.srs": "7e431eff3fc3ef6181ba2428be137109165f8d0fe0330a1d6aabc73162f90f04"
       }
     },
     {
@@ -292,6 +293,7 @@
       },
       "provider": "awavenue",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json",
       "sha256": {
         "sources/awavenue.json": "23cab6d71cc577b18d8081ad4db3a13baf2f5196378c05893494464074d04fa1",
@@ -308,6 +310,7 @@
       },
       "provider": "awavenue",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-Only.Ads.json",
       "sha256": {
         "sources/awavenue-only-ads.json": "9cd273d158c379355a195a80bfe19c8ded8c2637a8c4e1ddcf558738183f9471",
@@ -324,6 +327,7 @@
       },
       "provider": "awavenue",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Privacy.json",
       "sha256": {
         "sources/awavenue-no-privacy.json": "9e261cb983e35e2382f03d1697c199bc811e4f99c39a8b4e03e9d2e81e25d5a2",
@@ -340,10 +344,27 @@
       },
       "provider": "awavenue",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Unwelcome.json",
       "sha256": {
         "sources/awavenue-no-unwelcome.json": "17c5156c904f87c86a482620aa710285dca491e091fd3b703f676a854e83cf47",
         "awavenue-no-unwelcome.srs": "50c188436e3e2cd3d3e3796975d910abcdf27061dedbc0ef0ad6ee52b99b9b50"
+      }
+    },
+    {
+      "name": "geosite-finance-us",
+      "path": "rules/geosite-finance-us.json",
+      "format": "sing-box",
+      "rule_count": 5,
+      "upstream": {
+        "version": 2
+      },
+      "provider": "custom",
+      "srs_version": 2,
+      "source_type": "local",
+      "sha256": {
+        "sources/geosite-finance-us.json": "fb467fe9216414a348c8cfb19737620faf95a1e0863f06eebd88d01b562f515e",
+        "geosite-finance-us.srs": "40fc905008bf4baf684e12c60d89917ce320b1fad50f551229c0303b207586c9"
       }
     },
     {
@@ -383,6 +404,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt",
       "sha256": {
         "sources/hagezi-tif-full.txt": "fe291f5ab5658b8c171f02a0ffdc80a37b14feb19ffcbe1bc03e2556f4c6d6e2",
@@ -426,6 +448,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt",
       "sha256": {
         "sources/hagezi-pro.txt": "1daf078e608fc14b4a413fca60e65aa5714e2893e8cda2a2f4768c2a13347480",
@@ -468,6 +491,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.medium.txt",
       "sha256": {
         "sources/hagezi-tif-medium.txt": "6bf991fec4fa0fcfed5980244468493db15defef2743b35d8b93f3e3ebcd412f",
@@ -510,6 +534,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.mini.txt",
       "sha256": {
         "sources/hagezi-tif-mini.txt": "ab0a7c3849f48ca7a1708df34b3dc86fec6285c08254cb548e1b4f132ba6fc5d",
@@ -552,6 +577,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.amazon.txt",
       "sha256": {
         "sources/hagezi-native-amazon.txt": "075dc5a44fbfef0b8074e2a961527418ef84230ce858337cbdc88c8cc98adb83",
@@ -594,6 +620,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.apple.txt",
       "sha256": {
         "sources/hagezi-native-apple.txt": "ca311b3e19d80f2674e346bf6e405fe3d6a49ef005e8f1a1ac80669a9e18c1e6",
@@ -636,6 +663,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.huawei.txt",
       "sha256": {
         "sources/hagezi-native-huawei.txt": "9e9f8636536760fa5d37e28bb13d1db727a3d09cad4c06d6bb0dd01fb5a61b42",
@@ -678,6 +706,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.winoffice.txt",
       "sha256": {
         "sources/hagezi-native-microsoft.txt": "50bd83fcc009acd7affbbdc818304636859e9fad87be9f57e42cd9857ae9d3a2",
@@ -720,6 +749,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.samsung.txt",
       "sha256": {
         "sources/hagezi-native-samsung.txt": "4a3172ef42d08baf42f5d615ce3aea4210682dad716b2f7e4326bf1dc6c0d7de",
@@ -762,6 +792,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.tiktok.txt",
       "sha256": {
         "sources/hagezi-native-tiktok.txt": "7c58f98687ddc2818bcc68a4501350caf1acb8237912c3db5e318e899f8ae87b",
@@ -804,6 +835,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.tiktok.extended.txt",
       "sha256": {
         "sources/hagezi-native-tiktok-aggressive.txt": "f6181c82d790068696fe256e06114b0f7d9341e85976bbe01117cb10fb51d6b0",
@@ -846,6 +878,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.lgwebos.txt",
       "sha256": {
         "sources/hagezi-native-lgwebos.txt": "c02fd9ec2018f18dd5366fa4046d020ab2aa739e9b323c04965f46bd0902800a",
@@ -888,6 +921,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.roku.txt",
       "sha256": {
         "sources/hagezi-native-roku.txt": "96ea39f5c028be57412fae2fcaa6c344b09904dd05dc44ee104e8e96b87472f8",
@@ -930,6 +964,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.vivo.txt",
       "sha256": {
         "sources/hagezi-native-vivo.txt": "8ec9493996a6d52d6ac4f30fa495507f7de4b50676e460517c21a4d34370ca6d",
@@ -972,6 +1007,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.oppo-realme.txt",
       "sha256": {
         "sources/hagezi-native-oppo-realme.txt": "13cbf19dcfda3abe015b1a0443cd9fd9c1def8119c0d38c487ed77e2f230ddfa",
@@ -1014,6 +1050,7 @@
       },
       "provider": "hagezi",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.xiaomi.txt",
       "sha256": {
         "sources/hagezi-native-xiaomi.txt": "1ec9d10373e72a32b011bcc84d0f61db7076c1008371628c2334426a59958665",
@@ -1034,21 +1071,21 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 234279,
+      "rule_count": 234336,
       "upstream": {
-        "version": "202610170405",
+        "version": "202610170805",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "234279",
-        "last modified": "2026-10-17T04:05:07+0000",
+        "entries": "234336",
+        "last modified": "2026-10-17T08:05:07+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 234279,
+        "compiled_rule_count": 234336,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1057,10 +1094,11 @@
       },
       "provider": "oisd",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "e94cd6fa59c144b1c4326da18abee4a08d120342810749eafebd80c5be9a35d7",
-        "oisd-big.srs": "32778a1ef796741ce7c41a4b0ae223c44a7a0e303eb44072f4eb39e1427ac8bd"
+        "sources/oisd-big.txt": "e17dfa33d8a13f9bbcf5549a7a8866f49b9c67eeeefa1369cf35f3a3b717d8b7",
+        "oisd-big.srs": "47501ea599a1ce87940f3b0f3814289aebab12b7fc83a421144ebb5996c0e887"
       }
     },
     {
@@ -1100,6 +1138,7 @@
       },
       "provider": "oisd",
       "srs_version": 2,
+      "source_type": "remote",
       "download_url": "https://small.oisd.nl/",
       "sha256": {
         "sources/oisd-small.txt": "4316f56c9b0391c21f8d873169f99e7a4e18568c6637716fa793fbf9c43404c0",
