@@ -258,7 +258,7 @@
         "thankyou.com"
       ]
     },
-    // 券商与退休投资
+    // 投资、交易与退休账户
     {
       "domain_suffix": [
         // Betterment；依据：官网及账户入口。
@@ -288,6 +288,11 @@
         // J.P. Morgan Securities；依据：Chase 网银投资业务配置 提供的投资账户服务入口。
         // 来源（Chase 网银投资业务配置）：https://secure.chase.com/web/auth/dashboard
         "jpmorgansecurities.com",
+        // Kraken；依据：官方 Pro 账户入口、REST API 和私有 WebSocket 账户 / 交易接口，均位于 kraken.com 子域。核对：2026-10-19。
+        // 来源（官网及 Pro 账户入口）：https://www.kraken.com/pro
+        // 来源（官方 REST API 文档）：https://docs.kraken.com/exchange/guides/rest/introduction
+        // 来源（官方私有 WebSocket 账户及交易接口说明）：https://support.kraken.com/articles/360022326871-kraken-websocket-api-frequently-asked-questions
+        "kraken.com",
         // Merrill；依据：美国银行的 Merrill 链接。
         // 来源（美国银行的 Merrill 链接）：https://www.bankofamerica.com/
         "merrill.com",
