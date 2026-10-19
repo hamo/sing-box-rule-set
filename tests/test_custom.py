@@ -123,12 +123,13 @@ class CustomTests(unittest.TestCase):
                 "csimfunds.com", "ibkr.com", "interactivebrokers.com",
                 "schwab.com", "schwab529plan.com", "schwabcdn.com",
                 "schwabfunds.com", "schwabinstitutional.com", "schwabplan.com",
-                "schwabworkplaceservices.com", "thinkorswim.com",
+                "schwabworkplaceservices.com", "thinkorswim.com", "transferwise.com", "wise.com",
             ):
                 cases.extend(((domain, False), ("login." + domain, False)))
             cases.extend((host, False) for host in (
                 "client.schwab.com", "client.schwabcdn.com", "trade.thinkorswim.com",
                 "portal.interactivebrokers.com", "api.ibkr.com",
+                "api.wise.com", "api.transferwise.com",
             ))
             # General-purpose shared hosts must not be routed as finance, even
             # when a financial login page references them. Consumer wallets and
