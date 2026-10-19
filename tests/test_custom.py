@@ -114,6 +114,8 @@ class CustomTests(unittest.TestCase):
                 "finapp.wealthfront.yodlee.com",
                 "firstcitizens.wealthaccess.com", "www.subarumotorsfinance.com",
                 "money.x.com", "money-support.x.com", "sdn.money.x.com",
+                "id.kraken.com", "app.kraken.com", "pro.kraken.com",
+                "api.kraken.com", "ws-auth.kraken.com", "futures.kraken.com",
             ))
             # General-purpose shared hosts must not be routed as finance, even
             # when a financial login page references them. Consumer wallets and
