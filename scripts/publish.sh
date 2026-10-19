@@ -31,4 +31,20 @@ fi
 git -C "$publish_dir" -c user.name='github-actions[bot]' \
   -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
   commit -m "Update rule sets"
-git -C "$publish_dir" push origin HEAD:refs/heads/rule-set
+# Retry the same commit for transient remote failures, without rewriting history.
+# If a push succeeded but its response was lost, retrying it is a harmless no-op.
+max_attempts=3
+for ((attempt = 1; attempt <= max_attempts; attempt++)); do
+  if git -C "$publish_dir" push origin HEAD:refs/heads/rule-set; then
+    exit 0
+  else
+    push_status=$?
+  fi
+  if ((attempt == max_attempts)); then
+    echo "Publication failed after $max_attempts push attempts." >&2
+    exit "$push_status"
+  fi
+  delay=$((attempt * 5))
+  echo "Publication push attempt $attempt/$max_attempts failed; retrying in ${delay}s." >&2
+  sleep "$delay"
+done
