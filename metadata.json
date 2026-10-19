@@ -363,8 +363,8 @@
       "srs_version": 2,
       "source_type": "local",
       "sha256": {
-        "sources/geosite-finance-us.json": "ed6d3575a8465e0f498dd920e2d502187b59c7e97452a2c188d6e0640ab9cc14",
-        "geosite-finance-us.srs": "f040d0ffee973214df2d8aa8cf98249a0f81e2faca44281aaa17d4ad0c8c4280"
+        "sources/geosite-finance-us.json": "dac139dc237d9e854ed1bf9f5ce0c9852aee635fa92632aab37fe409e9ea5fd0",
+        "geosite-finance-us.srs": "345a7a1cbc1dbda0d64a4ff7c9c28c1b2c02425a63f79c6e461624e22c9732b1"
       }
     },
     {

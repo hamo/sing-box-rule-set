@@ -356,15 +356,9 @@
         // PayPal；依据：官方 SDK / API 所需域名。
         // 来源（官方 SDK / API 所需域名）：https://developer.paypal.com/platforms/checkout/fastlane/getstarted/
         "paypalobjects.com",
-        // Wise；依据：官方旧域名链接资料。
-        // 来源（官方旧域名链接资料）：https://wise.com/documents/TW-Widgets-Price%2BComparison.pdf
-        "transferwise.com",
         // Venmo；依据：官方站点。
         // 来源（官方站点）：https://venmo.com/
         "venmo.com",
-        // Wise；依据：官方站点。
-        // 来源（官方站点）：https://wise.com/us/
-        "wise.com",
         // Zelle；依据：官方站点。
         // 来源（官方站点）：https://www.zelle.com/
         "zelle.com",
