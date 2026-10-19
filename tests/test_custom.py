@@ -94,7 +94,7 @@ class CustomTests(unittest.TestCase):
                 "www17.wellsfargomedia.com", "cdaas.aexp.com", "www.aexp-static.com",
                 "consumercenter.mysynchrony.com", "api.syf.com", "cdn2.etrade.net",
                 "login.fidelity.com", "netbenefits.fidelity.com", "www.netbenefits.com",
-                "client.schwabcdn.com", "trade.thinkorswim.com", "api.robinhood.com",
+                "api.robinhood.com",
                 "api-m.paypal.com", "www.paypalobjects.com",
                 "cash-f.squarecdn.com",
                 "navyfederal.lendkey.com", "creditkarmacdn-a.akamaihd.net",
@@ -116,6 +116,19 @@ class CustomTests(unittest.TestCase):
                 "money.x.com", "money-support.x.com", "sdn.money.x.com",
                 "id.kraken.com", "app.kraken.com", "pro.kraken.com",
                 "api.kraken.com", "ws-auth.kraken.com", "futures.kraken.com",
+            ))
+            # Explicitly excluded services must stay out of US egress routing,
+            # including their account, trading and dedicated resource subdomains.
+            for domain in (
+                "csimfunds.com", "ibkr.com", "interactivebrokers.com",
+                "schwab.com", "schwab529plan.com", "schwabcdn.com",
+                "schwabfunds.com", "schwabinstitutional.com", "schwabplan.com",
+                "schwabworkplaceservices.com", "thinkorswim.com",
+            ):
+                cases.extend(((domain, False), ("login." + domain, False)))
+            cases.extend((host, False) for host in (
+                "client.schwab.com", "client.schwabcdn.com", "trade.thinkorswim.com",
+                "portal.interactivebrokers.com", "api.ibkr.com",
             ))
             # General-purpose shared hosts must not be routed as finance, even
             # when a financial login page references them. Consumer wallets and
