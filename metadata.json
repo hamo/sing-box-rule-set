@@ -363,8 +363,8 @@
       "srs_version": 2,
       "source_type": "local",
       "sha256": {
-        "sources/geosite-finance-us.json": "2e091ac8bccfda99c598dc9610f79daed19ee7241d14a1b4d84870094d9a41d0",
-        "geosite-finance-us.srs": "11b9f163e9d58cb5a427937c31597436818fe65362a6a41072a26187ff563871"
+        "sources/geosite-finance-us.json": "ed6d3575a8465e0f498dd920e2d502187b59c7e97452a2c188d6e0640ab9cc14",
+        "geosite-finance-us.srs": "f040d0ffee973214df2d8aa8cf98249a0f81e2faca44281aaa17d4ad0c8c4280"
       }
     },
     {
@@ -379,7 +379,7 @@
         "title_prefix": "HaGeZi's Threat Intelligence Feeds",
         "count_field": "number of entries"
       },
-      "rule_count": 2208554,
+      "rule_count": 1793268,
       "upstream": {
         "title": "HaGeZi's Threat Intelligence Feeds - a serious security boost (recommended)",
         "description": "This blocklist targets malware, cryptojacking, scams, spam, and phishing. It blocks domains known for spreading malware, running phishing attacks, and hosting command-and-control servers.",
@@ -389,13 +389,13 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "18 Oct 2026 08:17 UTC",
-        "version": "2026.1018.0817.34",
+        "last modified": "19 Oct 2026 08:30 UTC",
+        "version": "2026.1019.0830.43",
         "syntax": "AdBlock",
-        "number of entries": "2208554"
+        "number of entries": "1793268"
       },
       "conversion": {
-        "compiled_rule_count": 2208554,
+        "compiled_rule_count": 1793268,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -407,8 +407,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt",
       "sha256": {
-        "sources/hagezi-tif-full.txt": "f9fa0f7ee24343fe940003e0336191044dff3e5927dd643c1b0e1f13b0be2d6b",
-        "hagezi-tif-full.srs": "bfa9185b579b729cde4b31ea3c57f0666bb25e277583a2a398da4de46b82141f"
+        "sources/hagezi-tif-full.txt": "04d670fb7df4d805adb04be51ebc953bf2226b9d525448a7a7b9cb2dbf2c42f7",
+        "hagezi-tif-full.srs": "c0ddeed118585de18ec2031caede9b218a6f368b2a4b0b6519e83074a8aa8b87"
       }
     },
     {
@@ -423,7 +423,7 @@
         "title_prefix": "HaGeZi's Multi PRO -",
         "count_field": "number of entries"
       },
-      "rule_count": 202297,
+      "rule_count": 203414,
       "upstream": {
         "title": "HaGeZi's Multi PRO - extended protection (recommended)",
         "description": "Big broom edition. Cleans up the internet and protects your privacy. Blocks ads, trackers, metrics, telemetry, phishing, malware, scams, fakes, cryptojacking, and other junk.",
@@ -433,13 +433,13 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "18 Oct 2026 08:56 UTC",
-        "version": "2026.1018.0856.58",
+        "last modified": "19 Oct 2026 09:01 UTC",
+        "version": "2026.1019.0901.10",
         "syntax": "AdBlock",
-        "number of entries": "202297"
+        "number of entries": "203414"
       },
       "conversion": {
-        "compiled_rule_count": 202297,
+        "compiled_rule_count": 203414,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -451,8 +451,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt",
       "sha256": {
-        "sources/hagezi-pro.txt": "57c6db3fb68a827843497574180d25baf3029a8948bf26992ad71facea8ece3b",
-        "hagezi-pro.srs": "0a59d3ccce8d8d5ea69e154a7f058acdf766b3813c310eced8ded18379762a23"
+        "sources/hagezi-pro.txt": "97dd2bc946537a09613e66d5c1f88481cb7769a6d4767ffe24c037a83bb68d97",
+        "hagezi-pro.srs": "20b58d9af23347a53cd6378ae8bf9777d47a0d72d43e277f55b5c2933585b871"
       }
     },
     {
@@ -467,7 +467,7 @@
         "title_prefix": "HaGeZi's Threat Intelligence Feeds - medium version",
         "count_field": "number of entries"
       },
-      "rule_count": 939721,
+      "rule_count": 604393,
       "upstream": {
         "title": "HaGeZi's Threat Intelligence Feeds - medium version (best for browser/mobile ad blockers)",
         "description": "A medium-sized version of the TIF list, built for ad blockers that struggle with the full-size version. Includes only the most important feeds.",
@@ -476,13 +476,13 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "18 Oct 2026 08:29 UTC",
-        "version": "2026.1018.0829.59",
+        "last modified": "19 Oct 2026 08:40 UTC",
+        "version": "2026.1019.0840.04",
         "syntax": "AdBlock",
-        "number of entries": "939721"
+        "number of entries": "604393"
       },
       "conversion": {
-        "compiled_rule_count": 939721,
+        "compiled_rule_count": 604393,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -494,8 +494,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.medium.txt",
       "sha256": {
-        "sources/hagezi-tif-medium.txt": "895db6328914e9a847ead33617731e03f8ff9cd51d95f5a7c4dbe36481212d16",
-        "hagezi-tif-medium.srs": "d6125f3ec022290310393cd2709d35d75810d09de703e87d94ed14224842decb"
+        "sources/hagezi-tif-medium.txt": "828bf1063f1f47d8444aa488bd248bba06ead805f9ff4a9ee92e709b827481dd",
+        "hagezi-tif-medium.srs": "0fc17fa95a8c0c50be3b4f926a3c38624456ba9cf55711db3396165e5fb23229"
       }
     },
     {
@@ -510,7 +510,7 @@
         "title_prefix": "HaGeZi's Threat Intelligence Feeds - mini version",
         "count_field": "number of entries"
       },
-      "rule_count": 229609,
+      "rule_count": 210826,
       "upstream": {
         "title": "HaGeZi's Threat Intelligence Feeds - mini version (best for browser/mobile ad blockers)",
         "description": "A size-optimized version of the TIF Medium list, for ad blockers that even struggle with that one.",
@@ -519,13 +519,13 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "18 Oct 2026 08:36 UTC",
-        "version": "2026.1018.0836.52",
+        "last modified": "19 Oct 2026 08:44 UTC",
+        "version": "2026.1019.0844.28",
         "syntax": "AdBlock",
-        "number of entries": "229609"
+        "number of entries": "210826"
       },
       "conversion": {
-        "compiled_rule_count": 229609,
+        "compiled_rule_count": 210826,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -537,8 +537,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.mini.txt",
       "sha256": {
-        "sources/hagezi-tif-mini.txt": "8b4566284f09229c7936910550a9c081fbc8d80480c1753c926d0cae8c12ce24",
-        "hagezi-tif-mini.srs": "07815b207f5623595cc3a9748667926667ec4c7ab4b33519227fe7b998817078"
+        "sources/hagezi-tif-mini.txt": "b76d3144ae0a56f24525c7a8888567f81272c8105a7458a83d50366170197b7a",
+        "hagezi-tif-mini.srs": "08a44428cfa576f68aa8aa4c48b823b1b6a8d6ae35d66a224bcc14c237eaa5d9"
       }
     },
     {
@@ -811,7 +811,7 @@
         "title_prefix": "HaGeZi's TikTok Extended Tracker",
         "count_field": "number of entries"
       },
-      "rule_count": 613,
+      "rule_count": 624,
       "upstream": {
         "title": "HaGeZi's TikTok Extended Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the TikTok native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -820,13 +820,13 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "09 Oct 2026 22:01 UTC",
-        "version": "2026.1009.2201.32",
+        "last modified": "19 Oct 2026 09:27 UTC",
+        "version": "2026.1019.0927.44",
         "syntax": "AdBlock",
-        "number of entries": "613"
+        "number of entries": "624"
       },
       "conversion": {
-        "compiled_rule_count": 613,
+        "compiled_rule_count": 624,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -838,8 +838,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.tiktok.extended.txt",
       "sha256": {
-        "sources/hagezi-native-tiktok-aggressive.txt": "f6181c82d790068696fe256e06114b0f7d9341e85976bbe01117cb10fb51d6b0",
-        "hagezi-native-tiktok-aggressive.srs": "471eee46473f62f97d930b518630ec06683e22fd34151911e1ed27fd63fbf378"
+        "sources/hagezi-native-tiktok-aggressive.txt": "9f7abfc93e3ff610c5453dae73029e2ade1d4a0b62af7447bd406a0267669b71",
+        "hagezi-native-tiktok-aggressive.srs": "b497e259178f82416bf1bc304b3e9d15b5cc9ec3dfb0e01a0eb8988caa3b5097"
       }
     },
     {

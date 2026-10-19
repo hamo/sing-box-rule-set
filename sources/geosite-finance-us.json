@@ -264,9 +264,6 @@
         // Betterment；依据：官网及账户入口。
         // 来源（官网及账户入口）：https://www.betterment.com/
         "betterment.com",
-        // Charles Schwab / thinkorswim；依据：官网的退休、529 及工作福利入口。
-        // 来源（官网的退休、529 及工作福利入口）：https://www.schwab.com/
-        "csimfunds.com",
         // E*TRADE / Morgan Stanley；依据：E*TRADE 官网资源及 Morgan Stanley Online 链接。
         // 来源（E*TRADE 官网资源及 Morgan Stanley Online 链接）：https://us.etrade.com/
         "etrade.com",
@@ -279,12 +276,6 @@
         // Fidelity / NetBenefits；依据：年度业务说明。
         // 来源（年度业务说明）：https://about.fidelity.com/data-and-insights/2025-annual-report
         "fidelityinvestments.com",
-        // Interactive Brokers；依据：官方站点。
-        // 来源（官方站点）：https://www.interactivebrokers.com/
-        "ibkr.com",
-        // Interactive Brokers；依据：官方站点。
-        // 来源（官方站点）：https://www.interactivebrokers.com/
-        "interactivebrokers.com",
         // J.P. Morgan Securities；依据：Chase 网银投资业务配置 提供的投资账户服务入口。
         // 来源（Chase 网银投资业务配置）：https://secure.chase.com/web/auth/dashboard
         "jpmorgansecurities.com",
@@ -317,30 +308,6 @@
         // Robinhood；依据：官方站点。
         // 来源（官方站点）：https://robinhood.com/us/en/
         "robinhood.com",
-        // Charles Schwab / thinkorswim；依据：官网的退休、529 及工作福利入口。
-        // 来源（官网的退休、529 及工作福利入口）：https://www.schwab.com/
-        "schwab.com",
-        // Charles Schwab / thinkorswim；依据：官网的退休、529 及工作福利入口。
-        // 来源（官网的退休、529 及工作福利入口）：https://www.schwab.com/
-        "schwab529plan.com",
-        // Charles Schwab / thinkorswim；依据：登录页面资源。
-        // 来源（登录页面资源）：https://client.schwab.com/Areas/Access/Login
-        "schwabcdn.com",
-        // Charles Schwab / thinkorswim；依据：官网的退休、529 及工作福利入口。
-        // 来源（官网的退休、529 及工作福利入口）：https://www.schwab.com/
-        "schwabfunds.com",
-        // Charles Schwab / thinkorswim；依据：官网的退休、529 及工作福利入口。
-        // 来源（官网的退休、529 及工作福利入口）：https://www.schwab.com/
-        "schwabinstitutional.com",
-        // Charles Schwab / thinkorswim；依据：官网的退休、529 及工作福利入口。
-        // 来源（官网的退休、529 及工作福利入口）：https://www.schwab.com/
-        "schwabplan.com",
-        // Charles Schwab / thinkorswim；依据：官网的退休、529 及工作福利入口。
-        // 来源（官网的退休、529 及工作福利入口）：https://www.schwab.com/
-        "schwabworkplaceservices.com",
-        // Charles Schwab / thinkorswim；依据：thinkorswim 官方说明。
-        // 来源（thinkorswim 官方说明）：https://workplace.schwab.com/story/introduction-to-thinkorswim-web
-        "thinkorswim.com",
         // Vanguard；依据：官方站点。
         // 来源（官方站点）：https://investor.vanguard.com/
         "vanguard.com",
