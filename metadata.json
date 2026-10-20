@@ -11,13 +11,15 @@
       "validation": {
         "title_prefix": "AdGuard DNS filter"
       },
-      "rule_count": 188504,
+      "rule_count": 188538,
+      "rule_object_count": null,
+      "match_entry_count": 188444,
       "upstream": {
         "title": "AdGuard DNS filter",
         "description": "Filter composed of several other filters (AdGuard Base filter, Tracking Protection filter, Mobile ads filter, EasyList, EasyPrivacy, etc) and simplified specifically to be better compatible with DNS-level ad blocking.",
         "homepage": "https://github.com/AdguardTeam/AdguardSDNSFilter",
         "license": "https://github.com/AdguardTeam/AdguardSDNSFilter/blob/master/LICENSE",
-        "last modified": "2026-10-19T22:13:53.826Z",
+        "last modified": "2026-10-20T00:38:15.023Z",
         "source name": "AdGuard Base filter ad servers",
         "source": "https://adguardteam.github.io/AdguardFilters/BaseFilter/sections/adservers.txt",
         "good": "||doubleclick.net^$third-party",
@@ -129,7 +131,7 @@
         "watson news app for ios https": "//github.com/AdguardTeam/AdguardFilters/issues/4524"
       },
       "conversion": {
-        "compiled_rule_count": 188410,
+        "compiled_rule_count": 188444,
         "badfilter_rules": [
           "||tn.porngo.xxx^$badfilter",
           "||pl.ua^$badfilter",
@@ -279,8 +281,8 @@
       "source_type": "remote",
       "download_url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "sha256": {
-        "sources/adguard-dns-filter.txt": "5fbb2628275dae17e24202fac50b4b5d414bfab18cd4f7ea0a5d202d2d5a9c26",
-        "adguard-dns-filter.srs": "7bee56e558ca0129d4df456c32cc8d87c55d62cb7ed3dd6229885740d57833ac"
+        "sources/adguard-dns-filter.txt": "a0da02b3d5e3724818ee56fcb19d885a28207f5f33cd59b22667102f74a608ed",
+        "adguard-dns-filter.srs": "5286f97b7975728be61c80aa4e57a18dcc185adcbac18964ec8c73e4300994a4"
       }
     },
     {
@@ -288,6 +290,8 @@
       "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json",
       "format": "sing-box",
       "rule_count": 1,
+      "rule_object_count": 1,
+      "match_entry_count": 965,
       "upstream": {
         "version": 3
       },
@@ -305,6 +309,8 @@
       "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-Only.Ads.json",
       "format": "sing-box",
       "rule_count": 1,
+      "rule_object_count": 1,
+      "match_entry_count": 655,
       "upstream": {
         "version": 3
       },
@@ -322,6 +328,8 @@
       "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Privacy.json",
       "format": "sing-box",
       "rule_count": 1,
+      "rule_object_count": 1,
+      "match_entry_count": 751,
       "upstream": {
         "version": 3
       },
@@ -339,6 +347,8 @@
       "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Unwelcome.json",
       "format": "sing-box",
       "rule_count": 1,
+      "rule_object_count": 1,
+      "match_entry_count": 869,
       "upstream": {
         "version": 3
       },
@@ -356,6 +366,8 @@
       "path": "rules/geosite-finance-us.json",
       "format": "sing-box",
       "rule_count": 6,
+      "rule_object_count": 6,
+      "match_entry_count": 150,
       "upstream": {
         "version": 2
       },
@@ -380,6 +392,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 1793268,
+      "rule_object_count": null,
+      "match_entry_count": 1793268,
       "upstream": {
         "title": "HaGeZi's Threat Intelligence Feeds - a serious security boost (recommended)",
         "description": "This blocklist targets malware, cryptojacking, scams, spam, and phishing. It blocks domains known for spreading malware, running phishing attacks, and hosting command-and-control servers.",
@@ -424,6 +438,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 203414,
+      "rule_object_count": null,
+      "match_entry_count": 203414,
       "upstream": {
         "title": "HaGeZi's Multi PRO - extended protection (recommended)",
         "description": "Big broom edition. Cleans up the internet and protects your privacy. Blocks ads, trackers, metrics, telemetry, phishing, malware, scams, fakes, cryptojacking, and other junk.",
@@ -468,6 +484,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 604393,
+      "rule_object_count": null,
+      "match_entry_count": 604393,
       "upstream": {
         "title": "HaGeZi's Threat Intelligence Feeds - medium version (best for browser/mobile ad blockers)",
         "description": "A medium-sized version of the TIF list, built for ad blockers that struggle with the full-size version. Includes only the most important feeds.",
@@ -511,6 +529,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 210826,
+      "rule_object_count": null,
+      "match_entry_count": 210826,
       "upstream": {
         "title": "HaGeZi's Threat Intelligence Feeds - mini version (best for browser/mobile ad blockers)",
         "description": "A size-optimized version of the TIF Medium list, for ad blockers that even struggle with that one.",
@@ -554,6 +574,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 368,
+      "rule_object_count": null,
+      "match_entry_count": 368,
       "upstream": {
         "title": "HaGeZi's Amazon Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the Amazon native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -597,6 +619,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 110,
+      "rule_object_count": null,
+      "match_entry_count": 110,
       "upstream": {
         "title": "HaGeZi's Apple Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the Apple native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -640,6 +664,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 135,
+      "rule_object_count": null,
+      "match_entry_count": 135,
       "upstream": {
         "title": "HaGeZi's Huawei Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the Huawei native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -683,6 +709,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 383,
+      "rule_object_count": null,
+      "match_entry_count": 383,
       "upstream": {
         "title": "HaGeZi's Microsoft Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the Microsoft native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -726,6 +754,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 200,
+      "rule_object_count": null,
+      "match_entry_count": 200,
       "upstream": {
         "title": "HaGeZi's Samsung Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the Samsung native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -769,6 +799,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 437,
+      "rule_object_count": null,
+      "match_entry_count": 437,
       "upstream": {
         "title": "HaGeZi's TikTok Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the TikTok native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -812,6 +844,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 624,
+      "rule_object_count": null,
+      "match_entry_count": 624,
       "upstream": {
         "title": "HaGeZi's TikTok Extended Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the TikTok native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -855,6 +889,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 231,
+      "rule_object_count": null,
+      "match_entry_count": 231,
       "upstream": {
         "title": "HaGeZi's LG webOS Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the LG webOS native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -898,6 +934,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 57,
+      "rule_object_count": null,
+      "match_entry_count": 57,
       "upstream": {
         "title": "HaGeZi's Roku Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the Roku native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -941,6 +979,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 244,
+      "rule_object_count": null,
+      "match_entry_count": 244,
       "upstream": {
         "title": "HaGeZi's Vivo Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the Vivo native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -984,6 +1024,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 489,
+      "rule_object_count": null,
+      "match_entry_count": 489,
       "upstream": {
         "title": "HaGeZi's OPPO & Realme Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the OPPO & Realme native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -1027,6 +1069,8 @@
         "count_field": "number of entries"
       },
       "rule_count": 345,
+      "rule_object_count": null,
+      "match_entry_count": 345,
       "upstream": {
         "title": "HaGeZi's Xiaomi Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the Xiaomi native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -1072,6 +1116,8 @@
         "count_field": "entries"
       },
       "rule_count": 234682,
+      "rule_object_count": null,
+      "match_entry_count": 234682,
       "upstream": {
         "version": "202610200005",
         "title": "oisd big",
@@ -1116,6 +1162,8 @@
         "count_field": "entries"
       },
       "rule_count": 57285,
+      "rule_object_count": null,
+      "match_entry_count": 57285,
       "upstream": {
         "version": "202610191306",
         "title": "oisd small",

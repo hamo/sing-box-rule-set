@@ -32,7 +32,7 @@
 SRS 格式版本均为 2，要求 sing-box 1.10.0+。
 `geosite-finance-us` 用于 `route.rules` 分流，不用于广告拦截；范围及来源维护方式见 [自定义规则说明](https://github.com/hamo/sing-box-rule-set/blob/main/rules/README.md)。
 
-[metadata.json](metadata.json) 记录来源版本、规则数量、编译器及 SHA-256；`sources/` 保留完整原文，自定义规则的逐条来源见 JSON 注释。
+[metadata.json](metadata.json) 记录来源版本、`rule_object_count`（规则对象数）、`match_entry_count`（匹配条目数）、编译器及 SHA-256；文本格式的对象数为 `null`。`sources/` 保留完整原文，自定义规则的逐条来源见 JSON 注释。
 AdGuard DNS Filter 发布 sing-box 兼容部分；跳过原因及片段改写映射分别见 `conversion.skipped_rules`、`conversion.rewritten_rules`。
 其他列表默认不允许跳过，详细[转换语法与策略](https://github.com/hamo/sing-box-rule-set#adguard--adblock-语法范围)见主分支。
 
