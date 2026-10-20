@@ -1071,21 +1071,21 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 234694,
+      "rule_count": 234682,
       "upstream": {
-        "version": "202610192205",
+        "version": "202610200005",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "234694",
-        "last modified": "2026-10-19T22:05:42+0000",
+        "entries": "234682",
+        "last modified": "2026-10-20T00:05:18+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 234694,
+        "compiled_rule_count": 234682,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1097,8 +1097,8 @@
       "source_type": "remote",
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "328afad9364abb14053b2ed1b0d0a5a01eb0041dc3595b0ee0143aff141989f6",
-        "oisd-big.srs": "c41f9487cd5b1f18ba13b408756c93ff5e5a10e84293ed1afa0c4aa72606daa6"
+        "sources/oisd-big.txt": "41c13f9ae144e1bc2e52b8c48f75e5be0281c054184beba6a7c067de50d04380",
+        "oisd-big.srs": "59f508ec64665cc6677bd9f64ae4affd391c823fe45d260a38b836354ffa59a5"
       }
     },
     {
