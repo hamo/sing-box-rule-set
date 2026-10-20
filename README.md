@@ -105,6 +105,18 @@ sources/*.json → 下载远端 / 复制仓库文件 → 按 format 转换 → �
 
 发布分支保存 `.srs`、完整来源原文件、`LICENSE` 和 `metadata.json`。
 元数据记录编译器、来源版本、规则数量、实际下载地址及 SHA-256；本地来源记录 `source_type: "local"` 和仓库路径。
+
+Actions 统计表使用以下口径：
+
+| 列 | 统计口径 |
+| --- | --- |
+| Source rule lines | AdGuard / Adblock 原始规则行数，不含订阅头、注释和空行；JSON 显示 `—` |
+| Rule objects | JSON 的规则对象总数，包含嵌套逻辑容器与子规则；文本列表显示 `—` |
+| Match entries | JSON 各匹配字段的值数量（递归统计）；文本列表成功转换的规则数，包含例外，排除取消指令、被取消及跳过的规则 |
+
+匹配条目不计 JSON 的 `type`、`mode`、`invert` 等结构字段；空数组和未启用的布尔匹配条件计 0。
+这些数量按编译器去重、优化前的来源统计，不代表唯一域名数或可命中的主机数量。
+
 修改本地原文或注释后必须重建，发布校验会拒绝与当前 checkout 不一致的旧产物。
 
 ## 本地运行
@@ -199,9 +211,10 @@ AdGuard 二进制规则不能反编译为普通规则集 JSON，请通过发布�
 显式配置 `"report"` 时必须提供正整数 `max_skipped_rules`，仅发布兼容部分；不支持的 `$badfilter` 组合仍然失败。
 AdGuard DNS Filter 采用报告模式，上限 200 条；其原文中的少量 IP 规则和 IP / URL 正则会跳过。
 
-`metadata.json` 的 `rule_count` 保存原始规则行数，`conversion` 记录实际编译数量、取消指令、被取消规则、
+AdGuard / Adblock 的 `metadata.json` 中，`rule_count` 保存原始规则行数，`conversion` 记录实际编译数量、取消指令、被取消规则、
 `rewritten_rules` 改写映射及 `skipped_rules` 逐条原因。计数必须与输入一致，成功数量不得低于 `min_rules`；
 改写成功的规则计入编译数量。Actions 摘要展示这些信息，订阅头部元数据不会被内嵌子列表覆盖。
+JSON 的 `rule_count` 保持原有的顶层规则对象数，统计表从保存的 JSON 原文计算完整对象数和匹配条目数。
 
 ### 声明式校验与新格式
 

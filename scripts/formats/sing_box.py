@@ -19,6 +19,28 @@ def load_config(text):
     return json.loads(JSON_TOKENS.sub(remove_comment, text))
 
 
+def rule_counts(rules):
+    """Count JSON objects and matcher values before compiler optimization."""
+    def values_count(value):
+        if isinstance(value, dict):
+            return sum(values_count(items) for items in value.values())
+        if isinstance(value, list):
+            return len(value)
+        if isinstance(value, bool):
+            return int(value)
+        return int(value is not None and value != "")
+
+    objects, entries = len(rules), 0
+    for rule in rules:
+        children, child_entries = rule_counts(rule.get("rules", []))
+        objects += children
+        entries += child_entries + sum(
+            values_count(value) for key, value in rule.items()
+            if key not in {"type", "mode", "rules", "invert"}
+        )
+    return objects, entries
+
+
 def validate(source):
     if source.get("validation"):
         raise ValueError("sing-box JSON does not support AdGuard header validation")

@@ -73,6 +73,27 @@ class AdGuardTests(unittest.TestCase):
 
 
 class SingBoxTests(unittest.TestCase):
+    def test_rule_counts_include_nested_matchers_but_not_structural_fields(self):
+        rules = [
+            {"domain": ["a.example", "b.example"], "domain_suffix": "example.org",
+             "domain_regex": ["^ads"], "ip_cidr": [], "invert": True},
+            {"type": "logical", "mode": "and", "invert": True, "rules": [
+                {"network": "tcp", "port": [443, 8443], "network_is_expensive": False},
+                {"type": "logical", "mode": "or", "rules": [
+                    {"query_type": ["A", 28], "network_is_constrained": True,
+                     "network_interface_address": {"wifi": ["192.0.2.0/24", "2001:db8::/32"],
+                                                   "cellular": "198.51.100.0/24"}},
+                ]},
+            ]},
+        ]
+        self.assertEqual(sing_box.rule_counts(rules), (5, 13))
+        self.assertEqual(sing_box.rule_counts([]), (0, 0))
+        self.assertEqual(sing_box.rule_counts([{"invert": True, "domain": [],
+                                               "network_is_expensive": False}]), (1, 0))
+        # Count source entries, not deduplicated domains or expanded IP addresses.
+        self.assertEqual(sing_box.rule_counts([{"domain": ["same.example", "same.example"],
+                                               "ip_cidr": "192.0.2.0/24"}]), (1, 3))
+
     def test_json_comments_preserve_urls_escaped_strings_and_reject_invalid_json(self):
         expected = {"url": "https://example.com/a//b/*path*/", "note": '引号 " // /*',
                     "version": 2, "rules": [{"domain": ["example.com"]}]}

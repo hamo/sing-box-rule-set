@@ -7,6 +7,7 @@ from pathlib import Path
 
 from build import ROOT, load_sources, local_source_path
 from common import sha256, srs_version
+from formats import sing_box
 
 
 def verify(output, config_dir, selected=None):
@@ -69,8 +70,15 @@ def verify(output, config_dir, selected=None):
                 notes.append(f"\n<details><summary>{name}: unsupported rules and reasons</summary>\n\n"
                              "```text\n" + "\n".join(skipped_rules) + "\n```\n\n</details>\n")
         allowed.update(files)
-        rows.append(f"| {name} | {record['format']} | {record['rule_count']:,} | "
-                    f"{compiled:,} | {skipped:,} | {(output / (name + '.srs')).stat().st_size:,} | "
+        if record["format"] == "sing-box":
+            raw = output / "sources" / f"{name}{converter.EXTENSION}"
+            config = sing_box.load_config(raw.read_text(encoding="utf-8"))
+            objects, entries = sing_box.rule_counts(config["rules"])
+            source_lines, object_count = "—", f"{objects:,}"
+        else:
+            source_lines, object_count, entries = f"{record['rule_count']:,}", "—", compiled
+        rows.append(f"| {name} | {record['format']} | {source_lines} | {object_count} | "
+                    f"{entries:,} | {skipped:,} | {(output / (name + '.srs')).stat().st_size:,} | "
                     f"{record['srs_version']} |")
     actual = {path.relative_to(output).as_posix() for path in output.rglob("*") if path.is_file()}
     if actual != allowed:
@@ -79,8 +87,14 @@ def verify(output, config_dir, selected=None):
         if not (output / filename).stat().st_size:
             raise ValueError(f"Empty {filename}")
     return (f"Verified {len(records)} rule sets; all files and SHA-256 checksums match.\n\n"
-            "| Rule set | Format | Upstream objects/lines | Compiled | Skipped | SRS bytes | SRS version |\n"
-            "| --- | --- | ---: | ---: | ---: | ---: | ---: |\n" + "\n".join(rows) + "\n" + "".join(notes))
+            "| Rule set | Format | Source rule lines | Rule objects | Match entries | Skipped | SRS bytes | SRS version |\n"
+            "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |\n" + "\n".join(rows) + "\n\n"
+            "Source rule lines exclude comments, blank lines and subscription headers; — means not applicable.\n"
+            "Rule objects count all JSON rules, including nested logical containers. Match entries count "
+            "JSON matcher values (excluding structural fields) or successfully converted text rules "
+            "(including exceptions, excluding badfilter directives, disabled and skipped rules).\n"
+            "Counts are before compiler deduplication/optimization, not unique domains or matched hosts.\n"
+            + "".join(notes))
 
 
 def main():
