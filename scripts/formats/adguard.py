@@ -153,7 +153,8 @@ def convert(raw, output, compiler, source):
         print(f"{source['name']}: WARNING: {len(skipped)} unsupported rules; "
               "details recorded in metadata.json", flush=True)
     return {
-        "rule_count": count, "upstream": metadata,
+        "rule_count": count, "rule_object_count": None, "match_entry_count": compiled_count,
+        "upstream": metadata,
         "conversion": {
             "compiled_rule_count": compiled_count,
             "badfilter_rules": badfilters, "disabled_rules": disabled,

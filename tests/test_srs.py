@@ -64,6 +64,8 @@ class SRSTests(unittest.TestCase):
             # The compiler downgrades v3 JSON to SRS v2 when no v3-only fields are used.
             self.assertEqual([r["srs_version"] for r in records], [2, 2, 2])
             self.assertEqual(records[2]["upstream"]["version"], 3)
+            self.assertEqual([(r["rule_object_count"], r["match_entry_count"]) for r in records],
+                             [(None, 3), (None, 3), (1, 3)])
 
     def test_unsupported_modifier_fails_even_when_native_converter_exits_zero(self):
         with tempfile.TemporaryDirectory() as temp:

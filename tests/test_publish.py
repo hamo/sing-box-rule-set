@@ -57,10 +57,16 @@ class PublishTests(unittest.TestCase):
                     raw.write_text(json.dumps({"version": 2, "rules": [{"domain": ["example.com"]}]}))
                 else:
                     raw.write_text("original source fixture\n")
-                count = (len(builder.get_converter("sing-box").load_config(raw.read_text())["rules"])
-                         if item["format"] == "sing-box" else 1)
+                if item["format"] == "sing-box":
+                    converter = builder.get_converter("sing-box")
+                    rules = converter.load_config(raw.read_text())["rules"]
+                    count = len(rules)
+                    objects, entries = converter.rule_counts(rules)
+                else:
+                    count, objects, entries = 1, None, 1
                 records.append({
                     **item, "provider": config.stem, "srs_version": 2, "rule_count": count,
+                    "rule_object_count": objects, "match_entry_count": entries,
                     "source_type": "local" if "path" in item else "remote",
                     "sha256": {path.relative_to(output).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
                                for path in (raw, binary)},
@@ -107,6 +113,14 @@ class PublishTests(unittest.TestCase):
         self.assertIn("unchanged", publish())
         self.assertFalse(attempts.exists())
         self.assertFalse(waits.exists())
+        records[0]["match_entry_count"] += 1
+        save_metadata()
+        with self.assertRaises(subprocess.CalledProcessError) as raised:
+            publish()
+        self.assertIn("metadata rule counts", raised.exception.output)
+        records[0]["match_entry_count"] -= 1
+        self.assertEqual(second, git("rev-parse", "refs/heads/rule-set", cwd=remote))
+        self.assertFalse(attempts.exists())
         # A report must account for every input line before publication.
         reported = next(record for record in records if record.get("conversion"))
         reported["conversion"]["skipped_rule_count"] = 1

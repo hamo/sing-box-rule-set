@@ -58,4 +58,8 @@ def convert(raw, output, compiler, source):
     subprocess.run([
         compiler, "rule-set", "compile", "--output", str(output), str(raw),
     ], check=True)
-    return {"rule_count": count, "upstream": {"version": config["version"]}}
+    objects, entries = rule_counts(config["rules"])
+    return {
+        "rule_count": count, "rule_object_count": objects, "match_entry_count": entries,
+        "upstream": {"version": config["version"]},
+    }

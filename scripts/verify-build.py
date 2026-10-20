@@ -73,10 +73,17 @@ def verify(output, config_dir, selected=None):
         if record["format"] == "sing-box":
             raw = output / "sources" / f"{name}{converter.EXTENSION}"
             config = sing_box.load_config(raw.read_text(encoding="utf-8"))
-            objects, entries = sing_box.rule_counts(config["rules"])
-            source_lines, object_count = "—", f"{objects:,}"
+            expected_objects, expected_entries = sing_box.rule_counts(config["rules"])
+            source_lines = "—"
         else:
-            source_lines, object_count, entries = f"{record['rule_count']:,}", "—", compiled
+            expected_objects, expected_entries = None, compiled
+            source_lines = f"{record['rule_count']:,}"
+        objects, entries = record.get("rule_object_count"), record.get("match_entry_count")
+        if ("rule_object_count" not in record or type(entries) is not int
+                or (expected_objects is not None and type(objects) is not int)
+                or objects != expected_objects or entries != expected_entries):
+            raise ValueError(f"{name}: metadata rule counts do not match source/conversion; rebuild required")
+        object_count = "—" if objects is None else f"{objects:,}"
         rows.append(f"| {name} | {record['format']} | {source_lines} | {object_count} | "
                     f"{entries:,} | {skipped:,} | {(output / (name + '.srs')).stat().st_size:,} | "
                     f"{record['srs_version']} |")

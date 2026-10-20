@@ -40,6 +40,8 @@ class CustomTests(unittest.TestCase):
                 record = json.loads((output / "metadata.json").read_text())["sources"][0]
                 self.assertEqual(record["source_type"], "local")
                 self.assertEqual(record["path"], config["path"])
+                self.assertEqual(record["rule_object_count"], 1)
+                self.assertEqual(record["match_entry_count"], 1)
                 self.assertNotIn("download_url", record)
                 verifier.verify(output, root / "sources")
                 original = (output / "example.srs").read_bytes()
