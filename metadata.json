@@ -11,15 +11,15 @@
       "validation": {
         "title_prefix": "AdGuard DNS filter"
       },
-      "rule_count": 189280,
+      "rule_count": 190113,
       "rule_object_count": null,
-      "match_entry_count": 189186,
+      "match_entry_count": 190019,
       "upstream": {
         "title": "AdGuard DNS filter",
         "description": "Filter composed of several other filters (AdGuard Base filter, Tracking Protection filter, Mobile ads filter, EasyList, EasyPrivacy, etc) and simplified specifically to be better compatible with DNS-level ad blocking.",
         "homepage": "https://github.com/AdguardTeam/AdguardSDNSFilter",
         "license": "https://github.com/AdguardTeam/AdguardSDNSFilter/blob/master/LICENSE",
-        "last modified": "2026-10-20T20:14:56.563Z",
+        "last modified": "2026-10-21T04:17:02.824Z",
         "source name": "AdGuard Base filter ad servers",
         "source": "https://adguardteam.github.io/AdguardFilters/BaseFilter/sections/adservers.txt",
         "good": "||doubleclick.net^$third-party",
@@ -99,6 +99,8 @@
         "parse.ly": "parsely.com disguised trackers",
         "piwik pro": "piwik.pro disguised trackers",
         "plausible analytics": "custom.plausible.io disguised trackers",
+        "proxyhog": "proxyhog.com and europehog.com disguised trackers",
+        "datafast": "datafa.st and datafast.io disguised trackers",
         "redtrack": "rdtk.io disguised advertising networks",
         "stape": "stape.net disguised trackers",
         "tracedock": "*.eu-central-1.elb.amazonaws.com disguised trackers",
@@ -131,7 +133,7 @@
         "watson news app for ios https": "//github.com/AdguardTeam/AdguardFilters/issues/4524"
       },
       "conversion": {
-        "compiled_rule_count": 189186,
+        "compiled_rule_count": 190019,
         "badfilter_rules": [
           "||tn.porngo.xxx^$badfilter",
           "||pl.ua^$badfilter",
@@ -281,8 +283,8 @@
       "source_type": "remote",
       "download_url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "sha256": {
-        "sources/adguard-dns-filter.txt": "5f8488b104e0798075362cd07f2e803fc77a21222aa182d3807d10a198ac2361",
-        "adguard-dns-filter.srs": "7f85f955d65ec59db01c55ff67fa543fa54defebe1c94426ad853fae0194787b"
+        "sources/adguard-dns-filter.txt": "8c970bd93914f30d32332053c9f556e073699daccb9143fe14189f11c96c87e3",
+        "adguard-dns-filter.srs": "a964d956460661f03c464f292f3a0ddd25a55f568a05181aa07d1ab59172eb43"
       }
     },
     {
@@ -1115,23 +1117,23 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 233358,
+      "rule_count": 233694,
       "rule_object_count": null,
-      "match_entry_count": 233358,
+      "match_entry_count": 233694,
       "upstream": {
-        "version": "202610202106",
+        "version": "202610210408",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "233358",
-        "last modified": "2026-10-20T21:06:37+0000",
+        "entries": "233694",
+        "last modified": "2026-10-21T04:08:33+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 233358,
+        "compiled_rule_count": 233694,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1143,8 +1145,8 @@
       "source_type": "remote",
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "199d5ce5cb227fe0c7714b6d58766e5c55d72578426cc38f44112c92ea2e2a5d",
-        "oisd-big.srs": "a03a35947f6b299e969552067771b3471e0782d4167ffe7177d28129cf495e87"
+        "sources/oisd-big.txt": "a38de647a5efb72344f230b08a0bdc81e8d9634fa542f15eaa5c4e8893b1cdaa",
+        "oisd-big.srs": "7f1c6c434d72f08c9181846b3ce8e348249d6f6e44b9edbb51e5928d31572549"
       }
     },
     {
@@ -1161,23 +1163,23 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 57169,
+      "rule_count": 57345,
       "rule_object_count": null,
-      "match_entry_count": 57169,
+      "match_entry_count": 57345,
       "upstream": {
-        "version": "202610202107",
+        "version": "202610210408",
         "title": "oisd small",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "57169",
-        "last modified": "2026-10-20T21:07:04+0000",
+        "entries": "57345",
+        "last modified": "2026-10-21T04:08:56+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 57169,
+        "compiled_rule_count": 57345,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1189,8 +1191,8 @@
       "source_type": "remote",
       "download_url": "https://small.oisd.nl/",
       "sha256": {
-        "sources/oisd-small.txt": "c24cbd300505a85e2457d43f7d2c853bd26e2d710d535f08a70895c8772b78df",
-        "oisd-small.srs": "560a7a943f62a974d1b6508b047f067d524702641fb83c618203f1354dcd922f"
+        "sources/oisd-small.txt": "1b15481fe631f153d16d2e688b732166bd9143e7dc47b0e8fd8c7cfec751173c",
+        "oisd-small.srs": "94b754b40e40410182250feab6365e903ee06839df26786a8eed6bf0b0bb240d"
       }
     }
   ]
