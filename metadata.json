@@ -11,15 +11,15 @@
       "validation": {
         "title_prefix": "AdGuard DNS filter"
       },
-      "rule_count": 190706,
+      "rule_count": 190801,
       "rule_object_count": null,
-      "match_entry_count": 190612,
+      "match_entry_count": 190707,
       "upstream": {
         "title": "AdGuard DNS filter",
         "description": "Filter composed of several other filters (AdGuard Base filter, Tracking Protection filter, Mobile ads filter, EasyList, EasyPrivacy, etc) and simplified specifically to be better compatible with DNS-level ad blocking.",
         "homepage": "https://github.com/AdguardTeam/AdguardSDNSFilter",
         "license": "https://github.com/AdguardTeam/AdguardSDNSFilter/blob/master/LICENSE",
-        "last modified": "2026-10-22T10:14:03.114Z",
+        "last modified": "2026-10-22T16:17:06.188Z",
         "source name": "AdGuard Base filter ad servers",
         "source": "https://adguardteam.github.io/AdguardFilters/BaseFilter/sections/adservers.txt",
         "good": "||doubleclick.net^$third-party",
@@ -133,7 +133,7 @@
         "watson news app for ios https": "//github.com/AdguardTeam/AdguardFilters/issues/4524"
       },
       "conversion": {
-        "compiled_rule_count": 190612,
+        "compiled_rule_count": 190707,
         "badfilter_rules": [
           "||tn.porngo.xxx^$badfilter",
           "||pl.ua^$badfilter",
@@ -283,8 +283,8 @@
       "source_type": "remote",
       "download_url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "sha256": {
-        "sources/adguard-dns-filter.txt": "99420dc134c3af3ba185782c9be6d1a157481cccb7e0eb7ea912f421bf664b8b",
-        "adguard-dns-filter.srs": "51735c30933d5f5c9fed344c2ed22d23d0ca7727fbe0b40f6ec62fbd8489df94"
+        "sources/adguard-dns-filter.txt": "009b67ed1ebe8cd8b7e1793c615fbf618105bb50ce8288540c355ee4007d6e3c",
+        "adguard-dns-filter.srs": "2bb6da4b9bc5edc401017fab4125526054e989813f69b7b31ab14458bfca8756"
       }
     },
     {
@@ -293,7 +293,7 @@
       "format": "sing-box",
       "rule_count": 1,
       "rule_object_count": 1,
-      "match_entry_count": 965,
+      "match_entry_count": 976,
       "upstream": {
         "version": 3
       },
@@ -302,8 +302,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json",
       "sha256": {
-        "sources/awavenue.json": "23cab6d71cc577b18d8081ad4db3a13baf2f5196378c05893494464074d04fa1",
-        "awavenue.srs": "0550d96b2928f143cf8b38d4690f96a5545ffdb162c70bd214a713665dbb4513"
+        "sources/awavenue.json": "611395752861ad8eca5cb44e53ad85db21ccad7ab2d1aaa41bf8400808e8f4d3",
+        "awavenue.srs": "f8a9de4f7f05e7b2a4cb80622ed7758a87007aec97780fe674742689707bf1f5"
       }
     },
     {
@@ -312,7 +312,7 @@
       "format": "sing-box",
       "rule_count": 1,
       "rule_object_count": 1,
-      "match_entry_count": 655,
+      "match_entry_count": 665,
       "upstream": {
         "version": 3
       },
@@ -321,8 +321,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-Only.Ads.json",
       "sha256": {
-        "sources/awavenue-only-ads.json": "9cd273d158c379355a195a80bfe19c8ded8c2637a8c4e1ddcf558738183f9471",
-        "awavenue-only-ads.srs": "b80a418b9d87c93e5cc93b15d047ff5fd39e846be96af671d494dfe019a3a603"
+        "sources/awavenue-only-ads.json": "cc913fd1213e7f0cafaeaeaaeeddf8cfd7e528c144af470ffbe6cab7745480a8",
+        "awavenue-only-ads.srs": "e5f3b1896526718b3e28149dc3e4e4af5d78b7eb0b642f0938998ca51fe0eb5e"
       }
     },
     {
@@ -331,7 +331,7 @@
       "format": "sing-box",
       "rule_count": 1,
       "rule_object_count": 1,
-      "match_entry_count": 751,
+      "match_entry_count": 762,
       "upstream": {
         "version": 3
       },
@@ -340,8 +340,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Privacy.json",
       "sha256": {
-        "sources/awavenue-no-privacy.json": "9e261cb983e35e2382f03d1697c199bc811e4f99c39a8b4e03e9d2e81e25d5a2",
-        "awavenue-no-privacy.srs": "ec04ca770166b9a0c92d479390bb713ef6987078375cfe4d334bc2226e0b2e5e"
+        "sources/awavenue-no-privacy.json": "b3c923fc94af5a7a804a9c90ea91028db321bb1e6ba51764631cc6c0413feaff",
+        "awavenue-no-privacy.srs": "16b3200064d88a0066e03f19f0294fb3f4aa29a93d66e090e4c5c2c02d137114"
       }
     },
     {
@@ -350,7 +350,7 @@
       "format": "sing-box",
       "rule_count": 1,
       "rule_object_count": 1,
-      "match_entry_count": 869,
+      "match_entry_count": 879,
       "upstream": {
         "version": 3
       },
@@ -359,8 +359,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox-No.Unwelcome.json",
       "sha256": {
-        "sources/awavenue-no-unwelcome.json": "17c5156c904f87c86a482620aa710285dca491e091fd3b703f676a854e83cf47",
-        "awavenue-no-unwelcome.srs": "50c188436e3e2cd3d3e3796975d910abcdf27061dedbc0ef0ad6ee52b99b9b50"
+        "sources/awavenue-no-unwelcome.json": "8c14c98464df3ca2c6eef8a4561b3068acd35a2b43d5404f4fa1d5418e79b23e",
+        "awavenue-no-unwelcome.srs": "2b1b7da99de67d317437d92b1086bc488b5d395f4f868bfe370b0d98f90c7234"
       }
     },
     {
@@ -1117,23 +1117,23 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 234360,
+      "rule_count": 235898,
       "rule_object_count": null,
-      "match_entry_count": 234360,
+      "match_entry_count": 235898,
       "upstream": {
-        "version": "202610221205",
+        "version": "202610221705",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "234360",
-        "last modified": "2026-10-22T12:05:35+0000",
+        "entries": "235898",
+        "last modified": "2026-10-22T17:05:30+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 234360,
+        "compiled_rule_count": 235898,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1145,8 +1145,8 @@
       "source_type": "remote",
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "974ea864d7ad1c54888b8b0306e6fe1e68484db3f70c05ef873f76aafb907cf2",
-        "oisd-big.srs": "e3123c4cd9eff960761fe2f5291c6602368fc2516256bb0dee2f45a8c4d94c63"
+        "sources/oisd-big.txt": "a4755f34287604bbf7b595f85804372fc7945e15d5f1079224a1a9fa2b026ab3",
+        "oisd-big.srs": "5ab8e24baa549ab5cf72f3d77b996a5a0d6b3f560e52f05009888901c64f67a8"
       }
     },
     {
@@ -1163,23 +1163,23 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 58396,
+      "rule_count": 58742,
       "rule_object_count": null,
-      "match_entry_count": 58396,
+      "match_entry_count": 58742,
       "upstream": {
-        "version": "202610220508",
+        "version": "202610221622",
         "title": "oisd small",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "58396",
-        "last modified": "2026-10-22T05:08:18+0000",
+        "entries": "58742",
+        "last modified": "2026-10-22T16:22:21+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 58396,
+        "compiled_rule_count": 58742,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1191,8 +1191,8 @@
       "source_type": "remote",
       "download_url": "https://small.oisd.nl/",
       "sha256": {
-        "sources/oisd-small.txt": "2fd0f8544b0847e312c60b8375c11a10f427672a69da42b525994844d46a3951",
-        "oisd-small.srs": "910a0006f3c6eab1c9be74d500131ca2346139c34c00e2ad9be6b349934eacc9"
+        "sources/oisd-small.txt": "c79e5e166b2bb4369908f00de57d0e042be15fa7b8c4b0faa2b83fc3902bde74",
+        "oisd-small.srs": "5f29104cce347d9426ddf6573cdde38d335e240b31afc047aa45ace44fd85c01"
       }
     }
   ]
