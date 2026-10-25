@@ -11,15 +11,15 @@
       "validation": {
         "title_prefix": "AdGuard DNS filter"
       },
-      "rule_count": 191883,
+      "rule_count": 191935,
       "rule_object_count": null,
-      "match_entry_count": 191789,
+      "match_entry_count": 191841,
       "upstream": {
         "title": "AdGuard DNS filter",
         "description": "Filter composed of several other filters (AdGuard Base filter, Tracking Protection filter, Mobile ads filter, EasyList, EasyPrivacy, etc) and simplified specifically to be better compatible with DNS-level ad blocking.",
         "homepage": "https://github.com/AdguardTeam/AdguardSDNSFilter",
         "license": "https://github.com/AdguardTeam/AdguardSDNSFilter/blob/master/LICENSE",
-        "last modified": "2026-10-25T16:14:04.865Z",
+        "last modified": "2026-10-25T20:13:16.019Z",
         "source name": "AdGuard Base filter ad servers",
         "source": "https://adguardteam.github.io/AdguardFilters/BaseFilter/sections/adservers.txt",
         "good": "||doubleclick.net^$third-party",
@@ -133,7 +133,7 @@
         "watson news app for ios https": "//github.com/AdguardTeam/AdguardFilters/issues/4524"
       },
       "conversion": {
-        "compiled_rule_count": 191789,
+        "compiled_rule_count": 191841,
         "badfilter_rules": [
           "||tn.porngo.xxx^$badfilter",
           "||pl.ua^$badfilter",
@@ -283,8 +283,8 @@
       "source_type": "remote",
       "download_url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "sha256": {
-        "sources/adguard-dns-filter.txt": "b2ec2342c5367e6bdd96d507c6a25f3a70a11e7e6aa8fe19e9714707c899396d",
-        "adguard-dns-filter.srs": "37315207f207c79ac3dbe7d2f87057a57475060d37cdadbbe397937ef7a80881"
+        "sources/adguard-dns-filter.txt": "de854234d222e6330d5191877fc6bffae034052bf11abe2d7aa75b3af932e4ff",
+        "adguard-dns-filter.srs": "21d0220549e441fad3660c4e06618eab54644ad2062e68d46d6c49481c8d77ae"
       }
     },
     {
@@ -1117,23 +1117,23 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 233793,
+      "rule_count": 233622,
       "rule_object_count": null,
-      "match_entry_count": 233793,
+      "match_entry_count": 233622,
       "upstream": {
-        "version": "202610251610",
+        "version": "202610252006",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "233793",
-        "last modified": "2026-10-25T16:10:29+0000",
+        "entries": "233622",
+        "last modified": "2026-10-25T20:06:18+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 233793,
+        "compiled_rule_count": 233622,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1145,8 +1145,8 @@
       "source_type": "remote",
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "0aa3065eade563f3c15176466b5383a2e0bc9359e67e182fac454560d8f15477",
-        "oisd-big.srs": "b7d84ad1163f84d3c8267904be250da769abbef9606501072f0ee3391473d3fd"
+        "sources/oisd-big.txt": "63bef22207c86a1c80fa5e328e103bfe5fb1e0731a6ebc03c61f4ec27f6e7f9e",
+        "oisd-big.srs": "000e88de5a196f0eb288181c063476078b921919ad47145069f681818f981bef"
       }
     },
     {
@@ -1163,23 +1163,23 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 58648,
+      "rule_count": 58784,
       "rule_object_count": null,
-      "match_entry_count": 58648,
+      "match_entry_count": 58784,
       "upstream": {
-        "version": "202610251610",
+        "version": "202610252006",
         "title": "oisd small",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "58648",
-        "last modified": "2026-10-25T16:10:58+0000",
+        "entries": "58784",
+        "last modified": "2026-10-25T20:06:44+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 58648,
+        "compiled_rule_count": 58784,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1191,8 +1191,8 @@
       "source_type": "remote",
       "download_url": "https://small.oisd.nl/",
       "sha256": {
-        "sources/oisd-small.txt": "24bd2f02afb327ee9a6d1877117cc5c0d4ccdb65b2ca36b8ea09a01fd2f00c33",
-        "oisd-small.srs": "407b27f88e4fe0e56d00f658d24d1e163c674b70ff819b484b6fa5411f9a91ff"
+        "sources/oisd-small.txt": "18d4dbb7b2f44e350046b84426e4eb5ace9b309389173601e7950ddccbb6c7ba",
+        "oisd-small.srs": "a506026337fee1478531093a0dce193512ea888471ba86ccd78ca5fa34aa5c71"
       }
     }
   ]
