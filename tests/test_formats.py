@@ -110,7 +110,12 @@ class SingBoxTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             source = Path(temp) / "source.json"
             for config in ([], {}, {"version": 2, "rules": []},
-                           {"version": 2, "rules": "invalid"}):
+                           {"version": 2, "rules": "invalid"},
+                           {"version": 2, "rules": [1]},
+                           {"version": 2, "rules": [{"type": "logical", "mode": "and", "rules": "invalid"}]},
+                           {"version": 2, "rules": [{}]},
+                           {"version": 2, "rules": [{"domain_suffix": []}]},
+                           {"version": 2, "rules": [{"type": "logical", "mode": "and", "rules": [{}]}]}):
                 source.write_text(json.dumps(config))
                 with self.subTest(config=config), self.assertRaises(ValueError):
                     sing_box.convert(source, Path(temp) / "output.srs", "missing-compiler", {})

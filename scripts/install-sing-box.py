@@ -27,7 +27,7 @@ def main():
     url = f"https://github.com/SagerNet/sing-box/releases/download/v{version}/{package}.tar.gz"
     destination = ROOT / ".tools/sing-box"
     destination.parent.mkdir(exist_ok=True)
-    with tempfile.TemporaryDirectory() as temp:
+    with tempfile.TemporaryDirectory(prefix=".install-", dir=destination.parent) as temp:
         archive = Path(temp) / "sing-box.tar.gz"
         subprocess.run([
             "curl", "--fail", "--silent", "--show-error", "--location",
@@ -44,8 +44,8 @@ def main():
             with binary, staged.open("wb") as output:
                 shutil.copyfileobj(binary, output)
             staged.chmod(0o755)
-            shutil.copy2(staged, destination)
-    subprocess.run([str(destination), "version"], check=True)
+            subprocess.run([str(staged), "version"], check=True)
+            staged.replace(destination)
 
 
 if __name__ == "__main__":

@@ -74,6 +74,8 @@ def verify(output, config_dir, selected=None):
             raw = output / "sources" / f"{name}{converter.EXTENSION}"
             config = sing_box.load_config(raw.read_text(encoding="utf-8"))
             expected_objects, expected_entries = sing_box.rule_counts(config["rules"])
+            if expected_entries == 0:
+                raise ValueError(f"{name}: sing-box source has no matching entries; rebuild required")
             source_lines = "—"
         else:
             expected_objects, expected_entries = None, compiled

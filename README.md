@@ -108,6 +108,7 @@ sources/*.json → 下载远端 / 复制仓库文件 → 按 format 转换 → �
 - 转换前校验格式、声明条目数和最小规则数量，转换后核对数量、文件哈希和 SRS 版本。
 - 实际启动 sing-box 加载全部 SRS，初始化成功并正常退出后才能发布。
 - 任一来源失败均保留上一版；本地构建也不会用半成品覆盖已有结果。
+- 本地构建通过目录重命名替换产物，替换失败时恢复旧目录；安装编译器也先运行版本检查，再替换旧文件。
 - 通过普通 Git 提交和推送保留发布历史，内容相同则不提交；推送失败时最多尝试 3 次，依次等待 5、10 秒，耗尽后仍报错。
 
 发布分支保存 `.srs`、完整来源原文件、`LICENSE` 和 `metadata.json`。
@@ -140,6 +141,8 @@ python3 scripts/check-srs-load.py build
 ```
 
 产物位于 `build/`。可用 `--sing-box /absolute/path/to/sing-box` 指定已有编译器。
+`--output` 必须与源码目录、来源配置目录及编译器分离，不能使用 `rules/`、`sources/`、`scripts/` 等维护目录。
+若进程被强制结束或目录恢复失败，旧构建可能保留在输出目录旁的 `.rule-set-backup-*` 中，可手动恢复。
 仅构建某个来源组时使用独立输出目录，避免替换其他来源的产物：
 
 ```sh
@@ -189,6 +192,7 @@ python3 scripts/build.py --source oisd --output build-oisd
 OISD 声明 `Syntax: Adblock Plus Filter List`，HaGeZi 声明 `Syntax: AdBlock`，均配置为 `adblock`；
 AdGuard DNS Filter 配置为 `adguard`。AWAvenue 直接编译官方 JSON，保留原始匹配字段；
 其源格式版本 3 编译为当前 SRS 版本 2，源版本和实际 SRS 版本分别记录在元数据中。
+JSON 还必须包含至少一个匹配条目；只有空对象、空数组或空逻辑容器的规则集会被转换与发布校验拒绝。
 
 ### AdGuard / Adblock 语法范围
 

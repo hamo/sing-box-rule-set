@@ -88,6 +88,14 @@ def download_source(source, destination):
 
 
 def build(config_dir, output, compiler, selected=None):
+    config_dir, output = config_dir.resolve(), output.resolve()
+    protected = [ROOT / name for name in
+                 ("rules", "sources", "scripts", "tests", "docs", "tools", ".tools", ".github", ".git")]
+    protected += [config_dir, Path(shutil.which(compiler) or compiler).resolve()]
+    if (ROOT.resolve().is_relative_to(output) or (output / ".git").exists() or output.is_file()
+            or any(output.is_relative_to(path.resolve()) or path.resolve().is_relative_to(output)
+                   for path in protected)):
+        raise ValueError("Output must be a dedicated build directory, separate from project files and inputs")
     sources = load_sources(config_dir, selected)
     version = subprocess.check_output([compiler, "version"], text=True).splitlines()[0]
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -117,14 +125,21 @@ def build(config_dir, output, compiler, selected=None):
         write_json(staged / "metadata.json", {"compiler": version, "sources": records})
         shutil.copy2(ROOT / "LICENSE", staged / "LICENSE")
         shutil.copy2(ROOT / "docs/rule-set-README.md", staged / "README.md")
-        output.mkdir(exist_ok=True)
-        for path in output.iterdir():
-            if path.is_dir():
-                shutil.rmtree(path)
-            else:
-                path.unlink()
-        for path in staged.iterdir():
-            shutil.move(str(path), output / path.name)
+        backup = None
+        if output.exists():
+            backup = Path(tempfile.mkdtemp(prefix=".rule-set-backup-", dir=output.parent))
+            backup.rmdir()
+            output.rename(backup)
+        try:
+            staged.rename(output)
+        except BaseException:
+            if backup is not None:
+                backup.rename(output)
+            raise
+        else:
+            if backup is not None:
+                shutil.rmtree(backup)
+        # shortcut: a forced kill can leave .rule-set-backup-*; restore it manually.
 
 
 def main():
@@ -135,12 +150,7 @@ def main():
     parser.add_argument("--output", type=Path, default=ROOT / "build")
     parser.add_argument("--sing-box", default=str(ROOT / ".tools/sing-box"))
     args = parser.parse_args()
-    output = args.output.resolve()
-    git_dir = ROOT / ".git"
-    if (output == ROOT or ROOT.is_relative_to(output) or (output / ".git").exists()
-            or output == git_dir or git_dir in output.parents):
-        parser.error("Output must be a dedicated build directory, not a repository or its parent")
-    build(args.sources_dir.resolve(), output, args.sing_box, args.upstream)
+    build(args.sources_dir, args.output, args.sing_box, args.upstream)
 
 
 if __name__ == "__main__":

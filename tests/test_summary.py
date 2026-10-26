@@ -1,6 +1,7 @@
 """Check the Actions summary with real mixed-format conversions."""
 
 import importlib.util
+import hashlib
 import json
 import subprocess
 import sys
@@ -133,6 +134,21 @@ class SummaryTests(unittest.TestCase):
                             verifier.verify(self.output, self.configs)
         metadata_path.write_text(original)
         verifier.verify(self.output, self.configs)
+
+    def test_empty_json_is_rejected_even_when_checksums_and_counts_match(self):
+        raw = self.output / "sources/json-group.json"
+        binary = self.output / "json-group.srs"
+        raw.write_text('{"version":2,"rules":[{"domain_suffix":[]}]}')
+        subprocess.run([str(COMPILER), "rule-set", "compile", "--output", str(binary), str(raw)], check=True)
+        metadata_path = self.output / "metadata.json"
+        metadata = json.loads(metadata_path.read_text())
+        record = next(r for r in metadata["sources"] if r["name"] == "json-group")
+        record.update(rule_count=1, rule_object_count=1, match_entry_count=0)
+        record["sha256"] = {p.relative_to(self.output).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                            for p in (raw, binary)}
+        metadata_path.write_text(json.dumps(metadata))
+        with self.assertRaisesRegex(ValueError, "no matching entries"):
+            verifier.verify(self.output, self.configs)
 
 
 if __name__ == "__main__":

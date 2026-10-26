@@ -21,6 +21,8 @@ def load_config(text):
 
 def rule_counts(rules):
     """Count JSON objects and matcher values before compiler optimization."""
+    if not isinstance(rules, list) or any(not isinstance(rule, dict) for rule in rules):
+        raise ValueError("sing-box rules must be an array of objects")
     def values_count(value):
         if isinstance(value, dict):
             return sum(values_count(items) for items in value.values())
@@ -55,10 +57,12 @@ def convert(raw, output, compiler, source):
     minimum = source.get("min_rules", 1)
     if count < minimum:
         raise ValueError(f"Only {count} rules; minimum {minimum}")
+    objects, entries = rule_counts(config["rules"])
+    if entries == 0:
+        raise ValueError("sing-box source has no matching entries")
     subprocess.run([
         compiler, "rule-set", "compile", "--output", str(output), str(raw),
     ], check=True)
-    objects, entries = rule_counts(config["rules"])
     return {
         "rule_count": count, "rule_object_count": objects, "match_entry_count": entries,
         "upstream": {"version": config["version"]},
