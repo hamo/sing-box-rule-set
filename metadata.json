@@ -11,15 +11,15 @@
       "validation": {
         "title_prefix": "AdGuard DNS filter"
       },
-      "rule_count": 180455,
+      "rule_count": 180495,
       "rule_object_count": null,
-      "match_entry_count": 180361,
+      "match_entry_count": 180401,
       "upstream": {
         "title": "AdGuard DNS filter",
         "description": "Filter composed of several other filters (AdGuard Base filter, Tracking Protection filter, Mobile ads filter, EasyList, EasyPrivacy, etc) and simplified specifically to be better compatible with DNS-level ad blocking.",
         "homepage": "https://github.com/AdguardTeam/AdguardSDNSFilter",
         "license": "https://github.com/AdguardTeam/AdguardSDNSFilter/blob/master/LICENSE",
-        "last modified": "2026-10-26T04:18:48.113Z",
+        "last modified": "2026-10-26T06:33:03.584Z",
         "source name": "AdGuard Base filter ad servers",
         "source": "https://adguardteam.github.io/AdguardFilters/BaseFilter/sections/adservers.txt",
         "good": "||doubleclick.net^$third-party",
@@ -133,7 +133,7 @@
         "watson news app for ios https": "//github.com/AdguardTeam/AdguardFilters/issues/4524"
       },
       "conversion": {
-        "compiled_rule_count": 180361,
+        "compiled_rule_count": 180401,
         "badfilter_rules": [
           "||tn.porngo.xxx^$badfilter",
           "||pl.ua^$badfilter",
@@ -283,8 +283,122 @@
       "source_type": "remote",
       "download_url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "sha256": {
-        "sources/adguard-dns-filter.txt": "0755a008fe3ccfb74b62d59d7d2fc5d3947135a5ab155bf1921bcf9d6f07bd18",
-        "adguard-dns-filter.srs": "3e526228c8108847f007012ee73700816384fe4e9f962bdfdc8d4a503a647719"
+        "sources/adguard-dns-filter.txt": "069aca64ccf8e8921b10619a19bfbe698eca2403e5a33a07cf9a38463d2d0a57",
+        "adguard-dns-filter.srs": "35a9c158d4015313f48c725402bfea8c8a1d786397f96beeaf3aae35ac2274be"
+      }
+    },
+    {
+      "name": "geosite-openai",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/openai.json",
+      "format": "sing-box",
+      "rule_count": 6,
+      "rule_object_count": 6,
+      "match_entry_count": 52,
+      "upstream": {
+        "version": 2
+      },
+      "provider": "ai-proxy",
+      "srs_version": 2,
+      "source_type": "remote",
+      "download_url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/openai.json",
+      "sha256": {
+        "sources/geosite-openai.json": "56813cdafef9927471c28ef2ec536d1fe5a0da44efef628aadf6ded3d9a19176",
+        "geosite-openai.srs": "a27aa273765aacfda16ef877c40a2780f50863d50ed3587087c4abb6e6cf35cc"
+      }
+    },
+    {
+      "name": "geosite-anthropic",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/anthropic.json",
+      "format": "sing-box",
+      "rule_count": 5,
+      "rule_object_count": 5,
+      "match_entry_count": 52,
+      "upstream": {
+        "version": 2
+      },
+      "provider": "ai-proxy",
+      "srs_version": 2,
+      "source_type": "remote",
+      "download_url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/anthropic.json",
+      "sha256": {
+        "sources/geosite-anthropic.json": "33f8f0012f814b0b54b42da9f0e49a455eb705c32cc565028d936dc254d356c8",
+        "geosite-anthropic.srs": "89a0f84ae734406448aed8f36f6ca52263ff2b9c15f870d910c417443f6a04ad"
+      }
+    },
+    {
+      "name": "geosite-google-ai",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/google-ai.json",
+      "format": "sing-box",
+      "rule_count": 3,
+      "rule_object_count": 3,
+      "match_entry_count": 50,
+      "upstream": {
+        "version": 2
+      },
+      "provider": "ai-proxy",
+      "srs_version": 2,
+      "source_type": "remote",
+      "download_url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/google-ai.json",
+      "sha256": {
+        "sources/geosite-google-ai.json": "c192ca06e123277b1bd7ccab2c6b113efae23d9a8940c520f3ffaf998f75407a",
+        "geosite-google-ai.srs": "61e9601f1e47ecb1bba79406ad8c36589eeeee84a570f8ef333bcccce0896182"
+      }
+    },
+    {
+      "name": "geosite-x-ai",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/x-ai.json",
+      "format": "sing-box",
+      "rule_count": 1,
+      "rule_object_count": 1,
+      "match_entry_count": 4,
+      "upstream": {
+        "version": 2
+      },
+      "provider": "ai-proxy",
+      "srs_version": 2,
+      "source_type": "remote",
+      "download_url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/x-ai.json",
+      "sha256": {
+        "sources/geosite-x-ai.json": "958b370e60f5f5e27a56ed6a96405aebc18051069472a74f925b9e0ae34d10b4",
+        "geosite-x-ai.srs": "88b662b6ecf53728a581f18e296ed67c4cc5a85230d44a0c1a8ca436c1e7374d"
+      }
+    },
+    {
+      "name": "geosite-meta-ai",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/meta-ai.json",
+      "format": "sing-box",
+      "rule_count": 2,
+      "rule_object_count": 2,
+      "match_entry_count": 11,
+      "upstream": {
+        "version": 2
+      },
+      "provider": "ai-proxy",
+      "srs_version": 2,
+      "source_type": "remote",
+      "download_url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/meta-ai.json",
+      "sha256": {
+        "sources/geosite-meta-ai.json": "28829dd16ed26f75f9820e33b7e2960a400ae1e871abf67cbcfbd79853f52511",
+        "geosite-meta-ai.srs": "e27634a40e9ef031402e58f7a678b2df5ed76369fc64ff9ad049835f6fa39804"
+      }
+    },
+    {
+      "name": "geosite-deepseek",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/deepseek.json",
+      "format": "sing-box",
+      "rule_count": 1,
+      "rule_object_count": 1,
+      "match_entry_count": 2,
+      "upstream": {
+        "version": 2
+      },
+      "provider": "ai-proxy",
+      "srs_version": 2,
+      "source_type": "remote",
+      "download_url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/deepseek.json",
+      "sha256": {
+        "sources/geosite-deepseek.json": "dc0f0476dd3b6378925d0518d5f7edfdc3a3d394ed28d45c385293b1b5a1b908",
+        "geosite-deepseek.srs": "9c42fa7633de8e3ffe66c9bdab528ce0525f76f91a322711fb820d554ef443aa"
       }
     },
     {

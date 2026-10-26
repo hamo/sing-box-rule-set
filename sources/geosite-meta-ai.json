@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain": [
+        "ai.developer.meta.com",
+        "ai.meta.com",
+        "aidemos.meta.com",
+        "developer.meta.com",
+        "llama.developer.meta.com"
+      ]
+    },
+    {
+      "domain_suffix": [
+        "atmeta.com",
+        "llama.com",
+        "llamameta.net",
+        "meta.ai",
+        "metaaivm.com",
+        "muse.ai"
+      ]
+    }
+  ]
+}
