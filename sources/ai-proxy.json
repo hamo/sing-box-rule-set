@@ -1,0 +1,34 @@
+{
+  "sources": [
+    {
+      "name": "geosite-openai",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/openai.json",
+      "format": "sing-box"
+    },
+    {
+      "name": "geosite-anthropic",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/anthropic.json",
+      "format": "sing-box"
+    },
+    {
+      "name": "geosite-google-ai",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/google-ai.json",
+      "format": "sing-box"
+    },
+    {
+      "name": "geosite-x-ai",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/x-ai.json",
+      "format": "sing-box"
+    },
+    {
+      "name": "geosite-meta-ai",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/meta-ai.json",
+      "format": "sing-box"
+    },
+    {
+      "name": "geosite-deepseek",
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/deepseek.json",
+      "format": "sing-box"
+    }
+  ]
+}

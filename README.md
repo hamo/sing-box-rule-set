@@ -1,6 +1,6 @@
 # sing-box-rule-set
 
-通过 GitHub Actions 将上游列表和仓库内自定义规则编译为 sing-box `.srs`，当前提供 24 个规则集。
+通过 GitHub Actions 将上游列表和仓库内自定义规则编译为 sing-box `.srs`，当前提供 30 个规则集。
 
 ## 规则集
 
@@ -30,6 +30,12 @@
 | HaGeZi Native Xiaomi | [官方 Adblock 列表](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.xiaomi.txt) | `adblock` | [hagezi-native-xiaomi.srs](https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/hagezi-native-xiaomi.srs) | 小米设备内置跟踪 |
 | AdGuard DNS Filter | [官方 DNS Filter](https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt) | `adguard` | [adguard-dns-filter.srs](https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/adguard-dns-filter.srs) | 针对 DNS 优化的综合广告和跟踪拦截 |
 | 美国个人金融服务 | [本仓库 JSON](https://raw.githubusercontent.com/hamo/sing-box-rule-set/main/rules/geosite-finance-us.json) | `sing-box` | [geosite-finance-us.srs](https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/geosite-finance-us.srs) | 银行、信用卡、投资、支付及消费金融域名分类，用于分流 |
+| OpenAI / ChatGPT | [官方 JSON](https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/openai.json) | `sing-box` | [geosite-openai.srs](https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/geosite-openai.srs) | AI 服务流量分流 |
+| Anthropic / Claude | [官方 JSON](https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/anthropic.json) | `sing-box` | [geosite-anthropic.srs](https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/geosite-anthropic.srs) | AI 服务流量分流 |
+| Google AI / Gemini | [官方 JSON](https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/google-ai.json) | `sing-box` | [geosite-google-ai.srs](https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/geosite-google-ai.srs) | AI 服务流量分流 |
+| xAI / Grok | [官方 JSON](https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/x-ai.json) | `sing-box` | [geosite-x-ai.srs](https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/geosite-x-ai.srs) | AI 服务流量分流 |
+| Meta AI / Llama | [官方 JSON](https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/meta-ai.json) | `sing-box` | [geosite-meta-ai.srs](https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/geosite-meta-ai.srs) | AI 服务流量分流 |
+| DeepSeek | [官方 JSON](https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/main/rules/sing-box/deepseek.json) | `sing-box` | [geosite-deepseek.srs](https://raw.githubusercontent.com/hamo/sing-box-rule-set/rule-set/geosite-deepseek.srs) | AI 服务流量分流 |
 
 ### 规则选择
 
@@ -38,6 +44,7 @@
 - 威胁防护：HaGeZi TIF Full / Medium / Mini 三选一，后两者为轻量版本。
 - Native Tracker 按设备或服务选择，可能影响相关功能；TikTok 普通版与 Aggressive 版选一个。
 - `geosite-finance-us` 用于金融流量分流，范围与维护方式见 [自定义规则说明](rules/README.md)。
+- 六套 AI 规则使用 VPSDance 的对应 sing-box JSON，按服务在 `route.rules` 中指定出站；保留上游的域名、进程名和 IP 匹配，用于流量分流。
 
 ## 在 sing-box 中使用
 
@@ -233,7 +240,7 @@ JSON 的 `rule_count` 保持原有的顶层规则对象数；完整对象数和�
 ## 来源与许可证
 
 本项目为独立的格式转换与分发项目，代码及仓库自定义规则采用 [GPL-3.0](LICENSE)。
-上游规则及其转换产物遵循各自的 GPL v3 许可证，完整原文及作者声明保留在发布分支的 `sources/` 中。
+上游规则及其转换产物遵循各自许可证，完整原文保留在发布分支的 `sources/` 中；AI Proxy Rules 的 MIT 声明随发布 README 保留。
 
 | 上游 / 维护者 | 许可证 |
 | --- | --- |
@@ -241,3 +248,4 @@ JSON 的 `rule_count` 保持原有的顶层规则对象数；完整对象数和�
 | [AWAvenue / TG-Twilight](https://github.com/TG-Twilight/AWAvenue-Ads-Rule) | [GPL v3](https://github.com/TG-Twilight/AWAvenue-Ads-Rule/blob/main/LICENSE) |
 | [HaGeZi](https://github.com/hagezi/dns-blocklists) | [GPL v3](https://github.com/hagezi/dns-blocklists/blob/main/LICENSE) |
 | [AdGuard DNS Filter](https://github.com/AdguardTeam/AdGuardSDNSFilter) | [GPL v3](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE) |
+| [AI Proxy Rules / VPSDance](https://github.com/VPSDance/ai-proxy-rules) | [MIT](https://github.com/VPSDance/ai-proxy-rules/blob/main/LICENSE) |
