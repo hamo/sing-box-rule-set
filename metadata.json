@@ -1,5 +1,5 @@
 {
-  "compiler": "sing-box version 1.14.3",
+  "compiler": "sing-box version 1.14.4",
   "sources": [
     {
       "name": "adguard-dns-filter",
@@ -1117,23 +1117,23 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 233661,
+      "rule_count": 233655,
       "rule_object_count": null,
-      "match_entry_count": 233661,
+      "match_entry_count": 233655,
       "upstream": {
-        "version": "202610260406",
+        "version": "202610260606",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "233661",
-        "last modified": "2026-10-26T04:06:02+0000",
+        "entries": "233655",
+        "last modified": "2026-10-26T06:06:36+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 233661,
+        "compiled_rule_count": 233655,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1145,8 +1145,8 @@
       "source_type": "remote",
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "a7b5eefca4bb7689ed7c946f1b5b78d17d7951d70c745df1293b83afd24599a3",
-        "oisd-big.srs": "6ab9189c6d7463ac5734313ca1c07387d8b7c7019ed3652699d00b923037bded"
+        "sources/oisd-big.txt": "37ac7b01f8cf224c6eb701f8f167b68b7074aae2c1f8916f5dc9f79ad3993b63",
+        "oisd-big.srs": "8d61bee552ffad412be30b081162341bb6030cd6947d94a4611b0f73dec50066"
       }
     },
     {
