@@ -11,15 +11,15 @@
       "validation": {
         "title_prefix": "AdGuard DNS filter"
       },
-      "rule_count": 185447,
+      "rule_count": 185575,
       "rule_object_count": null,
-      "match_entry_count": 185353,
+      "match_entry_count": 185481,
       "upstream": {
         "title": "AdGuard DNS filter",
         "description": "Filter composed of several other filters (AdGuard Base filter, Tracking Protection filter, Mobile ads filter, EasyList, EasyPrivacy, etc) and simplified specifically to be better compatible with DNS-level ad blocking.",
         "homepage": "https://github.com/AdguardTeam/AdguardSDNSFilter",
         "license": "https://github.com/AdguardTeam/AdguardSDNSFilter/blob/master/LICENSE",
-        "last modified": "2026-10-30T04:12:50.923Z",
+        "last modified": "2026-10-30T12:16:24.388Z",
         "source name": "AdGuard Base filter ad servers",
         "source": "https://adguardteam.github.io/AdguardFilters/BaseFilter/sections/adservers.txt",
         "good": "||doubleclick.net^$third-party",
@@ -133,7 +133,7 @@
         "watson news app for ios https": "//github.com/AdguardTeam/AdguardFilters/issues/4524"
       },
       "conversion": {
-        "compiled_rule_count": 185353,
+        "compiled_rule_count": 185481,
         "badfilter_rules": [
           "||tn.porngo.xxx^$badfilter",
           "||pl.ua^$badfilter",
@@ -283,8 +283,8 @@
       "source_type": "remote",
       "download_url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "sha256": {
-        "sources/adguard-dns-filter.txt": "a4e14c1d463068f5a09cf65bf4a14a2aeabf70d615162b59c2fcc55f56abd0af",
-        "adguard-dns-filter.srs": "e1354f5e24f369f75f6017e52ada3589be96a4e2bd2e8def904c8bfffa021e8a"
+        "sources/adguard-dns-filter.txt": "068c768843f018f3865e04c4d13ef309ff47ad6b0fc3f7e725ecdc4c262a6a22",
+        "adguard-dns-filter.srs": "7b2b8d03b7bb1d5eb05ecce019ca8e8d093c114f245de2175e2f1a54b05dbd8b"
       }
     },
     {
@@ -507,9 +507,9 @@
         "title_prefix": "HaGeZi's Threat Intelligence Feeds",
         "count_field": "number of entries"
       },
-      "rule_count": 2062783,
+      "rule_count": 1852754,
       "rule_object_count": null,
-      "match_entry_count": 2062783,
+      "match_entry_count": 1852754,
       "upstream": {
         "title": "HaGeZi's Threat Intelligence Feeds - a serious security boost (recommended)",
         "description": "This blocklist targets malware, cryptojacking, scams, spam, and phishing. It blocks domains known for spreading malware, running phishing attacks, and hosting command-and-control servers.",
@@ -519,13 +519,13 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "29 Oct 2026 09:08 UTC",
-        "version": "2026.1029.0908.07",
+        "last modified": "30 Oct 2026 09:05 UTC",
+        "version": "2026.1030.0905.27",
         "syntax": "AdBlock",
-        "number of entries": "2062783"
+        "number of entries": "1852754"
       },
       "conversion": {
-        "compiled_rule_count": 2062783,
+        "compiled_rule_count": 1852754,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -537,8 +537,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt",
       "sha256": {
-        "sources/hagezi-tif-full.txt": "3aae0e1c119c58edcb7037abeaaae031a849bcc23eaf5f5c58f0c574dcfedea7",
-        "hagezi-tif-full.srs": "9fc216c036efdfdfd0d361f37062dc6a249a953edd120a501b6a2efb478782e4"
+        "sources/hagezi-tif-full.txt": "43c80257435ca07981376bc010f3022a760e0161227005766a31634e8b01c457",
+        "hagezi-tif-full.srs": "17568c766b669c3fb8bc57260576a747216710f7e4595a762c414d6f3bf961a5"
       }
     },
     {
@@ -553,9 +553,9 @@
         "title_prefix": "HaGeZi's Multi PRO -",
         "count_field": "number of entries"
       },
-      "rule_count": 211671,
+      "rule_count": 214202,
       "rule_object_count": null,
-      "match_entry_count": 211671,
+      "match_entry_count": 214202,
       "upstream": {
         "title": "HaGeZi's Multi PRO - extended protection (recommended)",
         "description": "Big broom edition. Cleans up the internet and protects your privacy. Blocks ads, trackers, metrics, telemetry, phishing, malware, scams, fakes, cryptojacking, and other junk.",
@@ -565,13 +565,13 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "29 Oct 2026 09:43 UTC",
-        "version": "2026.1029.0943.07",
+        "last modified": "30 Oct 2026 09:58 UTC",
+        "version": "2026.1030.0958.25",
         "syntax": "AdBlock",
-        "number of entries": "211671"
+        "number of entries": "214202"
       },
       "conversion": {
-        "compiled_rule_count": 211671,
+        "compiled_rule_count": 214202,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -583,8 +583,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt",
       "sha256": {
-        "sources/hagezi-pro.txt": "d84e3eafaaa635ba020fba1faa39482bcc562a84ae5f8c0312a8cdde013d626b",
-        "hagezi-pro.srs": "2b208ce8c54eb1c011ecd4ce4b344d51890e790a2deeed34807170ee39d6658d"
+        "sources/hagezi-pro.txt": "77d79ddad8f0b6e4f5ac88ed12fc5e5c2f443a8e2a0ad6e7983a1683627228f6",
+        "hagezi-pro.srs": "0039649dfb5ad931f1ef206f8b01fe290198fc7367013348abd03322a104a9e9"
       }
     },
     {
@@ -599,9 +599,9 @@
         "title_prefix": "HaGeZi's Threat Intelligence Feeds - medium version",
         "count_field": "number of entries"
       },
-      "rule_count": 414867,
+      "rule_count": 315740,
       "rule_object_count": null,
-      "match_entry_count": 414867,
+      "match_entry_count": 315740,
       "upstream": {
         "title": "HaGeZi's Threat Intelligence Feeds - medium version (best for browser/mobile ad blockers)",
         "description": "A medium-sized version of the TIF list, built for ad blockers that struggle with the full-size version. Includes only the most important feeds.",
@@ -610,13 +610,13 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "29 Oct 2026 09:19 UTC",
-        "version": "2026.1029.0919.10",
+        "last modified": "30 Oct 2026 09:15 UTC",
+        "version": "2026.1030.0915.28",
         "syntax": "AdBlock",
-        "number of entries": "414867"
+        "number of entries": "315740"
       },
       "conversion": {
-        "compiled_rule_count": 414867,
+        "compiled_rule_count": 315740,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -628,8 +628,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.medium.txt",
       "sha256": {
-        "sources/hagezi-tif-medium.txt": "b4303f835e5078d2ebb3378ababa21e817f1f3226943c7e3c1bbf6d150ea7346",
-        "hagezi-tif-medium.srs": "7dc4a7852e243ddec6e45a862545c6b6c613a8a62894833d0eff037e8e70b431"
+        "sources/hagezi-tif-medium.txt": "ada582ea8ba34fdad74c695ccffaf16741f5fb0bed08a06c5c8f1d79f55d7b1c",
+        "hagezi-tif-medium.srs": "014dab20c19798ced0e2d4737d600ac3ef48c9349aafa7a1558e745fb51fa121"
       }
     },
     {
@@ -644,9 +644,9 @@
         "title_prefix": "HaGeZi's Threat Intelligence Feeds - mini version",
         "count_field": "number of entries"
       },
-      "rule_count": 213811,
+      "rule_count": 193074,
       "rule_object_count": null,
-      "match_entry_count": 213811,
+      "match_entry_count": 193074,
       "upstream": {
         "title": "HaGeZi's Threat Intelligence Feeds - mini version (best for browser/mobile ad blockers)",
         "description": "A size-optimized version of the TIF Medium list, for ad blockers that even struggle with that one.",
@@ -655,13 +655,13 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "29 Oct 2026 09:23 UTC",
-        "version": "2026.1029.0923.20",
+        "last modified": "30 Oct 2026 09:19 UTC",
+        "version": "2026.1030.0919.36",
         "syntax": "AdBlock",
-        "number of entries": "213811"
+        "number of entries": "193074"
       },
       "conversion": {
-        "compiled_rule_count": 213811,
+        "compiled_rule_count": 193074,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -673,8 +673,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.mini.txt",
       "sha256": {
-        "sources/hagezi-tif-mini.txt": "49936e26e49d59b80fab39bdbd4aef480833e31eb174bd002853b67886433031",
-        "hagezi-tif-mini.srs": "13a4af9bb9389e3685041650371f3af1bd08617214f868ce9c4c4925d501e227"
+        "sources/hagezi-tif-mini.txt": "ad3adb4f278dccd0d6e4b1298936a3b547bd20a66f1c916a0e5aef5369384379",
+        "hagezi-tif-mini.srs": "701e94ff165fe191a512bd8635b6de86394d724c3890beb131c510d08ab3838e"
       }
     },
     {
@@ -689,9 +689,9 @@
         "title_prefix": "HaGeZi's Amazon Tracker",
         "count_field": "number of entries"
       },
-      "rule_count": 368,
+      "rule_count": 369,
       "rule_object_count": null,
-      "match_entry_count": 368,
+      "match_entry_count": 369,
       "upstream": {
         "title": "HaGeZi's Amazon Tracker - blocks built-in trackers from devices, apps, and OSes!",
         "description": "Blocks the Amazon native trackers baked into devices, services, and operating systems that quietly track what you do.",
@@ -700,13 +700,13 @@
         "issues": "https://github.com/hagezi/dns-blocklists/issues",
         "disclaimer": "https://github.com/hagezi/dns-blocklists/blob/main/README.md#disclaimer",
         "expires": "8 hours",
-        "last modified": "23 Oct 2026 21:58 UTC",
-        "version": "2026.1023.2158.06",
+        "last modified": "29 Oct 2026 11:35 UTC",
+        "version": "2026.1029.1135.53",
         "syntax": "AdBlock",
-        "number of entries": "368"
+        "number of entries": "369"
       },
       "conversion": {
-        "compiled_rule_count": 368,
+        "compiled_rule_count": 369,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -718,8 +718,8 @@
       "source_type": "remote",
       "download_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.amazon.txt",
       "sha256": {
-        "sources/hagezi-native-amazon.txt": "e42338284d588bac64a2533737f96e2faff344a5a7b173c8e739482989e30c39",
-        "hagezi-native-amazon.srs": "04cf70a72ad0817a72a52f810d024ed4b2a14d214972d4cc8b6505e807cdcc66"
+        "sources/hagezi-native-amazon.txt": "4ad0204ab102aa7734bbf6d3c8bbd2ce466d29aa0a2b4236a796203333c05f04",
+        "hagezi-native-amazon.srs": "64ca0283ac6495daaaeba4c09e071f2ea72b409db0f7575521262c7f44af87eb"
       }
     },
     {
@@ -1231,23 +1231,23 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 234824,
+      "rule_count": 235102,
       "rule_object_count": null,
-      "match_entry_count": 234824,
+      "match_entry_count": 235102,
       "upstream": {
-        "version": "202610300505",
+        "version": "202610301305",
         "title": "oisd big",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "234824",
-        "last modified": "2026-10-30T05:05:50+0000",
+        "entries": "235102",
+        "last modified": "2026-10-30T13:05:52+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 234824,
+        "compiled_rule_count": 235102,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1259,8 +1259,8 @@
       "source_type": "remote",
       "download_url": "https://big.oisd.nl/",
       "sha256": {
-        "sources/oisd-big.txt": "c3dd13d98abf8d3282beda6a2b4cee164ff43ed0909ef22b7569ced196312087",
-        "oisd-big.srs": "9ed3cfd2ad6b6731f23070eddd85f68b4b48eac6977aab84662421280f1e4ff4"
+        "sources/oisd-big.txt": "07f5f01d096aa314032780c757215ebb7568c117c62fb63ed8acc71e3fb01fa4",
+        "oisd-big.srs": "541a837d78f70be1cc313f7d02199a8f409436e1eea52e936e649fb810b769ca"
       }
     },
     {
@@ -1277,23 +1277,23 @@
         ],
         "count_field": "entries"
       },
-      "rule_count": 59949,
+      "rule_count": 60080,
       "rule_object_count": null,
-      "match_entry_count": 59949,
+      "match_entry_count": 60080,
       "upstream": {
-        "version": "202610300005",
+        "version": "202610301306",
         "title": "oisd small",
         "description": "Block. Don't break.",
         "syntax": "Adblock Plus Filter List",
-        "entries": "59949",
-        "last modified": "2026-10-30T00:05:33+0000",
+        "entries": "60080",
+        "last modified": "2026-10-30T13:06:51+0000",
         "expires": "1 hours",
         "license": "https://github.com/sjhgvr/oisd/blob/main/LICENSE",
         "maintainer": "Stephan van Ruth",
         "homepage": "https://oisd.nl"
       },
       "conversion": {
-        "compiled_rule_count": 59949,
+        "compiled_rule_count": 60080,
         "badfilter_rules": [],
         "disabled_rules": [],
         "rewritten_rules": [],
@@ -1305,8 +1305,8 @@
       "source_type": "remote",
       "download_url": "https://small.oisd.nl/",
       "sha256": {
-        "sources/oisd-small.txt": "a38a7a193f7930d025c1863a1c9a050ebf53068663ca9acc139639cdb7e7de0d",
-        "oisd-small.srs": "4723947a8074deab14bb183406f365a12ef6a396c2e7bacc913d1c31e73e4fdd"
+        "sources/oisd-small.txt": "d14591b4b519f474101cf0974a40c0ba831289572f0ca5b4b9e4fc137ffe0683",
+        "oisd-small.srs": "363b5730aaa0394ab2f5dc4429224f13cf2337849209528c084373116f58f5ee"
       }
     }
   ]
